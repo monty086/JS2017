@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>点击计数</title>
+    <style>
+        html, body,div{
+            padding: 0;
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            color: #fff;
+            font-size: 500px;
+            text-align: center;
+            line-height: 500px;
+            -webkit-user-select: none;
+        }
+    </style>
+</head>
+<body>
+<div>0</div>
+</body>
+<script>
+    //函数体内的应用数据类型被函数体外的变量或者属性名对应的属性值所调用，导致函数体不释放
+    //    (function(){
+    //        var count =0
+    //        document.body.onclick=function(){
+    //            count++
+    //            this.innerHTML=count
+    //        }
+    //    }())
+//在函数外面地调用函数体内的引用数据类型使函数体内的变量以及函数体不被释放
+    //    document.body.onclick = (function () {
+    //        var count = 0
+    //        return function () {
+    //            document.body.innerHTML = ++count
+    //        }
+    //    })()
+//自定义属性的方式，谁点击给谁加一个自定义属性
+//    document.body.aa=0;
+//    document.body.onclick=function(){
+//        this.aa++
+//        this.innerHTML=this.aa
+//    }
+//利用innerHTML的方式实现
+    var oDiv =document.getElementsByTagName('div')[0]
+    oDiv.onclick =function (){
+//        ++this.innerHTML
+//        this.innerHTML=++this.innerHTML//利用innerHTML++可以实现强制将数字转换
+        oDiv.innerHTML=oDiv.innerHTML/1+1 //利用innerHTML-*/可以实现强制将数字转换
+    }
+    //    var k =0;
+    //    console.log(2+k++ + ++k + k++ + ++k + ++k)
+</script>
+
+</html>

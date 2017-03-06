@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var ary = [100,200,300,400];//xxff00[/*100*//*,200*//*,300*//*,400*/]
+    var obj = {
+        ary: [100, 200]//[100/*,200*/]
+    };
+    obj.fun = fun(ary);
+    function fun(ary) { //xxff00
+        //var ary =xxff00
+        this.ary = ary; //window.ary=ary
+        ary.length--;
+        return function () {
+            this.ary.length--;//window.ary.length--
+            ary.length--;
+            console.log(ary);
+        }
+    }
+    var f = obj.fun;
+    f();//[100]
+    obj.fun();//只执行return后的函数 这个值还是私有变量里的引用数据函数[]
+    console.log(ary, obj.ary)//[],[100]
+//////////////////////////////////////////////////////////////////////
+
+
+</script>
+</body>
+</html>

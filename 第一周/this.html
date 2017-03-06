@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>this题</title>
+</head>
+<body>
+<script>
+    var num = 5;
+    var obj = {
+        num: 4,
+        fn: (function (num) {
+            this.num += 2;
+            num++;
+            return function () {
+                this.num+=3;
+                num++;
+                console.log(num);
+            }
+        })(this.num)//this在没有函数包裹的时候都属于window
+    };
+    var fn= obj.fn;//全局变量fn和obj.fn共同引用自运行函数的返回值
+    fn();
+    obj.fn();
+    console.log(this.num,obj.num);
+
+
+</script>
+</body>
+</html>

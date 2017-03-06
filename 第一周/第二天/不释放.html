@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function sum (sum){
+        var num =10;
+        return function (){
+            console.log(num)
+        }
+    }
+    var f =sum() //被全局变量占用
+    obj.xxx = sum();  //obj的xxx属性占用
+    var div1= document.getElementById('div')
+    div1.xxx = sum()  //dom对象div的xxx属性占用
+    div1.conclick = function (){}//把一个函数的引用地址赋值给dom对象div1的onclick事件
+
+
+
+</script>
+</body>
+</html>
