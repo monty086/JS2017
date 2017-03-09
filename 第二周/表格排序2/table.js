@@ -27,7 +27,11 @@ console.log(window.data);
 
 //把数据输出到页面中使用动态创建的方式，回头再用innerHTML的方式
 ;(function(){
+<<<<<<< HEAD
 if (window.data && window.data.length) {//定义在全局上
+=======
+if (window.data && window.data.length) {
+>>>>>>> 3e5823ea21da168e5127885046fab3a001e1d85b
     var frg = document.createDocumentFragment();
     for (var i = 0; i < data.length; i++) {
         var tr = document.createElement('tr');
@@ -50,7 +54,11 @@ function changebg (){
     tBodyRows[i].className = i%2? 'c1':'c2';
     }
 }
+<<<<<<< HEAD
 changebg();
+=======
+changebg()
+>>>>>>> 3e5823ea21da168e5127885046fab3a001e1d85b
 
 //给表头添加点击事件
 
