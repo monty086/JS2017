@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+
+    var z =[1,2]
+    function foo(z){
+        z.length--;
+        z=z.splice(0);//删除z的所有内容，全局现在变成[]，返回被删除的内容，私有变量z返回
+        z[z.length] = 3;
+        var z ;
+        console.log(z);
+    }
+    foo(z);//实参传的是引用数据类型的内存地址，函数内修改，全局的堆内存也跟着修改
+    console.log(z)
+</script>
+</body>
+</html>

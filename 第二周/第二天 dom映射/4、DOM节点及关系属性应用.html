@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<ul id="list">
+    <li>我是第一个li</li>
+    <li>我是第二个li</li>
+    <!-- -->
+    <li id="li3">我是第三个li</li>
+    <li>我是第四个li</li>
+    <li>我是第五个li</li>
+</ul>
+
+<script>
+    var oLi3=document.getElementById('li3');
+
+    console.log(oLi3.previousSibling.previousSibling);
+
+    //获取上一个哥哥元素节点
+    function prev(ele){
+        //先获取一个哥哥节点
+        var pre=ele.previousSibling;
+
+        while(pre&&pre.nodeType!==1){
+            pre=pre.previousSibling;
+        }
+        return pre;
+    }
+    console.log(prev(oLi3));
+
+    //获取所有的哥哥节点
+
+    function prevAll(ele){
+        var ary=[];
+        var pre=ele.previousSibling;
+
+        while(pre){
+            if(pre.nodeType===1){
+                ary.unshift(pre)
+            }
+            pre=pre.previousSibling;
+        }
+        return ary;
+    }
+
+    console.log(prevAll(oLi3));
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html>

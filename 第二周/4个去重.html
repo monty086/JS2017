@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>去重</title>
+</head>
+<body>
+<script>
+
+    Array.prototype.unique=function () {
+
+        //方法1：sort排序
+        this.sort(function (a,b) {
+            return a-b;
+        });
+        for(var i=0;i<this.length;i++){
+            if(this[i]===this[i+1]){
+                this.splice(i+1,1);
+                i--;
+            }
+        }
+        return this;
+        //方法2：对象（属性名等于属性值）
+        /*var obj={};
+         for(var i=0;i<this.length;i++){
+         var cur=this[i];
+         if (obj[cur]==cur){
+         this.splice(i,1);
+         i--;
+         }else {
+         obj[cur]=cur;
+         }
+         }
+         obj=null;
+         return this;*/
+
+        //方法3：对象（属性值每次累加1）
+        /*var obj={};
+         var ary=[];
+         for (var i=0;i<this.length;i++){
+         var cur=this[i];
+         if(obj[cur]){
+         obj[cur]++;
+         }else {
+         obj[cur]=1;
+         }
+         }
+         for (var attr in obj){
+         //            ary.push(attr);
+         ary.push(Number(attr));
+         }
+         obj=null;
+         return ary;*/
+        //方法4：双重循环
+        /*for(var i=0;i<this.length;i++){
+         var cur=this[i];
+         for (var j=i+1;j<this.length;j++){
+         if(cur==this[j]){
+         this.splice(j,1);
+         j--;
+         }
+         }
+         }
+         return this;*/
+        //方法5：indexOf -> （不兼容）
+        /*var ary=[];
+         for (var i=0;i<this.length;i++){
+         var cur=this[i];
+         if(ary.indexOf(cur)===-1){
+         ary.push(cur);
+         }
+         }
+         return ary;*/
+    };
+    console.log([1,2,3,3,1].unique()); //[1, 2, 3]
+
+</script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+[
+{"country":"中国","population":13,"capital":"北京","GDP":10,"develop":0},
+{"country":"美国","population":3,"capital":"华盛顿","GDP":1,"develop":1},
+{"country":"德国","population":1,"capital":"柏林","GDP":10,"develop":1},
+{"country":"澳大利亚","population":3,"capital":"堪培拉","GDP":5,"develop":1}
+]

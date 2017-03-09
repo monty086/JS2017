@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    Array.prototype.unique=function (){
+
+        //先排序，然后将两个相同的数字，删掉其中一个就行
+//        this.sort(function (a,b){
+//            return a-b
+//        })
+//        for(var i=0;i<this.length;i++){
+//            if(this[i]===this[i+1]){
+//                this.splice(i+1,1);
+//                i--
+//            }
+//        }
+//        return this
+
+        //添加一个往大括号里面塞，如果能塞进去说明不重复，塞不进去说明里面有了相同的了，直接删除就好
+
+        var ary = {};
+        for(var i=0;i<this.length;i++){
+            var cur = this[i];
+            if(ary[cur]==cur){
+              this[i] = this[this.length-1];
+              this.length--;
+//            this.splice(i,1)
+              i--;
+            }else{
+                ary[cur]=cur;
+            }
+        }
+        ary=null;
+        return this;
+
+        //双重循环
+
+//        for(var i=0;i<this.length;i++){
+//            var cur =this[i];
+//            for(var j=i+1;j<this.length;j++){
+//                if(cur==this[j]){
+//                this.splice(j,1)
+//                j--
+//                }
+//            }
+//        }
+//        return this
+
+
+
+
+
+
+    }
+    var res = [1,2,4,4,2,1,2,3,2,5].unique();
+    console.log(res);
+
+
+</script>
+</body>
+</html>

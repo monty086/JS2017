@@ -1,0 +1,77 @@
+*{
+    padding:0;
+    margin:0;
+}
+ul,li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+}
+html,body{
+    width: 100%;
+}
+.main{
+    width: 100%;
+    padding:5%;
+    box-sizing: border-box;/*内填充*/
+    background: #edece9;
+}
+.main ul{
+    width: 18%;
+    float: left;
+    margin:1%;
+}
+/*.main ul:nth-child(odd){!*三个数的是基数，4个字母的是偶数*!*/
+    /*background: limegreen;*/
+/*}*/
+/*.main ul:nth-child(even){*/
+    /*background: olive;*/
+/*}*/
+.clearFix:after{
+    content:"";
+    display: block;
+    clear:both;
+}
+.main ul li{
+    width: 100%;
+    /*height: 400px;*/
+    margin: 10px 0;
+    position: relative;
+    box-shadow: 1px 2px 2px #666;
+}
+.main ul li a{
+    position: absolute;
+    left:10px;
+    top:10px;
+    width: 50px;
+    height: 30px;
+    background: red;
+    line-height: 30px;
+    text-align: center;
+    color: #fff;
+    font-size: 14px;
+    display: none;
+    border-radius: 4px;
+}
+.main ul li:hover a{
+    display: block;
+}
+.main ul li img{
+    width: 100%;
+    /*height: 100px;*/
+    border: none;
+    vertical-align: top;
+    height: 100%;
+    background: url("../images/qq.gif") no-repeat center;
+    background-size: 40px 40px ;
+    opacity: 0;/*淡入fadeIn*/
+}
+.main ul li p{
+    color:#222;
+    height: 38px;
+    font-size: 14px;
+    padding:10px 20px 0;
+    /*margin-top:4px;*/
+}
+

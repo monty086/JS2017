@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<script>
+    var teg = new RegExp(/\d+/g)
+
+
+
+    /*
+    *
+    3. exec 捕获结果，
+            1. 返回一个数组   数组的第一个项，是捕获到的结果，
+            2.reg.lastIndex 属性==》下一个捕获从哪个索引位置开始，当捕获结果为null这个属性值就会重新赋值为0；然后就又从开始捕获了；
+
+      match:1. 返回一个数组
+            2. 会把所有符合要求的一次性捕获回来
+    *
+    *
+    *
+    * */
+
+
+    var str1 ='a222b333';
+    var reg1 = /\d+/g;
+    var res2  = reg1.exec(str1);
+    var ary = [];
+//    white( ){
+//
+//    }
+
+
+
+
+    var str2 ='a222b333';
+    var reg2 = /\d+/g;//如果不加g不用match，有了g就是 一次性把所以的捕获到，
+//    var res  = str.match(reg2)
+
+var reg = / (\w)\d{3}(\w)\d{3}/
+    console.log(reg.exec(str2));
+    //4. 正则中的分租和分租的应用
+      // ？  代表一个量词
+    //（？:\d...） 放在一个分组的开头，匹配不捕获，破坏分租的功能呢； 把这个分租给去掉,小括号还在，不捕获了，匹配不捕获，
+    //  分组：想获取到字符串中的一部分那么可以使用分租 ==》在大正则中使用小括号
+    //  exec捕获返回的数组，从第二项开始分别是分组捕获到的内容，第一项是雷打不动的数组
+    //  所谓的分租就是 在正则里面加小括号，这样用捕获就可以拿到了。
+    //  分组的引用
+       /*
+
+      1. 当后面出现的字符，需要和前面保持一致，我们需要用到分组的引用，abab aabb aaaa
+      ps. 括号从左到右依次出现的顺序做为分组顺序
+      RegExp .$9 保存着正则实例最后一次被使用的分租的内容（$是分租的意思，一共可以拆分为9组；）
+      var reg =
+      /(\d)(\d)\1\1\2/aab   aaabb
+      //
+
+
+
+      */
+    //  分组的话也按左半部分分，
+    var reg = /(\d)(\d)(\d)\1\2\1/   //aab   aaabb
+
+    console.log(reg.test('121121'))
+    console.log(reg.test('122121'))
+
+    var str = 'a c-b'
+    str.split(/[ -]/)
+
+
+    str = str.replace()
+    var str = '12312312'
+    var reg =
+
+
+
+</script>
+</body>
+</html>

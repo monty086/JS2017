@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>classname兼容</title>
+</head>
+<body>
+<div class=" a b c"></div>
+<div class=" bc a"></div>
+<div class="a">
+    <span class="b a d c"></span>
+</div>
+<div class="a b"></div>
+</body>
+</html>
+<script>
+    //解决classname一定要封装一个函数
+    /*
+    *
+    * 先定义一个形参，需要传一个类名，需要一个范围，param
+    * 需要返回值
+    * 为什么要传一个范围，因为如果不传的话，那整个文档的classname都会被传进来，不管标签是什么，只要calssname是这个值的标签都会被拿来
+    *
+    * */
+    /**
+     *
+     * @param className
+     * @param context
+     */
+    getElesByClass(' a  b  ')
+    function getElesByClass (className,context){//context范围、上下文  就的document
+        context = context || document  //如果有传值就用传的值，如果没有传值就用document，给context一个默认值
+        if(context.getElementsByClassName){//高版本用的，如果没问题就直接拿取
+            return context.getElementsByClassName(className)
+        };//这个是高版本的，低版本不兼容此方法运行以下代码
+        //for is low
+        //去掉收尾空格，并且把类字符串拆分成一个数组
+        var classNameAry = className.replace((/(^ +| +$)/g),'').split(/ +/);//[a,b]
+        var tags  = context.getElementsByTagName('*');//获取context范围内所有的标签
+        //过滤每一个tags，然后比较每一个tag的classname是否可以和classNameAry中对比上
+        var ary = [];
+        for(var i=0;i<tags.length;i++){//过滤每一个标签
+            var curTag = tags[i];//每一个元素标签
+            var isGoodTag = true;
+            for(var j=0;j<classNameAry.length;j++){//循环类名字
+                var curClass  = classNameAry[i];//每一个必须包含的类   a,b
+                //  就看curTag(当前正在过滤的元素)的classname上是否包含curclass
+                var reg = new RegExp('(^| +)'+curClass+'( +|$)')//如果正则里面的有变量就需要用实例的方式创建并赛选
+                if(reg.text(curTag.className)){
+                    //在所有传进来的类名中，只要有一个类名字在元素中没有，那么这个元素假设的条件就不成立，也没有必要继续去验证后面的类名字了
+                    isGoodTag = false;
+                    break
+                }
+            }
+            if(isGoodTag){
+               ary.push(curTag)
+            }
+        }
+        return ary
+    }
+    console.log(getElesByClass(' a b '));
+</script>
+
+

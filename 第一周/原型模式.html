@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    //构造函数都是引用数据类型，
+    //只要是引用数据类型就可以在其上添加任何自定义属性，函数也不例外
+
+    //构造函数和原型的联系
+    function Fn (){
+        this.x=100;//私有变量
+    }
+    Fn.prototype.getX=function (){
+        console.log(this.x)//公有变量
+    }
+    var f1 = new fn();
+    f1.getX()//100
+    fn.prototype.getX()//undefined
+</script>
+</body>
+</html>

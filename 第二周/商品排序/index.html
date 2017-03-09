@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .product {
+            width: 1000px;
+            margin: 10px auto;
+            box-shadow: 5px 5px 10px #000;
+            padding: 10px
+        }
+
+        .product .btn {
+            height: 40px;
+            background-color: antiquewhite;
+            line-height: 40px;
+            padding-left: 50px
+            /*font-size: 0;*/
+            /*overflow: hidden;*/
+        }
+
+        .product .btn a {
+            display: inline-block;
+            width: 50px;
+            height: 30px;
+            border: 1px solid #ccc;
+            text-align: center;
+            line-height: 30px;
+            margin-right: 10px;
+            color: #666;
+
+        }
+
+        .product .btn a:hover {
+            background-color: aquamarine;
+            color: cadetblue;
+        }
+
+        .clearFix:after {
+            content: '';
+            display: block;
+            clear: both
+        }
+
+        .product ul {
+            margin-top: 20px;
+        }
+
+        .product ul li {
+            width: 200px;
+            height: 260px;
+            float: left;
+        }
+
+        .product ul li img {
+            width: 200px;
+            height: 200px;
+            border: none;
+            display: block;
+            vertical-align: top;
+        }
+
+        .product ul li p {
+            height: 30px;
+            line-height: 30px;
+            color: red;
+            padding-left: 25px;
+        }
+    </style>
+</head>
+<body>
+<div class="product" id="product">
+    <div class="btn">
+        <a btnName="ok" href="javascript:void 0">成交量</a><!--在元素上自定义了一个属性btnName-->
+        <a btnName="price" href="javascript:void 0">价格</a>
+    </div>
+    <ul class="clearFix">
+        <!--<li>-->
+        <!--<img src="../第二天%20dom映射/排序/images/phone1.jpg" alt="">-->
+        <!--<p>价格:￥9888</p>-->
+        <!--<p>成交数:1000</p>-->
+        <!--</li>-->
+        <!--<li>-->
+        <!--<img src="../第二天%20dom映射/排序/images/phone2.jpg" alt="">-->
+        <!--<p>价格:￥988</p>-->
+        <!--<p>成交数:100</p>-->
+        <!--</li>-->
+        <!--<li>-->
+        <!--<img src="../第二天%20dom映射/排序/images/phone3.jpg" alt="">-->
+        <!--<p>价格:￥1988</p>-->
+        <!--<p>成交数:10</p>-->
+        <!--</li>-->
+        <!--<li>-->
+        <!--<img src="../第二天%20dom映射/排序/images/phone4.jpg" alt="">-->
+        <!--<p>价格:￥29888</p>-->
+        <!--<p>成交数:1010</p>-->
+        <!--</li>-->
+        <!--<li>-->
+        <!--<img src="../第二天%20dom映射/排序/images/phone5.jpg" alt="">-->
+        <!--<p>价格:￥39888</p>-->
+        <!--<p>成交数:1300</p>-->
+        <!--</li>-->
+    </ul>
+</div>
+</body>
+</html>
+<script>
+    //先获取最外层的id ，其他的都是它里面的内容
+    var product = document.getElementById('product');
+    var btn = product.getElementsByTagName('a');//包含价格和成交量的按钮
+    var ul = product.getElementsByTagName('ul')[0];
+    var lis = ul.getElementsByTagName('li');
+
+
+    var data = null
+    /*
+     * Ajax 简单步骤
+     *           1.new,一个实例，让谁去
+     *           2. open（），怎么去，到哪去，原地等待
+     *           3.约定了几个状态码
+     *           4. 出发
+     *           获取的数据挂载在这个这个属性上  xhr.responseText
+     *
+     * */
+    var xhr = new XMLHttpRequest();//创建一个对象。
+    xhr.open('get', 'data.txt', false);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            data = JSON.parse(xhr.responseText);//响应文本，保存着从接口后台返回的数据
+        }
+    }
+    xhr.send(null)
+    console.log(data);
+
+    //绑定数据  把数据拼接成dom结构添加到页面中
+    var str = '';
+    if (data && data.length) {
+        for (var i = 0; i < data.length; i++) {
+            str += '<li price="' + data[i].price + '" ok="' + data[i].ok + '">';
+            str += '<img src="' + data[i].src + '" alt="">';
+            str += '<p>价格:￥' + data[i].price + '</p>';
+            str += '<p>成交数:' + data[i].ok + '</p>';
+
+            str += '</li>'
+        }
+        ul.innerHTML = str;
+    }
+
+    for (var i = 0; i < btn.length; i++) {
+        btn[i].flag = -1;
+        btn[i].onclick = function () {//当事件触发的时候排序
+            sort.call(this)//要按照this是去排序。
+        }
+    }
+    function sort() {
+        var btnName = this.getAttribute('btnName');
+        var lisary = Array.prototype.slice.call(lis);
+        var that = this;
+        that.flag *= -1;
+        lisary.sort(function (a, b) {
+            var x = a.getAttribute(btnName);
+            var y = b.getAttribute(btnName);
+            return (x - y) * that.flag;
+        })
+        var frg = document.createDocumentFragment();
+        for(var i=0;i<lisary.length;i++){
+            frg.appendChild(lisary[i]);
+        }
+        ul.appendChild(frg)
+        frg=null
+    }
+
+
+</script>

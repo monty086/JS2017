@@ -1,0 +1,33 @@
+*{
+    padding:0;
+    margin:0;
+}
+table{
+    width: 1000px;
+    border:5px solid mediumpurple;
+    margin: 10px auto;
+}
+#table thead tr{
+    background-color:darkcyan ;
+    height: 40px;
+}
+table thead th{
+    height: 40px;
+    width: 200px;
+    text-align: center;
+    -webkit-user-select: none;
+}
+table tbody td{
+    height: 40px;
+    text-align: center;
+    width: 200px;
+}
+.cursor{
+    cursor:pointer;
+}
+.c1{
+    background-color: #999999;
+}
+.c2{
+    background-color: #cccccc;
+}

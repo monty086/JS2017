@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>this</title>
+</head>
+<body>
+<script>
+    function fn(){
+        console.log(this);
+    }
+    var obj = {
+        o:function (){
+            fn()//这是fn所在的函数是是上面的那个函数，我只想看见fn（），不想去推算最后得出来是不是fn（），我只想立刻看到this所在函数的执行的标签fn（）这个东西，前面有没有。有。那this就是谁的，没有。那就是window
+            this//如果这里面有this那么obj.o（）里的this就是obj了。
+        }
+    }
+    obj.o()//指的是obj.o 下面的这个函数执行执行结果是fn（），这里面的结果是fn（），结果是结果是window
+
+    //这里面的看执行点后面  是一个函数 还是一个
+
+    function fn(){
+        console.log(this);
+    }
+    var obj = {
+        oo : fn
+    }
+    obj.oo()
+
+var obj = {
+       obj: function fm() {
+        console.log(this)
+                    function fn() {
+                                 console.log(this)
+     }
+                }
+    }
+    fn()//w
+    obj.fm()()//obj,w
+    obj.fm()//obj
+
+    function f1 (){this}
+    function f2 (){}
+    function f3 (){}
+    function f4 (){}
+    var ary=[f1,f2,f3,f4];
+    //ary[0]()=ary.0()
+
+
+</script>
+</body>
+</html>

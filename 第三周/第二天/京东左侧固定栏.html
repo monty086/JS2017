@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            padding:0;
+            margin:0;
+        }
+        div img{
+            width: 100%;
+            height: 100%;
+        }
+        .btn{
+            text-decoration: none;
+            color:#fff;
+            width: 40px;
+            height: 40px;
+            display: none;
+            position: fixed;
+            left:10px;
+            bottom:60px;
+            background: #5e4a4a;
+            font-size: 12px;
+            line-height: 40px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <img src="jd.png" alt="">
+    <a class="btn" href="javascript:void 0">
+    顶
+    </a>
+</div>
+</body>
+</html>
+<script src="../utils.js"></script>
+<script>
+    var btn = document.getElementsByClassName('btn')[0];
+    var canScoroll =true;
+    window.onscroll =function(){  //给浏览器添加滚动事件
+        debugger;
+        if(canScoroll){
+                var scrollTop = utils.win('scrollTop');//在滚动的过程中不断的去获取滚出去的高度，判断这个高度是否超过一个屏的高度，如果超过按钮出现
+                var winHeight = utils.win('clientHeight');//窗口的高度
+
+                if(scrollTop>winHeight){
+                    utils.setCss(btn,'display','block')
+            }
+
+    }
+    }
+    //给按钮添加绑定事件
+    btn.onclick = function (){
+        window.clearInterval(btn.timer);
+        btn.timer = window.setInterval(function (){
+            //获取已经生效的scrollTop 的值，然后减去5px，然后减去之后的值再赋值在
+            var curSrollTop = utils.win('scrollTop')
+            if(curSrollTop<=0){
+                window.clearInterval(btn.timer);
+                //window.onscroll=fn;
+                canScoroll=true;
+                return;
+            }
+            curSrollTop -= 5;
+            utils.win('scrollTop',curSrollTop)
+        } ,1)
+        //alert()//定时器不会阻塞代码运行  ，定时器也属于异步
+        //debugger;
+        this.style.display = 'none';//点击之后就会消失
+        canScoroll=false
+        //window.onscroll =null//移除事件：由于定时器在驱动滚动条回顶部的过程中又触发了window的onscroll，就会把按钮显示出来，当点击事件发生时，让window.onscroll的点击事件赋值为null，意思是给移除
+    }
+
+</script>

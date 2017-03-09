@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="nb">
+<div class="ab"></div>
+<div class="win"></div>
+<div class="ab win"></div>
+<div class="abcd"></div>
+</div>
+</body>
+</html>
+<script>
+    var nb = document.getElementById('nb');
+    function getElesByClass1(className, context) {  //class=" ab win "
+        context = context || document;//你要传了就用context，没有我就用document
+        if (context.getElementsByClassName) {//如果你这个方法存在
+            return context.getElementsByClassName(className)//那就把值传进去，高版本结束
+        }
+        // low ie
+        var classNameAry = className.replace(/(^ +| +&)/g, "").split(/ +/);//不管你首尾是否有空格，我用空字符串给替换掉，然后字符串中有一个空格也替换成','  ，先replace去掉前后的空格，然后再将字符串中的空格变成','变成{ab,win}
+        var tags = context.getElementsByTagName('*');//在这个范围下的拿到每一个标签元素，一个类数组所有的标签元素
+        var ary = [];//添加一个数组容器
+        // var isGoodTag = true;//假设一个标签为真。后期可以写
+        for (var i = 0; i < tags.length; i++) {
+            var curTag = tags[i];//将每一对的标签元素都赋值给这个变量
+            var isGoodTag = true;//这是一个假设，以后用假设的还比较多
+            for (var j = 0; j < classNameAry.length; j++) {//循环字符串中每一个类名
+                var curClass = classNameAry[j];//每一个类名都赋值给一个变量
+                var reg = new RegExp('(^| +)' + curClass + '( +|$)');//这个其实就是创建一个正则，但是因为正则里面是一个变量，所以需要用实例的方式创建他；没有办法验证，就需要用正则去验证
+                if (!reg.test(curTag.className)) {// 用标签的每一个类名去验证正则的规则，
+                    isGoodTag = false;//如果匹配成功，就让这个属性为假，
+                    break
+                }
+            }//循环拆分后数组的每一项
+
+            isGoodTag && ary.push(curTag)//如果他为真，这个其实就是if条件，前面的为真，后面的执行。
+        }
+        return ary;
+    }
+    console.dir(getElesByClass1('ab',nb))
+</script>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var num =5  //全局变量只有关闭页面才会销毁，所以每次都是次序的累加
+    function fn (num){
+        num--
+        return function(){
+            num--;
+            console.log(num)
+        }  }
+    var f1 = fn(num)
+    f1() // 3  //执行到这的时候，全局已经变成2，执行return变成3
+    f1=fn(num);  //执行这一步的时候，又执行了一次fn ，全局的数字变成了 4
+    f1()  //5    //执行到这的时候，全局为4 ，执行结果是5
+    fn()()  //7
+    fn()()   //9
+
+
+
+</script>
+</body>
+</html>

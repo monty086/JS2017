@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    function Fn(){
+        this.x=100;
+    }
+    Fn.prototype.y=200;
+    Fn.prototype.getX=function(){
+        console.log(this.x+this.y)//prototype.x=undefined
+    }
+    var f1 =new Fn();
+    f1.getX()//300
+    f1.__proto__.getX()//NaN
+    Fn.prototype.getX();//NaN
+    console.log(f1.__proto__===new Fn().__proto__);//true
+    console.log(f1.constructor)//Fn
+
+    //[1,2,3,3,1].unique()=>[1,2,3]
+
+
+
+    Array.prototype.unique = function() {
+        var ary ={};
+        for(var i=0;i<this.length;i++){
+            var cur = this[i];
+            if(ary[cur]==cur){
+                cur=this[this.length-1];
+                this.length--;
+                i--
+            }else{
+                ary[cur]=cur
+            }
+        }
+        return this
+    }
+//    var obj = new Array([1,2,3,3,1]);
+    //[1,2,3,3,1].unique()=>[1,2,3]
+//    var obj =[1,2,3,3,1];
+    console.log([1,2,3,3,1].unique())
+
+
+
+
+</script>
+</body>
+</html>

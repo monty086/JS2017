@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html,body, div{
+            padding:0;
+            margin:0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            color:#fff;
+            -webkit-user-select: none;
+            font-size: 500px;
+            text-align: center;
+            line-height: 500px;
+        }
+    </style>
+</head>
+<body>
+
+<div>0</div>
+<script>
+//    在里面调用
+//    (function fm() {
+//        var count=0
+//        document.body.onclick=function(){
+//            count++
+//            this.innerHTML=count
+//        }
+//    })()
+//在外面调用
+//    document.body.onclick=(function(){
+//        var count =0
+//        return function(){
+//            count++
+//            this.innerHTML=count
+//        }
+//    })()
+   // 自定义属性调用
+//    document.body.count=0
+//    document.body.onclick=function(){
+//        this.count++
+//        this.innerHTML=this.count;
+//    }
+//利用innerHTML调用
+var odiv =document.getElementsByTagName('div')[0]
+    odiv.onclick=function(){
+//        ++this.innerHTML
+//        this.innerHTML=this.innerHTML/1+1
+        this.innerHTML=++this.innerHTML
+    }
+</script>
+</body>
+</html>

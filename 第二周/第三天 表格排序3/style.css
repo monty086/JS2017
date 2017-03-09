@@ -1,0 +1,28 @@
+*{
+    margin:0;
+    padding:0
+}
+table{
+    width: 1000px;
+    margin:10px auto;
+    border:5px solid limegreen;
+}
+table thead {
+    background: palevioletred;
+}
+table thead th,table tbody td{
+    width: 200px;
+    height: 40px ;
+    font-size: 24px;
+    line-height: 40px;
+    text-align: center;
+}
+.cursor{
+    cursor:pointer;
+}
+.c0{
+    background-color: darkseagreen;
+}
+.c1{
+    background-color: darkcyan;
+}

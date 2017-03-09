@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            padding:0;
+            margin:0;
+        }
+        #box{
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+</body>
+</html>
+<script>
+    var box =document.getElementById('box')
+    var res = window.getComputedStyle(box);  //获取计算过后的样式，获取已经生效的样式
+    var rex = box.currentStyle; //ie8及以下用这个方法 获取元素样式
+    console.log(res);
+
+
+
+</script>
