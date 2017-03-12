@@ -4,10 +4,10 @@
  *   scrollWidth scrollHeight scrollLeft scrollTop
  * */
 
-
-
 /////////////////////////////////////////////////////////////////
 var utils = (function () {
+
+    var isStanderBrowser = !!document.getElementsByClassName;
 
     function listToArray(likeAry) {
         try {
@@ -19,6 +19,26 @@ var utils = (function () {
             }
             return ary;
         }
+    }
+
+    function jsonParse(jsonStr) {
+        return "JSON" in window ? JSON.parse(jsonStr) : eval('(' + jsonStr + ')');
+    }
+
+    function getRandom(n, m) {
+        if (isNaN(n) || isNaN(m)) {
+            return Math.random();
+        }
+        return Math.round(Math.random() * (m - n) + n);
+    }
+
+    function win(attr, val) {
+        if (typeof val != 'undefined') {
+            document.documentElement[attr] = val;
+            document.body[attr] = val;
+            return;
+        }
+        return document.documentElement[attr] || document.body[attr];
     }
 
     function offset(ele) {
@@ -35,18 +55,7 @@ var utils = (function () {
         return {left: l, top: t}; // top不能作为全局变量
     }
 
-    function win(attr, val) {
-        if (typeof val != 'undefined') {
-            document.documentElement[attr] = val;
-            document.body[attr] = val;
-            return;
-        }
-        return document.documentElement[attr] || document.body[attr];
-    }
 
-    function jsonParse(jsonStr) {
-        return "JSON" in window ? JSON.parse(jsonStr) : eval('(' + jsonStr + ')');
-    }
 
     function getCss(ele, attr) {
         var val = null;
@@ -84,6 +93,59 @@ var utils = (function () {
             }
         }
         ele.style[attr] = val;
+    }
+
+    function setGroupCss(ele, group) { // => {}
+        if (Object.prototype.toString.call(group) == '[object Object]') {
+            for (var key in group) {
+                // key : width, height, background ...
+                // val : group[key]
+                setCss(ele, key, group[key]);
+            }
+        }
+    }
+
+    function css(ele) {
+        var secondParam = arguments[1];
+        var thirdParam = arguments[2];
+        if (typeof secondParam == 'string') { // setCss getCss
+            if (typeof thirdParam == 'undefined') { // getCss
+                return getCss(ele, secondParam);
+            }
+            setCss/*.call*/(ele, secondParam, thirdParam);
+        }
+        // setGroupCss
+        secondParam = secondParam || [];
+        if (secondParam.toString() == '[object Object]') {
+            setGroupCss(ele, secondParam);
+        }
+    }
+
+
+
+    function hasClass(ele, className) {
+        return new RegExp('(^| +)' + className + '( +|$)').test(ele.className);
+    }
+    // 给ele增加className这个类
+    function addClass(ele, className) {
+        var classAry = className.replace(/(^ +| +$)/g, '').split(/ +/);
+        for (var i = 0; i < classAry.length; i++) { //分别增加类
+            // 如果原来存在这个类就没有必要增加了
+            if (!hasClass(ele, classAry[i])) {
+                ele.className += ' ' + classAry[i]; // 在className的尾巴上追加
+            }
+        }
+    }
+
+    function removeClass(ele,className){
+        var classAry = className.replace(/(^ +| +$)/g,'').split(/ +/);
+        for(var i = 0; i < classAry.length; i++){
+            var curClass = classAry[i]; // c2,c3
+            if(hasClass(ele,curClass)){ // 如果ele有这个class我才移除
+                var reg = new RegExp('(^| +)'+curClass+'( +|$)','g');
+                ele.className = ele.className.replace(reg," ");
+            }
+        }
     }
 
     function getElesByClass(className, context) {//context范围、上下文  就的document
@@ -145,15 +207,107 @@ var utils = (function () {
         return ary;
     }
 
+
+
+    function prev() {//获取上一个哥哥元素节点
+        if (isStanderBrowser) {
+            return ele.previousElementSibling;
+        }
+        var pre = ele.previousSibling;//先获取上一个哥哥节点
+        while (pre && pre.nodeType != 1) {//哥哥存在，并且哥哥不是元素节点
+            pre = pre.previousSibling;
+        }
+        return pre;
+    }
+
+    function next() {//下一个弟弟元素节点
+        if (isStanderBrowser) {
+            return ele.nextElementSibling;
+        }
+        var nex = ele.nextSibling;//先获取上一个哥哥节点
+        while (nex && nex.nodeType != 1) {//哥哥存在，并且哥哥不是元素节点
+            nex = nex.nextSibling;//将下一个节点给新的nex 继续往下找
+        }
+        return nex;
+    }
+
+    function prevAll() {//所有的元素哥哥
+        var ary = [];
+        var pre = prev(ele);//先获取一个元素哥哥回来
+        while (pre) {
+            ary.unshift(pre);
+            pre = prev(pre);
+        }
+        return ary
+    }
+
+    function nextAll(ele) {//所有的元素弟弟
+        var ary = [];
+        var nex = next(ele);//先获取一个元素哥哥回来
+        while (nex) {
+            ary.push(nex);
+            nex = prev(nex);
+        }
+        return ary
+    }
+
+    function siblings (ele){//除了我之外的兄弟们
+        return prevAll(ele).concat(nextAll(ele))
+    }
+
+    function index (ele){
+        return prevAll(ele).length;
+    }
+
+    function children(ele,tagName){ // 所有元素子节点
+            var ary = [];
+            if(isStanderBrowser){
+                ary =  listToArray(ele.children);
+            }else{
+// 从childNodes里挑出来nodeType为1
+                var childs = ele.childNodes;
+                for(var i = 0; i < childs.length; i++){
+                    if(childs[i].nodeType == 1){
+                        ary.push(childs[i]);
+                    }
+                }
+            }
+
+            if(typeof tagName == 'string'){ // 'p'
+                for(var i = 0; i < ary.length; i++){
+                    if(ary[i].nodeName !== tagName.toUpperCase()){
+                        ary.splice(i,1);
+                        i--;
+                    }
+                }
+            }
+            return ary;
+        }
+
     return {
         listToArray: listToArray,
-        offset: offset,
-        win: win,
         jsonParse: jsonParse,
+        getRandom: getRandom,
+        win: win,
+        offset: offset,
+
         getCss: getCss,
         setCss: setCss,
-        getElesByClass: getElesByClass
+        setGroupCss: setGroupCss,
+        css: css,
 
+        hasClass: hasClass,
+        addClass: addClass,
+        removeClass:removeClass,
+        getElesByClass: getElesByClass,
+
+        prev : prev,
+        next : next,
+        prevAll : prevAll,
+        nextAll : nextAll,
+        siblings : siblings,
+        index : index,
+        children : children
     };
 })();
 

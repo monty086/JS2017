@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            padding:0;
+            margin:0;
+        }
+        ul,li{
+            list-style: none;
+        }
+        ul{
+            width: 300px;
+            height: 100px;
+        }
+        li{
+            width: 100px;
+            height: 100px;
+            float:left;
+            background: darkblue;
+            text-align: center;
+            line-height: 100px;
+            color:#fff;
+            cursor:pointer;
+        }
+        div{
+            width: 300px;
+            height: 300px;
+            background: darksalmon;
+            text-align: center;
+            line-height: 300px;
+            display: none;
+            color:#fff;
+        }
+        ul .active{
+            background: darkgoldenrod;
+        }
+        div.active{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<ul>
+    <li class="active">1</li>
+    <li>2</li>
+    <li>3</li>
+</ul>
+<div class="active">1</div>
+<div>2</div>
+<div>3</div>
+</body>
+</html>
+<script src="utils_weekend.js"></script>
+<script src="tab.js">
+</script>

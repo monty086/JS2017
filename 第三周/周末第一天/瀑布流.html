@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            padding:0;
+            margin:0;
+        }
+        ul,li{
+            list-style: none;
+        }
+        html,body{
+            width: 100%;
+           /* height: 100%;*/
+        }
+        ul{
+            width: 30%;
+            height: 300px;
+            float: left;
+        }
+        ul.middle{
+            margin:0 5%;
+        }
+        ul li{
+            width: 100%;
+            margin:3px 0;
+        }
+        .btn{
+            display:block;
+            width:40px;
+            height:40px;
+            border:5px solid #000;
+
+        }
+    </style>
+</head>
+<body>
+<ul ></ul>
+<ul class="middle"></ul>
+<ul></ul>
+<a  class="bth" href="javascript:void 0"></a>
+</body>
+</html>
+<script src="utils_weekend.js"></script>
+<script>
+    var uls = document.getElementsByTagName('ul');
+    var btn = document.getElementsByTagName()
+    function bingData(){
+        for(var i=0;i<50;i++){
+            var li = document.createElement('li');
+            utils.css(li,'height',utils.getRandom(100,200))
+//            var img = document.createElement('img');
+            li.style.background = 'rgb('+utils.getRandom(0,255)+','+utils.getRandom(0,255)+','+utils.getRandom(0,255)+')';
+
+            var uls = utils.listToArray(uls);
+            uls.sort(function (ul1,ul2){
+                return ul1.offsetHeight - ul2.offsetHeight;
+            })
+            uls[0].appendChild(li)
+    }
+    bindData()
+
+
+    }
+    //给浏览器滚动条绑定滚动事件
+    window.onscroll = function (){
+        var winScrollTop = utils.win('scrollTop')//获取滚动高度
+        if(winScrollTop>document.body.scrollHeight -1000){
+            bingData()
+        }
+    }
+    //定时器的值是第几个定时器
+
+    //移除removeclass
+    //符合我的正则，我用字符串来替换。以空格开头和空格结尾加一个g就是全文，用空字符串替换
+    //以我开始也行，不易我开始也行，需要前面加一个空格 加一个g意思是，符合正则的全部删除
+
+
+</script>

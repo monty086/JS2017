@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>单张图片延迟加载
+    </title>
+    <style>
+        *{
+            padding:0;
+            margin:0;
+        }
+        .box{
+            width: 400px;
+            height: 300px;
+            border:2px solid #5e4a4a;
+            margin:1000px auto;
+        }
+        .box img{
+            width: 100%;
+            height: 100%;
+            border:none;
+            vertical-align: top;
+        }
+    </style>
+</head>
+<body>
+<!--当这张图片完全进入可视窗口，就把real的属性值赋值给src-->
+<div class="box">
+    <img src="" real="images/113.jpg" alt="">
+</div>
+</body>
+</html>
+<script src="../utils.js"></script>
+<script>
+
+//清除当前页面的缓存 ctrl+f5
+    /*
+    * get set attribute 都是操作行内元素的值
+    * utils.offset（box）不管box的parent是谁，都计算的是body的偏移量
+    *
+    * */
+    var box = utils.getElesByClass('box')[0];
+//console.log(box);
+    var img = box.getElementsByTagName('img')[0];
+//    console.log(img)
+//var img  = document.getElementsByClassName('box')[0].getElementsByTagName('img')
+
+    window.onscroll = function (){//当滚动条滚动的时候，不断的去判断图片是否进入窗口内
+        if(img.isloaded){
+            return;
+        }
+        var _a=utils.win('clientHeight')+utils.win('scrollTop');
+        var _b=utils.offset(box).top+box.offsetHeight;
+        if(_a>_b){
+
+            var tempImg = document.createElement('img');//设置一个假的是为了阻止不断爆出404
+            tempImg.src = img.getAttribute('real');
+//            console.log( tempImg);
+            tempImg.onload = function (){
+                img.src =this.src; // tempImg.getAttribute(src)
+
+            };
+            img.isloaded =true;//给img添加一个自定义属性，用来记录状态值，这个图片已经加载过
+
+//            img.src = img.getAttribute('real');//如果没有real返回null
+        }
+    }
+    //缓存：曾经加载的资源，浏览器会缓存在本地一份，然后再去加载这个资源优先读取本地缓存。如何判定这个资源曾经加载过，那就是根据这个url；我们可以再url上做手脚，让每次请求的url不同，但是又不影响我的请求，我们就可以避免缓存。data.txt+Math.random()，   new Date().getTime()这个始终不一样
+
+</script>

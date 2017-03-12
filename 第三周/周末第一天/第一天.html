@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: darkblue;
+            overflow: hidden;
+        }
+
+        p {
+            width: 100px;
+            height: 100px;
+            background-color: saddlebrown;
+            margin: 50px auto;
+
+        }
+
+    </style>
+</head>
+<body>
+<div>
+
+    <p></p>
+</div>
+</body>
+</html>
+<script>
+
+    document.documentElement.clientHeight || document.body.clientHeight
+
+    clientWidth//内容宽度+左右padding
+    clinetHeight //盒子border以内的高度
+    clientLeft //左border的宽度
+    clientTop //上border的宽度
+
+
+    offsetWidth // 盒子宽度+padding+border
+
+
+    //获取元素相对于页面左偏移量
+
+    function offset(ele) {//元素是变量，所以形参要传ele，写函数确定形参，返回值
+        var l = null, t = null;
+        //先累加自己的偏移量
+        l += ele.offsetLeft;
+        t += ele.offsetTop;
+        //如果存在offsetParent，就累加offsetParent边框和offsetParent的offsetLeft
+        var par = ele.offsetParent;
+        while (par) {//不知道循环的 次数，用while循环，就是条件循环，基本数据类型都是false  0 “ ”  nan null  undefined
+            l += par.clientLeft + par.offsetLeft;
+            t += par.clientTop + par.offsetTop;
+            par = par.offsetParent;//迭代循环的条件，循环到body的话， body的offsetparent为null为false就不执行了
+        }
+        return {left: l, top: t};//一次return两个，用对象的方式，属性名可以随便起
+    }
+
+    //检测是否为ie低版本
+    function isLowIE (){
+        var reg = /MSIE (6|7|8)/;
+        return reg.test(window.navigator.userAgent)//test返回true和false
+    }
+
+
+    function getcss(ele,attr){
+        var val = null //为了去掉 px这个单位
+        if(window.getComputedStyle){//标准
+            /*return*/ val =  window.getComputedStyle(ele,null)[attr]//不能直接打‘。’，如果直接打‘。’就是找属性名为attr的这样一个属性，所以是变量所以需要加括号
+        }else{//ie8-
+            //处理透明度
+            if(attr == 'opacity'){
+                ele.currentStyle.filter;
+                var reg = /alpha\(opacity =(\d+(?:\.\d+)?)\)/;
+                val = reg.test(val)?reg.exec(val)[1]/100:1;
+            }else{
+                /*return*/  val =  ele.currentStyle[attr]
+            }
+        }
+        //可能性  ：100px  -100px -100.5px  ‘block’
+        //处理单位
+        var reg = /^-?\d+(\.\d{2}?(px))?$/
+        return reg.test(val)?parseFloat(val):val; //验证一下你符不符合，符合了，带px 了，用去单位的方法，不符合，那就直接输出。
+    }
+
+
+    ///////////////////////////2ge
+    var obj {
+        width: 100px;
+        height: 100px;
+        background : 'red';
+    }
+
+    function setGroupCss(ele,groud){
+        if(Object.prototype.toString.call==[])
+    }
+
+</script>
