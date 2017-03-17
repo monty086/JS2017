@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div1{
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            top:0;
+            left:0;
+        }
+        #div2{
+            width: 50px;
+            height: 50px;
+            background: yellow;
+            position: absolute;
+            left:150px;
+            top:0;
+        }
+    </style>
+</head>
+<body>
+<div id ='div1'></div>
+<div id =  'div2'></div>
+</body>
+</html>
+<script src="../utils.js"></script>
+<script>
+    var div1 = document.getElementById('div1');
+    var div2 = document.getElementById('div2');
+    animate(div1,{left:300,top:300});
+    animate(div2,{left:400});
+    function animate(ele,target,duration){
+        //var ele = document.getElementById('div1');
+        //t,b,c,d time(花费的时间) begin(开始生效的样式)  change(改变) duration(规定的时间)
+        //for in  能便利原型上自己添的属性，
+        var time = 0;
+        // var duration = 1000;
+        duration = duration || 1000;
+//        var target = {//我只想在这个维度上动画
+//            left:300,
+//            top:500,
+//            width:50,
+//            height:50
+//        };
+
+        //debugger  f8跳出当前断点，， 路过当前函数， 下一步，  跳出函数  加到watch
+        var  begin = {};
+        var change = {};
+        for( var key in target){
+            begin[key] = utils.css(ele,key);//key : left, top
+            change[key] = target[key]-begin[key];
+        }
+        window.clearInterval(ele.timer);
+        ele.timer = window.setInterval(function (){
+            time +=10;
+            if(time>=duration){
+                window.clearInterval(ele.timer);
+                utils.css(ele,target);
+                //ele.style.backgroundColor='lime';//如果到达终点还想做什么，
+                callback();
+                return
+            }
+            for (var key in change){
+                if(change[key]){//如果在当前维度上，没有改变，那么就没有必要动画，这个判断不写也没有问题
+                    var val = linear(time,begin[key],change[key],duration);
+                    utils.css(ele,key,val)
+                }
+            }
+        },10);
+        function linear (t,b,c,d){
+            return t/d*c+b
+        }
+    }
+
+</script>
+
+//回调函数:往方法里面传方法，所有的回调函数都有执行条件
+<!--
+回调函数中的this一般都是window
+
+把回调函数中的this修改成运动的那个元素ele
+
+
+-->
+

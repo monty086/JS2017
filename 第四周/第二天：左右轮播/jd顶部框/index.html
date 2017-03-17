@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            padding:0;
+            margin:0;
+        }
+        body{
+            height: 10000px;
+        }
+        #div{
+            width: 100%;
+            height: 50px;
+            background: rebeccapurple;
+            position: fixed;
+            top: -50px;
+
+        }
+
+    </style>
+</head>
+<body>
+<div id="div"></div>
+</body>
+</html>
+<script src="../../utils.js"></script>
+<script src="../animate.js"></script>
+<script>
+   var div = document.getElementById('div');
+
+   window.onscroll = function(){
+
+       var _a = utils.win('scrollTop');
+       var _b = utils.win('clientHeight');
+       if(_a>_b){
+           animate({
+               ele:div,
+               target:{
+                   top:0
+
+               },
+               duration:1000,
+           })
+       }
+       if(_a<_b){
+           animate({
+               ele:div,
+               target:{
+                   top:-50
+
+               },
+               duration:300
+           })
+       }
+   }
+   window.setInterval(function(){
+       var curScrollTop = utils.win('scrollTop')
+
+   },10)
+
+
+</script>

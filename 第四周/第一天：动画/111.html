@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+
+
+    // t,b,c,d => time(花费) begin(开始) change(改变) duration(规定)
+    var div1 = document.getElementById('div1');
+    var time = 0;
+    var duration = 1000;
+    var target = { // 我只想在这么多维度上动画
+        left : 300,
+        top : 500,
+        width : 50,
+        height : 50
+    };
+    var begin = {};
+    var change = {};
+    for(var key in target){
+        begin[key] = utils.css(div1,key); // key : left, top  ...
+        change[key] = target[key] - begin[key];
+    }
+    window.clearInterval(div1.timer);
+    div1.timer = window.setInterval(function (){
+        time += 10;
+        if(time >= duration){
+            window.clearInterval(div1.timer);
+            utils.css(div1,target);
+            // 如果到达终点之后还想做什么...
+            div1.style.background = 'lime';
+            return;
+        }
+        for(var key in change){
+            if(change[key]){ // 如果在当前维度上没有改变那么就没有必要动画
+                var val = Linear(time,begin[key],change[key],duration);
+                utils.css(div1,key,val);
+            }
+        }
+    },10);
+
+    function Linear(t,b,c,d){
+        return t/d*c + b;
+    }
+</script>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>animation</title>
+    <style>
+        *{
+            padding:0;
+            margin:0;
+        }
+        div{
+            width: 100px;
+            height: 100px;
+            background: darkgoldenrod;
+            position: absolute;
+            top:0;
+            left:0;
+        }
+    </style>
+</head>
+<body>
+<div id="div"></div>
+</body>
+</html>
+<script src="../utils.js"></script>
+<script>
+    var div =document.getElementById('div');
+    var maxLeft = utils.win('clientWidth')-div.offsetWidth;
+//    div.timer = window.setInterval(function (){
+//        var l = utils.css(div,'left');//获取已经生效的left值
+//        if(l +5 >= maxLeft){
+//            window.clearInterval(div.timer);
+//            utils.css(div,'left',maxLeft);
+//            return;
+//        }
+//        l+=5;//一步5像素，屏幕的尺寸不能被5整除，所有会出现滚动条
+//        utils.css(div,'left',l);
+//    },10)
+
+    //匀速运动
+    var time = 0;  //花费的时间
+    var begin = {
+        left:utils.css(div,'left'),
+        top: utils.css(div,'top')
+    };
+    //var begin = utils.css(div,'left');//起点：当前生效的样式
+    //var beginTop = utils.css(div,'top')//给top准备的
+    var target = {
+        left: 300,
+        top:300
+    };
+    //var target = maxLeft;//终点
+    //var targetTop = 500;
+    var change ={
+        left: target.left -begin.left,
+        top : target.top - begin.top,
+    };
+    //var change = target-begin;//这个是你要改变的距离
+    //var changeTop = targetTop -beginTop;//要跑的这块总长度
+    var duration = 1000;//规定完成动画的时间； duration持续时间。
+    //花费的时间/规定的时间*总路程
+
+    div.timer = window.setInterval(function (){
+        time+=10;
+        if(time>=duration){//这个判断语句是，如果花费的时间大于规定的时间，就可以停止了。
+            window.clearInterval(div.timer);//花费的时间大于规定的时间，那么一定到达终点了
+            utils.css(div,'left',target);//到达终点之后，div到的横向位置
+            utils.css(div,'top',targetTop);//到达top的target终点 ，div到达的top纵向的位置
+            return;
+        }
+
+        //var l = time/duration*change+begin;//前面只能证明是你跑了200米，加上begin代表你从起点到哪
+        var l = time/duration*change.left+begin.left;
+        //var t = time/duration*changeTop+beginTop;//跑了多远，加上起点的位置，就是你要跑到哪里
+
+        utils.css(div,'left',l);//把距离赋值给div，可以知道轨迹
+        utils.css(div,'top',t)//顶部的轨迹
+    },10);
+
+    /*
+    * 完成一个动画需要准备
+    * 1. t ：time 花费的时间  => 由于花费的时间越来越多，位置也会越来越远
+    * 2. b ：begin 开始的位置 => 运动开始的之前，已经生效的样式
+    * 3. c ：change 真正要运动的距离 => 终点减去起点   target - begin
+    * 4. d ：duration  规定的时间  =>这个值决定完成动画的快慢
+    *
+    * target : 当前元素要运动的到哪
+    *
+    * */
+
+    function linear(t,b,c,d){
+        return t/d*c+d
+    }
+
+
+
+
+</script>
