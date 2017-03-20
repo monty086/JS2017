@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="div1">
+    <p></p>
+    <span class="span1">zhufeng <b class="a"></b></span>
+    <span class="span2"></span>
+    <span class="span3"></span>
+    <span class="span4"></span>
+
+    <input type="text">
+</div>
+</body>
+</html>
+<script src="../jquery-1.11.3.js"></script>
+<script>
+    var $ele  = $('#div1');
+    var $res = $('#div1 p')//获取div下所有的p
+
+    //jQuery转原生
+    //如何把一个jQ对象转换给一个原生dom对象=>通过索引值来获取/get(index)
+    var $res = $('#div1 p')[0]
+    var $res = $('#div1 p').get[0]//转原生对象
+    var $res = $('#div1 *')//匹配div下所有
+    var $res = $('#div1,#div2')//同时获取两个div元素
+
+    var $res = $('#div1 p+')//获取p元素的下一个弟弟元素
+    var $res = $('#div1 p~')//获取p所有的弟弟们
+
+    //筛选
+    var $res = $('#div1 span:first');//第一个元素
+    var $res = $('#div1 span:last');//最后一个元素
+    var $res = $('#div1 span:not(.span3)');//除了。span类的其他
+    var $res = $('#div1 span:odd');//返回索引为奇数的元素
+    var $res = $('#div1 span:even');//返回索引为偶数的元素
+    var $res = $('#div1 span:eq(0)');//索引等于
+    var $res = $('#div1 span:gt(0)');//大于索引值
+    var $res = $('#div1 span:lt(0)');//小于索引值
+
+    //内容过滤器
+    var $res = $('#div1 span:contains(zhu)')//获取内容包含具体某个字的
+    var $res = $('#div1 span:empty')//获取内容为空的标签元素
+    var $res = $('#div1 span:has(.a)')//获取所有span中包含一个.a的span
+
+    //表单元素属性过滤
+    var $res = $('input:text')//属性过滤
+
+    //属性过滤
+    var $res = $('input[type =text][name=b]')//支持一遍又一遍的过滤
+    var $res = $('input[type =disabled]')//获取输入框disabled不能选择的那个一个
+    var $res = $('input[type =checked]')//获取输入框checked默认勾选的那一个
+
+    //筛选方法
+    $('#div1').hasClass('div')//返回一个布尔值，#div1是否包含div这个class=>作为一个判断条件
+    $('#div1').children('.c1')//获取div1下的所有元素子节点中包含.c1这个类样式的
+    $('#div1').parent();//获取div1的父元素
+    $('#div1').siblings()//获取所有的兄弟节点
+    $('#div1').prev()//获取上一个的哥哥节点
+    $('#div1').next()//获取下一个的弟弟节点
+    $('#div1').prevAll()//获取所有的哥哥节点
+    $('#div1').nextAll()//获取所有的弟弟节点
+
+    //(常用)
+    // closest   // find   //filter 过滤
+
+    // find: 找后代元素=>先获取一个父元素，然后在这个范围内继续获取一般采用find方法
+    var $div1 = $('#div1');
+    $('#div1 p')
+    $('#div1 span')
+    $div1.find('p')//先已经缓存，在这个范围内去查找需要的元素
+    $div1.find('span')
+
+    //closest:找祖先元素=>在所有祖先元素中，获取和自己当前最贴近的哪一个
+    var $res = $div1.closest('.c1')
+
+    //filter :过滤 通过属性名和属性值进行对拿到的一堆元素，进行筛选
+    var price = '100';
+    var $res = $div1.find('span').filter('[a=b][price = '+price+']');
+
+
+</script>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="div1">234</div>
+</body>
+</html>
+<script src="../jquery-1.11.3.js"></script>
+<script>
+
+    var $div1 = $('#div1');//jQ对象
+    var div1 = document.getElementById("div1")
+
+    //dom对象===>jq对象 ：直接用$(dom)就可以
+    $(div1)
+    // html :  就一个参数：如果有参数，就是设置html的值，如果没有参数，就是获取html值
+    $(div1).html('haha'); //innerHTML一样
+
+    //text  如果有就设置，如果没有就获取
+
+    //attr 如果是两个参数为设置，如果是一个参数是获取 =>一般操作的自定义属性
+    $(div1).attr('school','zf');//在div1上设置一组属性，属性名为school属性值为zf
+    console.log($(div1).attr('school'));
+
+    //prop:一般用于表单元素的checked等布尔操作必须用这个方法
+    $('input').prop('checked','true');//attr做不到的，他可以做到。  如果是原生属性可以时候用prop，如果是自定义属性可以使用，attr、
+    //如果是两个参数就是设置，如果是一个参数就是 获取。=>可以用prop('checked')可以用这样的方法判定是或否选中状态。可以用到商品选中付款的页面。
+
+    //addClass  添加一个类名
+    //removeClass 移除一个类
+    //toggleClass  如果有就删除，没有就增加
+    //div1.classList.add
+
+    //val value
+    var reg = /\s*/               //*0-多次
+    // val 一般用于表单元素，如果有参数就是设置，否则就是 获取。
+    /*
+    html
+    text
+    val
+
+    attr
+    prop
+
+    addClass
+    removeClass
+    toggleClass
+
+</script>

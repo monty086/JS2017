@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jq-banner</title>
+    <link rel="stylesheet" href="css-banner.css">
+</head>
+<body>
+<div class="banner">
+    <div class="inner">
+        <!--<img src="images2/1.png" real="">-->
+        <!--<img src="images2/2.png" real="">-->
+        <!--<img src="images2/3.png" real="">-->
+        <!--<img src="images2/4.png" real="">-->
+    </div>
+    <ul>
+        <!--<li class="cur"></li>-->
+        <!--<li></li>-->
+        <!--<li></li>-->
+        <!--<li></li>-->
+    </ul>
+    <a class="left" href="javascript:void 0">L</a>
+    <a class="right" href="javascript:void 0">R</a>
+</div>
+</body>
+</html>
+<script src="../../jquery-1.11.3.js"></script>
+<script src="banner方法.js"></script>
+<script>
+
+//    banner($('.banner'),'data.txt')
+
+//    $.banner($('.banner'),'data.txt',2000)
+
+//    $().banner($('.banner'),'data.txt',2000)
+
+//    $('.banner').banner('data.txt')
+
+    /*
+    * 1. 第一个是直接调用banner函数执行，并且在函数的形参中传值（要操作的大元素、data、时间），所以在里面的函数里的this为window。
+    * 2. 第二个是在原生上的方法调用的，将函数赋值给原生属性，可直接调用。同样this属于jq，不属于banner
+    * 3. 第三个调用的是jq实例上的方法：是将banner函数添加到了Jquery的实例上面，调用$实例上的一个函数，也需要传形参，同样函数中的this为banner前面的实例。不可在函数中添加this
+    * 4. 最后一个同样也是实例，只不过在实例中添加了banner的属性，同样在传值的时候第一项可以不写，但是，但是形参注意去掉第一项，并且将this赋值给banner，让实例中获取到的banner属性，赋值给变量$banner
+    *
+    * */
+
+
+</script>

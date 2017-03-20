@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+        #div1{
+            width: 100px;
+            height: 100px;
+            background: red;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+<div id="div1">
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+</div>
+</body>
+</html>
+<script src="../jquery-1.11.3.js"></script>
+<script>
+   //jquery //就是一个库，一堆方法的类库
+
+   //设置宽高
+    $('#div1 p').width();
+    $('#div1 p').height();
+   // 在原生上都是属性
+   //加了小括号都是方法
+
+
+   //盒子模型
+    // offset()   innerHeight()  innerWidth()   scrollTop()  scrollLeft()
+    // offset() => 对象  utils.offset()  获取相对于body的偏移量
+    // innerWidth()  == $('#div1').clientWidth()
+
+    $('#div1').css({
+        width:200,
+        height:200,
+        opacity:0.7
+        }).scrollTop(200).css('width',300)
+
+
+</script>

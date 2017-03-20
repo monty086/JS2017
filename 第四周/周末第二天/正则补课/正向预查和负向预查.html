@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>给电话号码每3个添加逗号</title>
+</head>
+<body>
+
+</body>
+</html>
+
+<script>
+
+    var str = 'window 7'
+    var reg = /window (?=7|8)/
+    var reg = /window (?!7|8)/
+
+    //?=:
+
+    /*
+    * 正向预查：必须是什么，肯定(?=  )  zero - width - lookahead
+    * 负向预查：不能是什么，否定(?!  )  zero  - width - lookbehind
+    *
+    * */
+
+    var str = '12555666';
+
+    //1)
+
+
+    //2)
+
+
+    //3)
+    var str = '12555666'
+    var reg = /(\d{1,2})(?=(\d{3})+$)/
+    str.replace(reg,'$1,')

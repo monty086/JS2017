@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="div1"></div>
+</body>
+</html>
+<script src="../jquery-1.11.3.js"></script>
+<script>
+    /*
+    *
+    *       animate方法   第三个第四个可以不写
+    *       param 1: 终点 对象 {width:200,opacity:1}
+    *
+    *
+    *
+    *
+    *
+    *       ps:在调用animate方法之前我们可以先stop(),防止动画累积问题
+    *
+    *
+    * */
+
+
+    $('#div1').css({
+        width:100,
+        height:100,
+        background:'lime',
+        position:'absolute',
+
+    }).on('click',function (){
+        this//属于dom的div1
+       /* $(this).hide(3000).show(300).slideUp('slow')*///先隐藏，后显示
+
+//slideUp 向上隐藏，
+ //slideDown   向下隐藏  支持fast和slow两种参数
+   // slideToggle  向上隐藏之后向下
+
+    $(this).animate({
+        width:200,
+        left:290
+    },300,function(){
+        //动画完成之后你要做什么 ===回调函数
+        $(this).html('finnih')
+    })
+
+
+    })
+
+</script>

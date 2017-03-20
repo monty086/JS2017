@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script src="../jquery-1.11.3.js"> </script>
+<script>
+  $.ajax
+    $.isArray()//判断是否一个数组
+    $.isPlainObject()//判断是否是{}对象
+    $.isEmptyObject()//判断是否一个空对象
+
+    $.trim('  a   ')//去首尾空格
+
+    $.makeArray()//listToArray
+
+    //遍历
+
+    var ary = []
+
+
+    //forEach(回调，context)
+    $.each(ary,function(){
+        console.log(item.index))
+    })
+
+    元素集合需要自己调用
+    each别家的元素可以用自己的
+
+
+    $().each 定义在jquery。prototype上的  ==>直接遍历获取回来的jq对象用的
+
+    总结：jq定义方法，一个是在自己本身添加属性，另外一个在prototype原型上添加，例如css、html等方法依赖jq元素的定义
+
+</script>

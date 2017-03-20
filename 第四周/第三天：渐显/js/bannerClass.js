@@ -1,5 +1,4 @@
 /**
- *
  * @param container  轮播图最外层的元素
  * @param url   接口 后台提供
  * @param interval  图片播放的频率

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="div1"></div>
+</body>
+</html>
+<script src="../jquery-1.11.3.js"></script>
+<script>
+    var $p = $('<p></p>')//创建一个元素p标签
+    var $div1 = $('#div1');//获取div1
+    $div1.append($p);//在div里面添加p标签。父元素添加子元素
+
+    var $span = $('<span></span>>')
+    $span.appendTo($div1)//子元素添加到父元素中 ，必须是jQuery对象，才能用appendTo和append方法。
+
+    var $h3 = $('<h3></h3>>')
+    $div1.prepend($h3)//prepend 是将元素添加到开头
+
+    //insetBefore
+    //insetAfter
+
+    //after  before  元素前和后添加标签
+    $div1.after('<i></i>')//在div1后添加一个i标签
+
+    //wrap unwrap  添加和去掉包裹元素
+    $div1.wrap('<h2></h2>>')  //给div1添加一个包裹h2
+
+
+    //remove   移除当前元素
+    $div1.remove()//移除div1
+
+    // 对应的removechild  移除子元素
+    //replaceWidth   后者替换前者元素
+    // replaceAll   前者替换后者元素
+
+</script>

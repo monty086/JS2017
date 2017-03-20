@@ -1,0 +1,88 @@
+*{
+    padding:0;
+    margin:0;
+}
+ul,li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+}
+img{
+    vertical-align: top;
+    border:none;
+}
+html,body{
+    width: 100%;
+}
+.banner{
+    width: 100%;
+    height: 400px;
+    position: relative;
+    text-align: center;
+    background: url("images2/timg.gif") no-repeat center #ccc;
+
+}
+.banner .inner{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left:0;
+    top:0;
+}
+.banner .inner img{
+    width:100%;
+    height: 100%;
+    position: absolute;
+    z-index: 0;
+    left:0;
+    top:0;
+    opacity: 0;
+}
+.banner ul{
+    height: 20px;
+    display: inline-block;
+    position: relative;
+    z-index: 10;
+    margin-top: 370px;
+}
+.banner ul li{
+    width: 30px;
+    height: 10px;
+    float:left;
+    margin:0 4px;
+    border-radius: 2px;
+    background-color: #666666;
+    opacity: 0.5;
+}
+.banner ul li.cur{
+    background: #fff;
+    opacity: 1;
+}
+.banner ul li:hover{
+    cursor:pointer;
+}
+.banner .left,.banner .right{
+    width: 50px;
+    height: 50px;
+    /*display: block;*/
+    border-radius: 50%;
+    background: #000;
+    opacity: 0.6;
+    position: absolute;
+    top:50%;
+    margin-top: -25px;
+    color:#fff;
+    text-align: center;
+    line-height: 50px;
+    font-size: 24px;
+    z-index: 10;
+    display: none;
+}
+.banner .left{
+    left:0;
+}
+.banner .right{
+    right:0;
+}
+
