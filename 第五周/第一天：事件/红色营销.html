@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            padding:0;
+            margin:0;
+        }
+        body{
+            /*margin:0 auto;*/
+            text-align: center;
+            /*width: 100%;*/
+            /*margin:0 auto*/
+        }
+        .big{
+            /*margin:0 auto;*/
+            /*width: 100%;*/
+            display: inline-block;
+        }
+        .box{
+            width: 150px;
+            height: 150px;
+            position: relative;
+            /*margin:200px auto;*/
+            overflow: hidden;
+            float: left;
+            margin: 10px;
+        }
+        .box img{
+            width: 100%;
+            height: 100%;
+            vertical-align: top;
+            border: none;
+        }
+        .box .mask{
+            width: 150px;
+            height: 150px;
+            position: absolute;
+            top:0;
+            left: 150px;
+            background-color: #00b38a;
+            opacity: .9;
+            color:#fff;
+            font-size: 24px;
+            text-align: center;
+            line-height: 150px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="big">
+    <div   class="box">
+        <img src="images/360.jpg" alt="">
+        <div class="mask">我是遮罩层</div>
+    </div>
+    <div   class="box">
+        <img src="images/360.jpg" alt="">
+        <div class="mask">我是遮罩层</div>
+    </div>
+    <div   class="box">
+        <img src="images/360.jpg" alt="">
+        <div class="mask">我是遮罩层</div>
+    </div>
+    <div   class="box">
+        <img src="images/360.jpg" alt="">
+        <div class="mask">我是遮罩层</div>
+    </div>
+    <div   class="box">
+        <img src="images/360.jpg" alt="">
+        <div class="mask">我是遮罩层</div>
+    </div>
+</div>
+</body>
+</html>
+<script src="../jquery-1.11.3.js"></script>
+<script>
+    var boxs  = document.getElementsByClassName('box')
+    for(var i=0 ;i<boxs.length;i++){
+        fn(boxs[i])
+    }
+    function fn(box) {
+        //var box = document.getElementById('box');
+        var mask = box.getElementsByTagName('div')[0];
+        box.onmouseenter =function (e) {
+            e=e || window.event;
+            var x = e.pageX - box.offsetLeft - box.offsetWidth/2;  //鼠标刚进去盒子的那一刻，相对于圆心的坐标
+            var y = box.offsetTop +box.offsetHeight/2 - e.pageY  ;//如果出现的页面把client换成page
+            var res = getDirection(y,x);
+            //根据res的值判断方向从哪里进来
+            //根据方向值来移动遮罩的位置
+            switch (res){
+                case 0:
+                    mask.style.left=-150+'px';
+                    mask.style.top = 0;
+                    break;
+                case 1:
+                    mask.style.top =150+'px';
+                    mask.style.left = 0;
+                    break;
+                case 2:
+                    mask.style.top =0;
+                    mask.style.left = 150+'px';
+                    break;
+                case 3:
+                    mask.style.top =-150+'px';
+                    mask.style.left = 0;
+                    break
+            }
+            $(mask).stop().animate ({left:0,top:0},400)
+
+        };
+        //
+        function getDirection (y,x){  //封装一个方法，通过坐标值来返回一个方向值
+            var rad = Math.atan2(y,x);//根据坐标返回一个对应坐标点的==弧度值，
+            //把弧度制运算成角度值==>  1弧度 = 180°/π   角度？ = 180°/π * 弧度
+            var ang = 180/Math.PI*rad;//返回一个角度值
+            //角度区间是[-180,180],在原有区间的基础上加上180之后[0,360],然后再除以90，区间就变成[0,4],四舍五入之后，就变成[0,1,2,3,4],%4之后就变成[0,1,2,3]
+            var res = Math.round((ang+180)/90)%4;
+
+            return res
+        }
+        box.onmouseleave = function (e){
+            e=e || window.event;
+            var x = e.pageX - box.offsetLeft - box.offsetWidth/2;
+            var y = box.offsetTop +box.offsetHeight/2 - e.pageY;
+            var res = getDirection(y,x);
+            var target = null;
+            switch (res){
+                case 0:
+                    target={
+                        left:-150,
+                        top:0
+                    };
+                    break;
+                case 1:
+                    target={
+                        left:0,
+                        top:150
+                    };
+                    break;
+                case 2:
+                    target={
+                        left:150,
+                        top:0
+                    };
+                    break;
+                case 3:
+                    target={
+                        left:0,
+                        top:-150
+                    };
+                    break
+            }
+            $(mask).stop().animate(target,200)
+        }
+
+    }
+
+
+
+</script>

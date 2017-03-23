@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>dom2兼容</title>
+    <style>
+        *{
+            padding:0;
+            margin:0;
+        }
+        #div1{
+            height: 100px;
+            width: 100px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+</body>
+</html>
+<script>
+    /*
+    * 如果是DOM2标准浏览器：
+    *       1. 顺序任然按照绑定的顺序
+    *       2. this也任然是原来和dom0的this一样，绑给谁就是谁
+    *       3. 重复绑定的，是不允许的，只显示一个
+    *
+    *
+    *
+    * */
+    var div1 = document.getElementById('div1');
+//      div1.addEventListener('click',fn1,false);//绑定事件属性  true捕获阶段用的很少。
+//    div1.addEventListener('click',fn2,false);//绑定事件属性  true捕获阶段用的很少。
+//    div1.addEventListener('click',fn3,false);//绑定事件属性  true捕获阶段用的很少。
+//    div1.addEventListener('click',fn4,false);//绑定事件属性  true捕获阶段用的很少。
+//    div1.addEventListener('click',fn5,false);//绑定事件属性  true捕获阶段用的很少。
+//    div1.addEventListener('click',fn6,false);//绑定事件属性  true捕获阶段用的很少。
+
+//    div1.removeEventListener('click',fn6,false );
+
+    function fn1() {console.log(1); console.log(this===div1);}
+    function fn1() {console.log(1); console.log(this === window);}
+    function fn2() {console.log(2);}
+    function fn3() {console.log(3);}
+    function fn4() {console.log(4);}
+    function fn5() {console.log(5);}
+    function fn6() {console.log(6);}
+
+
+    /*
+    * DOM2  IE8及以下：事件类型type需要在+ "click"  "onclick"
+    *       1. 顺序问题
+    *       2. this问题，this变成window
+    *       3. 重复绑定问题
+    *
+    *
+    * */
+
+
+    div1.attachEvent('onclick',fn1)//ie里面默认都是冒泡，没有捕获
+    div1.attachEvent('onclick',fn2)//ie里面默认都是冒泡，没有捕获
+    div1.attachEvent('onclick',fn3)//ie里面默认都是冒泡，没有捕获
+    div1.attachEvent('onclick',fn4)//ie里面默认都是冒泡，没有捕获
+    div1.attachEvent('onclick',fn5)//ie里面默认都是冒泡，没有捕获
+    div1.attachEvent('onclick',fn6)//ie里面默认都是冒泡，没有捕获
+
+    div1.detachEvent('onclick',fn6);
+
+    div.addEventListener('click',fn,false)
+    /**
+     *
+     * @param ele  给那个元素
+     * @param type 事件类型
+     * @param fn   函数
+     */
+    function on(ele,type,fn) {
+        if(ele.addEventListener){
+            ele.addEventListener(type,fn)//标准浏览器
+        }else{//ie8-
+            //ele.attachEvent(on+'type',fn);
+            //如果div1上存在这个属性，就创建一个空数组，如果存在就直接跳过
+            if(!ele['AAA'+type]){ //同一个元素ele的同一个事件type这个条件只能成立一次
+                ele['AAA'+type]=[]
+                ele.attachEvent(on+'type',run)//同一个元素ele的同一个事件type，只能绑定一个run，ie低版本添加事件叫做attachEvent
+                //事件真正触发的时候，真正执行的是run方法，在执行run方法时候，再去获取放在自定义属性数组AAAclick中的fn1-fn5. 并且按照顺序执行
+            }
+            //把fn1 - fn5 添加到自定义属性数组中，事件发生的时刻让run方法获取到这个数组里面的所有函数，并且按照顺序执行
+            var a  = ele['AAA'+type];
+            for(var i=0;i<a.length;i++){
+                if(a[i]===fn){
+                    return;
+                }
+            }
+            //var a = ele['AAA'+type];
+            a.push (fn);
+        }
+    }
+
+    function run(e){
+        e =window.event;
+        e.target = e.srcElement;
+        var a  = e.target['AAA'+e.type];
+        if(a&&a.length){
+            for(var i=0;i<a.length;i++){
+                if(typeof a[i]=='function'){
+                    a[i].call(e.target)
+                }
+            }
+        }
+    }
+    on(div1,'click',fn1)
+
+    //run方法执行的时候，获取自定义属性的数组，但是别找乱了，一定要定义好，比如：如果是click，就去找ele.AAAclick，如果是鼠标移动的话，就去找ele.AAAmouseover ;
+
+</script>

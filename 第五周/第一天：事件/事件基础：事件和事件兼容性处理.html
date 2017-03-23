@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件</title>
+    <style>
+        *{
+            padding:0;
+            margin:0;
+        }
+        #div1{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+
+<div id="div1"></div>
+
+<a href="http://www.baidu.com">baidu</a>
+</body>
+</html>
+<script>
+    var div1 = document.getElementById('div1');
+    div1.onclick =function (e) {
+        console.log(arguments);
+        e=e || window.event
+    }
+    /*
+    * 鼠标事件对象：绑定事件对应的那个函数中，并且可以作为参数传递
+    * ps：在标准浏览器中（谷歌浏览器）事件对象e存在于绑定的函数中，在ie低版本中，这个事件对象在window.event属性上。=>   e = e || window.event   如果前面没有就再给添加一个值
+    * 1）
+    * clinetX:鼠标点击时相对于可视窗口 X横坐标
+    * clientY：鼠标点击时相对于窗口的Y轴坐标
+    * 处理兼容
+    *  e = e || e.clientX
+    *  e = e || e.clientY
+    *
+    * 2）
+    * pageX : 鼠标位置相对于页面中的X轴坐标
+    * pageY ：鼠标点击时的位置的坐标，相对于body的Y轴坐标
+    * 处理兼容
+    * e.pageX = e.pageX || e.clientX +(document.documentElement.scrollLeft || document.body.scrollLeft)
+      e.pageY = e.pageY || e.clientY +(document.documentElement.scrollTop || document.body.scrollTop)
+    *
+    *
+    * 3）
+    *  default  默认行为
+    *  prevent 防止
+    *  a链接触发的时候，会先js中执行函数，在执行页面网址跳转
+    *  e.preventDefault() : 阻止默认行为，阻止标签默认行为的话就用这个函数。 比如说a点击跳转
+    *  在ie中需要
+    *  e.returnValue= false:  阻止默认行为(ie 低版本 for lowIE)
+    *  处理阻止默认行为的兼容性问题：
+    *  e.preventDefault ? e.preventDefault() : e.returnValue =false;
+    *  我们可以直接
+    *  return false 这个也能处理默认的行为
+    *
+    *
+    *  4）
+    *  e.type // 输出事件类型 比如onclick
+    *  e.type :  能打印出当前事件的类型 "click"   重要
+    *
+    *  5）
+    *  事件冒泡：
+    *  1. 点击盒子内任意元素时。会触发和传播给父级及父级以上的事件元素，我们叫事件冒泡
+    *  2. 点击当前元素会触发所有祖先元素的对应事件。触发到 父级div 爷爷 body 太爷爷html 祖宗document
+    *  (跟平级没有关系)
+    *
+    *  6）
+    *  以前我们会循环li的每一项，然后给每一项添加点击事件，现在我们可以只需要设置父级元素的点击事件，然后将子元素进行分类进行事件效果展示
+    *  e.target  ：事件源 显示点击对象的元素类型 （标准浏览器）
+    *  e.srcElement : IE低版本(ie8 以下)
+    *  兼容问题
+    *  e.target= e.target || e.srcElement
+    *
+    *  7）
+    *  点击的时候只显示当前元素的事件效果，阻止当前元素的父级及以上元素的事件冒泡传播
+    *  e.stopPropagetion(): 阻止事件传播
+    *  e.cancelBubble() : ie低版本处理兼容问题
+    *  兼容问题
+    *  e.stopPropagetion ?  e.stopPropagetion():e.cancelBubble = true
+    *
+    * */
+    //事件对象兼容处理
+    e = e || e.clientX
+    e = e || e.clientY
+
+    //e.pageX 兼容处理
+    e.pageX = e.pageX || e.clientX +(document.documentElement.scrollLeft || document.body.scrollLeft)
+    e.pageY = e.pageY || e.clientY +(document.documentElement.scrollTop || document.body.scrollTop)
+
+    e.type //事件类型
+
+    e. stopPropagetion ? e.stopPropagetion():e.cancelBubble = true
+
+    e.stopPropagetion
+
+
+
+</script>

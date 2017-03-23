@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件传播</title>
+    <style>
+        *{
+            padding:0;
+            margin:0;
+        }
+        ul{
+            list-style: none;
+        }
+        li{
+            width: 100px;
+            height: 100px;
+            border:5px solid #000;
+            border-radius: 50%;
+            float: left;
+            text-align: center;
+            line-height: 100px;
+            /*display: none;*/
+            opacity:0
+        }
+        li span{
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<input id="input" type="text" style="display: none">
+<ul id="ul">
+    <li> <span btn="del">删除啊</span></li>
+    <li> <span>删除</span></li>
+    <li> <span>删除</span></li>
+    <li> <span>删除</span></li>
+    <li> <span>删除</span></li>
+    <li> <span>删除</span></li>
+    <li> <span>删除</span></li>
+    <li> <span>删除</span></li>
+    <li> <span>删除</span></li>
+    <li> <span>删除</span></li>
+    <li> <span>删除</span></li>
+    <li> <span>删除</span></li>
+    <li> <span>删除</span></li>
+    <li> <span>删除</span></li>
+    <li> <span>删除</span></li>
+    <li> <span>删除</span></li>
+    <li> <span>删除</span></li>
+
+</ul>
+
+</body>
+</html>
+
+<script>
+    //将昨天复习的总结一下
+    /*  e = e || window.event
+    *   e.clientX
+    *   e.clientY
+    *   e.pageX
+    *   e.pageY
+    *   e.type   //事件类型  ie也兼容
+    *   e.target||e.srcElement  //事件源(源：元素绑定事件的这个元素)
+    *   e.preventDefault  //阻止默认行为
+    *   e.returnValue =false  //ie8-
+    *   e.stopPropagation  //阻止事件冒泡
+    *   e.cancelBubble = true  //ie8-
+    * */
+    var input  = document.getElementById('input');
+    // oninput 在输入的过程中  onfocus 获取光标时  onblur 失去光标的时候  onkeyup 按键向上的时候  onkeydown按键向下的时候是键盘事件
+
+    /*
+    * 键盘事件对象 :
+    *       key:j 按键
+    *       keyCode : 按键编码
+    *       Enter : 13 (编码为13)
+    *       left :37 top : 38 right: 39 bottom :40
+    *       backSpace :  8
+    *       Space : 32
+    *       0-9 : 48-57
+    * */
+    input.onkeyup = function (e) {
+        e= e ||window.event;
+        console.log(e); //KeyboardEvent 键盘事件
+    }
+
+
+    //利用事件冒泡传播需求=>只有子集向父级传
+    //绑给ul好比document  document太高
+
+    var ul = document.getElementById('ul')
+    ul.onclick = function (e) {//e是事件对象，要知道它是谁 eventElement
+        e = e || window.event;
+        console.log(e);
+        e.target = e.target || e.srcElement//处理事件源  源头的意思，就是事件元素就是ul
+        if(e.target.nodeName == 'SPAN' && e.target.getAttribute('btn') == 'del'){
+            //符合条件的span就是删除按钮
+            this;
+            //自己不能删除父级元素，只能通过自己的 爷爷删除父级元素
+            e.target./*span*/parentNode/*li*/.parentNode./*ul*/removeChild(e.target.parentNode)//用span的爷爷删除span的父级元素
+        }
+    }
+
+    //执行一个一个的展示
+    var lis = ul.getElementsByTagName('li');
+    var index = 0
+    var timer = window.setInterval(function () {
+        lis[index].style.opacity = '1'
+        index++
+        if(index==lis.length){
+            window.clearInterval(timer)
+        }
+    },100);
+
+
+
+//    for(var i=0;i<lis.length;i++){
+//
+//    }
+
+
+
+    //事件委托
+
+
+
+
+</script>

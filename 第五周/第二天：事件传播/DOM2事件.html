@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>dom2事件</title>
+    <style>
+        *{
+            padding:0;
+            margin:0;
+        }
+        #div1{
+            width: 100px;
+            height: 100px;
+            background: red;
+            text-align: center;
+            line-height: 100px;
+        }
+        #div2{
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: darkcyan;
+        }
+    </style>
+</head>
+<body>
+<div id="div1">
+    <div id="div2"></div>
+
+</div>
+</body>
+</html>
+<script>
+    /*
+    * DOM2 绑定事件操作方法：
+    * addEventListener (type,fn,false)//dom2 绑定事件
+    *       type: 事件类型 没有on，是字符串
+    *       fn:函数
+    *       false: 是否使用捕获，(从外往里捕获)  // 在ie低版本不支持，不是不兼容  // 先捕获 ，target，再冒泡
+    *       dom 0 级事件 ： 不支持捕获。  没有dom1级事件
+    *
+    * */
+    var body = document.body;
+    var div1 = document.getElementById('div1');
+    var div2 = document.getElementById('div2');
+//    div1.onclick =function (e) {//最原始的绑定事件就是DOM 0，事件
+    //
+    //    } event 事件     listener 监听事件
+    function fn1() {console.log(div1);}
+    div1.addEventListener('click',fn1,false)//dom2事件
+    div2.addEventListener('click',fn2,false);//dom2事件
+
+    function fn2() {console.log(div2);}
+
+    body.addEventListener('click',fn3,false);//最后一位false和true决定是否捕获和冒泡，捕获的意思点击孙子元素，触发从爷爷开始执行。再执行冒泡，一般点击的时候，会先捕获，再事件源，再冒泡
+
+    function fn3() {
+        console.log(body);
+    }
+
+</script>
