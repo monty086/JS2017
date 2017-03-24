@@ -1,10 +1,11 @@
-
-
-var main = utils.getElementsByClass('class')[0];
+alert()
+var main = utils.getElementsByClass('main')[0];
 var inner = utils.getElementsByClass('inner',main)[0];
 var imgs = inner.getElementsByTagName('img');
 
 var focus = utils.getElementsByClass('focus',main)[0];
+console.log(focus);
+alert(0)
 var lis = focus.getElementsByTagName('li');
 
 var left = utils.children(main,'a')[0];
@@ -14,7 +15,7 @@ var xhr = new XMLHttpRequest();
 xhr.open('get','data.txt?_='+Math.random(),false);//不一定是下划线 因为每次都会有本地缓存，所以需要加一个循环小数，需要每次拿到的都是最新的
 xhr.onreadystatechange = function (){
     if(xhr.readyState ==4&&xhr.status==200){
-        data = uitls.jsonParse(xhr.responseText)
+        data = utils.formatJSON(xhr.responseText)
     }
 }
 xhr.send()
@@ -22,9 +23,9 @@ console.log(data)
 
 var winWidth = utils.win('clientWidth');
 if(data&&data.length){
-    for(var i=0;i<data.length;i++){
-        var str ='';
-        var str1 ='';
+    var str ='';
+    var str1 ='';
+    for(var i=0;i< data.length;i++){
         str+= '<div><img src="" real ="'+data[i].src+'"alt=""></div>';
         str1+= i==0?'<li class="cur"></li>':'<li></li>';
     }
@@ -37,6 +38,7 @@ if(data&&data.length){
     }
 }
 
+
 //图片有效性验证
 
     for(var i=0;i<imgs.length;i++) {
@@ -46,7 +48,7 @@ if(data&&data.length){
             tempImg.onload = function () {//监听一个事件通过onload
                 imgs[k].src = this.src;
                 animate({
-                    ele: inner,
+                    ele: imgs[k],
                     target: {
                         opacity: 1
                     },
@@ -57,7 +59,7 @@ if(data&&data.length){
     }
 
 var index = 0;
-var timer =window.setInterval(autoMove,2000);
+var timer =window.setInterval(autoMove,20);
 function autoMove (){
     index ++;
     if(index ==data.length +1){
@@ -75,9 +77,9 @@ function autoMove (){
 }
 
 function focusAlign(){
-    var tempIndex = index==data.length ?0:index;
+    var tempIndex = index==data.length ? 0:index;
     for(var i=0;i<lis.length;i++){
-        lis[i].className = tempIndex==i?'cur':'';
+        lis[i].className = tempIndex==i ?'cur':'';
     }
 }
 
@@ -105,7 +107,7 @@ left.onclick = function (){
     })
     focusAlign()
 }
-right.onclick =  autoMove()
+right.onclick =  autoMove;
 
 for(var i=0;i<lis.length;i++){
     var cur = lis[i];
@@ -125,3 +127,12 @@ for(var i=0;i<lis.length;i++){
 }
 
 
+console.log("hhaahha jisfiu ksjf空间设计风刀霜剑\n kjlskdjflsklksjdfskjf")
+console.log('你牛逼啊，你不是不给换行吗\n你不是牛逼呢，牛逼啥呀，\n%c哈哈哈','color:red;background:linear-gradient(to bottom,red,blue,yellow)','\n职位介绍：http://www.baidu.com')
+
+
+console.log("%c好神奇呀撒发\n大水发的说法~","white-space: pre-wrap;font-size:30px;color:white;background:deeppink;border-radius:2px;")
+console.log("%c哇哇哇哇哇！","font-size:30px;background:linear-gradient(to bottom,deeppink,pink,orange);;border-radius:4px;")
+console.log("%c看兔斯基！！！","font-size:30px;color:white;text-shadow:2px 2px 1px gold")
+
+console.log("%c","padding:120px 120px;line-height:100px;background:url('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1487679947503&di=089b71b243d7805692f6af9fea7247ba&imgtype=0&src=http%3A%2F%2Fimg3.duitang.com%2Fuploads%2Fblog%2F201408%2F20%2F20140820122446_kHVcj.gif') no-repeat")

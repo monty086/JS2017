@@ -144,7 +144,7 @@
         }
     }
     xhr.send(null)
-    console.log(data);
+//    console.log(data);
 
     //绑定数据  把数据拼接成dom结构添加到页面中
     var str = '';
@@ -168,14 +168,18 @@
     }
     function sort() {
         var btnName = this.getAttribute('btnName');
+        console.log(this.getAttribute('btnName'))
         var lisary = Array.prototype.slice.call(lis);
         var that = this;
         that.flag *= -1;
+//        alert()
         lisary.sort(function (a, b) {
             var x = a.getAttribute(btnName);
+//            console.log(x);
             var y = b.getAttribute(btnName);
             return (x - y) * that.flag;
         })
+//        console.log(x)
         var frg = document.createDocumentFragment();
         for(var i=0;i<lisary.length;i++){
             frg.appendChild(lisary[i]);
