@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            padding:0;
+            margin:0;
+        }
+        #div1{
+            width: 100px;
+            height: 100px;
+            background: red;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+<input id="div2" type="text">
+
+<div id="div1"></div>
+</body>
+</html>
+<script>
+    /*
+    *   鼠标事件对象：
+    *           出现位置=>绑定事件的那个函数的参数（浏览器天生的）
+    *           在ie8- 出现在window.event上
+    *
+    *
+    * */
+    var div1 = document.getElementById('div2');
+    div1.onkeyup = function (e) {
+//        console.log(arguments);
+        console.log(e.keyCode);
+        console.log(e.key)
+    }
+
+
+</script>

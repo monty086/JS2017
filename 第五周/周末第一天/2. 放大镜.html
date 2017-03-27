@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            padding:0;
+            margin:0
+        }
+        #box{
+            width: 350px;
+            height: 350px;
+            box-shadow:  0 0 5px #000;
+            margin: 10px;
+            position: relative;
+        }
+        img{
+            width: 100%;
+            height: 100%;
+            border: none;
+            vertical-align: top;
+        }
+        #box #mask{
+            display: none;
+            position: absolute;
+            top:0;
+            left:0;
+            opacity: 0.6;
+            background: orange;
+            cursor: move;/*鼠标变位置十字花*/
+            width: 175px;
+            height: 175px;
+        }
+        #show{
+            width: 600px;
+            height: 600px;
+            position: absolute;
+            left: 380px;
+            top: 10px;
+            box-shadow:  0 0 10px #000;
+            overflow: hidden;
+            display: none;
+        }
+        #show div{
+            width: 700px;
+            height: 700px;
+            position: absolute;
+        }
+        #show div img{
+            width: 100%;
+            height: 100%;
+        }
+
+    </style>
+</head>
+<body>
+<div id="box">
+    <img src="images/iphone.jpg" alt="">
+    <div id="mask"></div>
+</div>
+<div id="show">
+    <div>
+        <img src="images/iphone.jpg" alt="">
+    </div>
+</div>
+</body>
+</html>
+<script>
+    var box = document.getElementById('box');
+    var mask = document.getElementById('mask');
+    var show = document.getElementById('show');
+    var div = show.getElementsByTagName('div')[0]
+    //enter和leave专门组织事件冒泡事件
+    box.onmouseenter = function (e){
+        e= e || window.event;
+        mask.style.display = 'block';
+        show.style.display = 'block';
+    };
+    box.onmousemove =function (e){
+        e=e||window.event;
+        var x = e.clientX - box.offsetLeft - mask.offsetWidth/2;//计算x和y的值
+        var y = e.clientY - box.offsetTop -  mask.offsetHeight/2;
+        //过界判断
+        var minX = 0,minY = 0;
+        var maxX = box.offsetWidth - mask.offsetWidth
+        var maxY  = box.offsetHeight  - mask.offsetHeight
+        x= x<minX? minX: x>maxX ? maxX: x;
+        y = y<minY? minY: y>maxY? maxY : y;
+        console.log(x,y);
+//
+        mask.style.left = x+'px';
+        mask.style.top = y+'px';
+
+        div.style.left = -2*x+'px';
+        div.style.top = -2*y+'px';
+    };
+    box.onmouseleave = function (){
+        mask.style.display = 'none';
+        show.style.display = 'none';
+    }
+    
+    
+</script>

@@ -37,7 +37,7 @@ var chart = utils.getElementsByClass('chart',main)[0]
 var index = 0;
 function move (){
     var boxWidth = frame.clientWidth;
- index +=1
+ index +=4
     if(index == lis[lis.length]){
      utils.css(ol,'left',0)
         index = 4

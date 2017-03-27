@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            padding:0;
+            margin:0;
+        }
+        html,body{
+            width: 100%;
+            height: 100%;
+            background: darkcyan;
+            overflow: hidden;
+        }
+
+
+    </style>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    /*
+    * wheelEvent :轮子事件
+    *
+    *
+    *
+    * */
+    var body = document.body;
+    //onmousewheel
+    // e 事件对象
+    //
+    document.body.addEventListener('DOMMousescroll',function () {
+    })//
+    // e.detail  > 0 向下，如果< 0 向上
+    body.onmousewheel = function (e){//鼠标滚轮
+        e = e || window.event;
+        e.wheelDelta//如果大于0 是向上滚动，如果小于0 是向下滚动
+    }
+
+    //专门处理滚轮的兼容性问题
+    function addWheelEventListener(ele,fn){
+        if(window.navigator.userAgent.toLowerCase().indexOf('firefox')==-1){
+            ele.onmousewheel =fn
+        }else{
+            ele.addEventListener('DOMMouseScroll',fn)
+        }
+    }
+    addWheelEventListener(div1,handle);
+    function handle(e) {
+
+        //处理滚动条随之滚动的默认行为
+        e.preventDefault ? e.preventDefault(): e.returnValue =false
+    }
+
+</script>

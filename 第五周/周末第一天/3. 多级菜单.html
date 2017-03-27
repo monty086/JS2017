@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            padding:0;
+            margin:0;
+        }
+        ul,li{
+           list-style: none;
+        }
+        #list{
+            width: 300px;
+            /*height: 300px;*/
+            padding: 10px;
+            background: -webkit-linear-gradient(red,blanchedalmond,salmon);
+        }
+        #list ul{
+            display: none;
+        }
+        #list li{
+            line-height: 30px;
+            position: relative;
+        }
+        #list li em{
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            background: url("images/icon.png")no-repeat -58px -27px;
+            position: absolute;
+            left:0;
+            top:6px;
+            cursor: pointer;
+            /*margin-top: -9px;*/
+        }
+        #list li em.open{
+            background-position: -40px -27px;
+        }
+        #list li span{
+            display: inline-block;
+            margin-left: 22px;
+            -webkit-user-select: none;
+        }
+    </style>
+</head>
+<body>
+<ul id="list">
+    <li>
+        <em></em><span>1-1</span>
+        <ul>
+            <li><span>2-1</span></li>
+            <li><span>2-2</span></li>
+            <li>
+                <em></em><span>2-3</span>
+                <ul>
+                    <li><span>3-1</span></li>
+                    <li><span>3-2</span></li>
+                    <li>
+                        <em></em><span>3-3</span>
+                        <ul>
+                            <li><span>4-1</span></li>
+                            <li><span>4-2</span></li>
+                            <li><span>4-3</span></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li><span>1-2</span></li>
+</ul>
+</body>
+</html>
+<script>
+    var list = document.getElementById('list');
+    var uls = list.getElementsByTagName('ul');
+    var spans = list.getElementsByTagName('span');
+    for(var i=0;i<uls.length;i++){
+        uls[i].style.marginLeft = 20*(i+1)+'px'
+    }
+    for(var i=0;i<spans.length;i++){
+        var pre = spans[i].previousElementSibling;
+        if(pre && pre.nodeName == 'EM' ){
+            spans[i].style.cursor = 'pointer';
+            spans[i].setAttribute('ok','yes')
+        }
+    }
+    list.onclick = function(e){
+        e=e||window.event;
+        e.target = e.target ||e.srcElement
+        if(e.target.nodeName =='EM'||(e.target.nodeName =='SPAN'&&e.target.getAttribute('ok') == 'yes' )){
+            //排除不能点击的span
+            var parli = e.target.parentNode; // 父级元素
+            var em = parli.firstElementChild;
+            var targetul = parli.lastElementChild  //事件源操作的元素
+            var isblock = window.getComputedStyle(targetul,null).display=='block'
+            if(isblock){//open
+                //从当前节点的所有后代的ul元素全部关闭，并且所有后代em全部去掉
+                var childs = parli.getElementsByTagName('ul');//获取父级元素下所有的ul标签
+                var ems = parli.getElementsByTagName('em');//获取父级元素下所有的em标签
+                for(var i=0;i<childs.length;i++){
+                    childs[i].style.display ='none';
+                    ems[i].className = '';
+                }
+            }else{//close
+                targetul.style.display ='block';
+                em.className = 'open';
+            }
+        }
+    }
+
+
+
+</script>

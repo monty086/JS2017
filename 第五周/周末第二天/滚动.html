@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            padding:0;
+            margin:0
+        }
+        ul,li{
+            list-style: none;
+        }
+        html,body{
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        #win{
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        #winInner{
+            position: absolute;
+            left:0;
+            top:0;/*滚动的时刻要操作的值*/
+            width: 100%;
+            height: 100%;
+        }
+        #winInner img{
+            width: 100%;
+            height: 100%;
+            vertical-align: top;
+            border: none;
+            display: block;
+        }
+        #list{
+            position: fixed;
+            right: 20px;
+            top:50%;
+            margin-top: -100px;
+        }
+        #list li{
+            width: 30px;
+            height: 30px;
+            background: red;
+            border-radius:50%;
+            margin:5px 0 ;
+        }
+        #list li.cur{
+            background: black;
+        }
+    </style>
+</head>
+<body>
+<div id="win">
+    <div id = 'winInner'>
+        <img src="image/1.jpg" alt="">
+        <img src="image/2.jpg" alt="">
+        <img src="image/3.jpg" alt="">
+        <img src="image/4.jpg" alt="">
+        <img src="image/5.jpg" alt="">
+    </div>
+    <ul id="list">
+        <li class="cur"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+</body>
+</html>
+<script src="wheel.js"></script>
+<script src="../jquery-1.11.3.js"></script>
+<script>
+    // DOMContendLoaded = >只要页面内的dom结构渲染结束就会触发
+    // window.onload  =>dom结构和资源渲染完毕就会触发
+    var win = document.getElementById('win');
+    var winInner = document.getElementById('winInner');
+    var lis = document.getElementById('list').getElementsByTagName('li');
+
+    var canScroll = true
+
+    var index = 0;  //当前显示图片的索引
+    addWheelEventListener(win,function(isDown,e){
+        if(canScroll){
+            var winHeight = document.documentElement.clientHeight ||document.body.clientHeight
+            if(isDown){//down
+
+                if(index ==lis.length-1){
+                    return;
+                }
+                index++;
+            }else{//up
+                if(index ==0){
+                    return;
+                }
+                index--;
+            }
+            $(winInner).stop().animate({top:-index*winHeight},300,function (){
+                canScroll =true;//这里利用回调函数，等动画结束之后，再赋值一个true，可以滚动
+            })
+            for(var i=0;i<lis.length;i++){
+                if(index == i){
+                    lis[i].className = 'cur'
+                }else{
+                    lis[i].className = ''
+                }
+//                lis[i].className = i==index? 'cur': '';
+            }
+        }
+        canScroll =false
+    })
+
+</script>

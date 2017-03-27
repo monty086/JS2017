@@ -18,15 +18,17 @@
 <body>
 
 <div id="div1"></div>
-
+<input id="div2" type="text">
 <a href="http://www.baidu.com">baidu</a>
 </body>
 </html>
 <script>
-    var div1 = document.getElementById('div1');
-    div1.onclick =function (e) {
-        console.log(arguments);
-        e=e || window.event
+    var div1 = document.getElementById('div2');
+    div1.onclick =function(e){
+//        console.log(arguments);
+        e=e || window.event;
+//        e.keyCode
+        console.log(e.keyCode);
     }
     /*
     * 鼠标事件对象：绑定事件对应的那个函数中，并且可以作为参数传递
@@ -85,18 +87,19 @@
     *
     * */
     //事件对象兼容处理
-    e = e || e.clientX
-    e = e || e.clientY
+//    e = e || e.clientX
+//    e = e || e.clientY
 
     //e.pageX 兼容处理
-    e.pageX = e.pageX || e.clientX +(document.documentElement.scrollLeft || document.body.scrollLeft)
-    e.pageY = e.pageY || e.clientY +(document.documentElement.scrollTop || document.body.scrollTop)
+//    e.pageX = e.pageX || e.clientX +(document.documentElement.scrollLeft || document.body.scrollLeft)
+//    e.pageY = e.pageY || e.clientY +(document.documentElement.scrollTop || document.body.scrollTop)
 
-    e.type //事件类型
+//    e.type //事件类型
+//
+//    e. stopPropagetion ? e.stopPropagetion():e.cancelBubble = true
+//
+//    e.stopPropagetion
 
-    e. stopPropagetion ? e.stopPropagetion():e.cancelBubble = true
-
-    e.stopPropagetion
 
 
 

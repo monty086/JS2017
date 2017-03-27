@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div1{
+            width: 100px;
+            height: 100px;
+            background: limegreen;
+            position: absolute;
+        }
+        img{
+            width: 100%;
+            height: 100%;
+
+        }
+    </style>
+</head>
+<body>
+<div id="div1">
+    <img src="images/iphone.jpg" alt="">
+</div>
+</body>
+</html>
+<script>
+    var div1 = document.getElementById('div1')
+
+    /*
+    * 鼠标移动：计算盒子的top和left值
+    * 鼠标松开：把mousemove事件还有mouseup事件全部移除掉
+    * 鼠标按下：记录当前鼠标位置相对于盒子的偏移量 = >鼠标移动用
+    *
+    *
+    * */
+    div1.onmousedown =function (e) {//拖拽：是有3个事件组合而成，mousemove和mouseup必须要在onmousedown里面绑定，在mousedown触发在绑定他俩事件
+        e=e||window.event;
+//        div1.l = e.clientX- this.offsetLeft;//var res = div1.setAttribute(hehe,res)
+        var res =e.clientX- this.offsetLeft;
+        div1.setAttribute('l',res);
+        div1.t = e.clientY- this.offsetTop;//var
+//        console.log(div1.getAttribute("l"), div1.t);
+
+        if(div1.setCapture){
+            //dom元素setcapture的方法就是让鼠标和元素绑定在一起，forie
+            div1.setCapture()//如果存在
+            div1.onmousemove =function (e) {
+                e=e||window.event;
+                var l = /*e.clientX - /!*this.l*!/this.getAttribute("l")*/div1.offsetLeft;
+                var t  = e.clientY - this.t;
+//                console.log(l, t);
+                this.style.left = l+'px';
+                this.style.top = t+'px';
+                //去除 图片拖拽的默认行为，
+                e.preventDefault? e.preventDefault():e.returnValue =false
+            }
+            div1.onmouseup =function (e) {
+                this.releaseCapture() // 释放这个绑定
+                this.onmousemove = null;
+                this.onmouseup = null;
+            }
+        }else{  //chrome 让事件委托给document处理，当document的move事件触发再移动盒子。
+            document.onmousemove =function (e){
+                var l = e.clientX - /*div1.l*/div1.getAttribute("l");
+                var t  = e.clientY - div1.t;
+                div1.style.left = l+'px';
+                div1.style.top = t+'px';
+                e.preventDefault? e.preventDefault():e.returnValue =false
+            }
+            document.onmouseup =function (){
+                this.onmousemove = null;
+                this.onmouseup = null;
+            }
+        }
+    }
+    /*
+    * onmousedown  计算l和t
+    * onmousemouve
+    *
+    *
+    *
+    *
+    *
+    * */
+
+
+
+</script>

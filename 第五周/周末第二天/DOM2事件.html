@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div1{
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+</body>
+</html>
+<script>
+    //dom 0 级 同一个事件只能绑定一个函数
+    //dom 2 级 同一个事件可以绑定多个函数  类似jquery 里面的$(). on()
+    // listener 监听   event 事件
+    var div1 = document.getElementById('div1');
+    div1.addEventListener('click',fn1,false);//dom2启动一个事件监听
+    //用dom2的时候一般不绑定匿名函数，移除的时候不太容易移除
+    var fn1 = function () {};
+
+    div1.removeEventListener('click',fn1,false);
+
+    //dom 0 级事件不支持设置捕获阶段发生的事，默认都是冒泡阶段
+    //dom 2 级事件，第三个参数布尔值就是设置是否在捕获阶段发生，一般不用捕获
+    //冒泡阶段重复绑定没有意义，不执行重复函数
+    //dom2 级事件 dom0 事件中的this都是操作的元素，都是相同的。在chrome相同
+    // ie8-
+    div1.detachEvent('onclick',fn1);
+    //在ie8- 没有捕获，只有冒泡
+    //在ie8-  this是window
+    //在ie8-  执行的顺序没有按照正常顺序排列
+    //在ie8-  重复绑定是被允许的
+    //开始处理dom2 级事件在ie 8 - 的兼容问题
+
+
+
+</script>
