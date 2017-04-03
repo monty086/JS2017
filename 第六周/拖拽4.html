@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            top: 0;
+            left:0;
+        }
+    </style>
+</head>
+<body>
+<div>1</div>
+<!--<div></div>
+<div></div>
+<div></div>-->
+</body>
+</html>
+<script src="周末第二天/event11.js"></script>
+<script>
+//    var divs = document.getElementsByTagName('div')
+//    for(var i=0;i<divs.length;i++){
+//        on(divs[i],'mousedown',down)
+//    }
+var div = document.getElementsByTagName('div')[0]
+    on(div,'mousedown',down)
+    on(div,'aSelfdragstare',dex)
+    on(div,'aselfdragstare',clearTimer)
+
+    on(div,'aselfdragging',getSpeed)
+
+    on(div,'aselfdragend',drop)
+    on(div,'aselfdragend',fly)
+
+
+
+    function down(e){
+//    alert()
+        this.x = e.pageX;
+        this.y = e.pageY;
+        this.xm = this.offsetLeft;
+        this.ym = this.offsetTop;
+        if(this.setCapture){
+            this.setCapture();
+            on(this,'mousemove',move);
+            on(this,'mouseup',up)
+        }else{
+            this.MOVE = bind(move,this);
+            this.UP = bind(up,this);
+            on(document,'mousemove',this.MOVE);
+            on(document,'mouseup',this.UP)
+        }
+        e.preventDefault?e.preventDefault():e.returnValue = false;
+        clearTimer.call(this)
+        dex.call(this)
+    }
+    function move(e) {
+        var curL = e.pageX - this.x + this.xm ;
+        var curT = e.pageY - this.y + this.ym ;
+
+//        console.log(this);
+        this.style.left = curL +'px';//上面加了px像素，下面就不可以在加像素了px
+        this.style.top = curT +'px';
+        getSpeed.call(this,e)
+    }
+    function up(){
+        if(this.releaseCapture){
+            this.releaseCapture()
+            off(this,'mousemove',move)
+            off(this,'mouseup',up)
+        }else{
+            off(document,'mousemove',this.MOVE);
+            off(document,'mouseup',this.UP);
+        }
+        fly.call(this);
+        drop.call(this)
+    }
+
+    function bind(fn, context) {
+        return function (e) {
+            fn.call(context,e)
+        }
+    }
+// 以上是完整的独立的拖拽功能，
+///////////////////////////////////////////////////////////////////////
+// 以下是两个动画功能，
+// 现在要让这两个功能模块，让他们在代码不混杂在一起的情况下，还可以完美的结合
+    function getSpeed(e){
+        if(this.getprev){
+            this.getSpeed = e.pageX -this.getprev;
+            this.getprev = e.pageX
+        }else{
+            this.getprev = e.pageX
+        }
+    }
+
+    function fly(){
+        this.getSpeed *=0.98;
+        var cur = this.getSpeed+this.offsetLeft
+        var max = (document.documentElement.clientWidth||document.body.clientWidth)-this.offsetWidth//获取可视窗口的时候必须用clientHeight 这个方法啊，不可以用offsetHeight这样
+        if(cur<=0){
+            this.style.left = 0;
+            this.getSpeed *=-1
+        }else if(cur>max){
+            this.style.left = max+'px'
+            this.getSpeed*=-1
+        }else{
+            this.style.left = cur+'px'
+        }
+        if(Math.abs(this.getSpeed)>0.5){
+            this.timer1 = window.setTimeout(bind(fly,this),17)
+        }
+    }
+    function drop(){
+        if(this.dropSpeed){
+            this.dropSpeed+=9.8
+        }else{
+            this.dropSpeed=1
+        }
+        this.dropSpeed*=0.98;
+        var cur = this.dropSpeed+this.offsetTop;
+        var max = (document.documentElement.clientHeight||document.body.clientHeight)-this.offsetHeight;
+        if(cur>=max){
+            this.style.top = max+'px';
+            this.dropSpeed*=-1;
+            this.flag++
+        }else{
+            this.style.top = cur+'px'
+            this.flag =0
+        }
+        if(this.flag<2){
+            this.timer2 = window.setTimeout(bind(drop,this),17)
+        }else{
+            window.clearTimeout(this.timer)
+        }
+    }
+    var zIndex = 0
+    function dex(){
+        this.style.zIndex = ++zIndex
+    }
+    function clearTimer(){
+        window.clearTimeout(this.timer1);
+        window.clearTimeout(this.timer2);
+    }
+
+
+
+</script>

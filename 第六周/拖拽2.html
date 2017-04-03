@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            position: absolute;
+            top: 10px;;
+            left: 20px;;
+            width: 100px;
+            height: 100px;
+            background: red;
+            float: left;
+            margin: 10px;
+        }
+        .div2{
+            left: 40px;
+        }
+        .div3{
+            left: 50px;
+        }
+        .div4{
+            left: 80px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="div1"></div>
+<div class="div2" style="background: mediumturquoise"></div>
+<div class="div3" style="background: sandybrown"></div>
+<div class="div4" style="background: salmon"></div>
+</body>
+</html>
+<script src="event1.js"></script>
+<script>
+//    var div1 = document.getElementById('div1');
+    var eles = document.getElementsByTagName('div');
+    for(var i =0;i<eles.length;i++){
+        on(eles[i],'mousedown',down)
+    }
+    function down (e){//获得时间对象，相当于留了一个接口
+        //开始拖拽
+
+        this.x = this.offsetLeft;
+        this.y = this.offsetTop;//保存盒子的位置
+        this.mx = e.pageX;
+        this.my = e.pageY;//保存鼠标的位置
+        if(this.setCapture){
+            this.setCapture()
+            on(this,'mousemove',move)
+            on(this,'mouseup',up)
+        }else{
+            on(document,'mousemove',move)
+            on(document,'mouseup',up)
+        }
+
+
+        e.preventDefault()
+    }
+
+    function move(e){//拖拽进行
+        e.
+        this.style.left = e.pageX- this.mx+this.x+'px';
+        this.style.top = e.pageY- this.my+this.y+'px'
+    }
+    function up(e) {//结束拖拽
+        if(this.releaseCapture){
+            this.releaseCapture()
+            off(this,'mousemove',this.MOVE);
+            off(this,'mouseup',this.UP)
+        }else{
+            off(document,'mousemove',this.MOVE)
+            off(document,'mouseup',this.UP)
+        }
+
+    }
+
+
+
+
+
+</script>
+

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            top:0;
+            left:0;
+        }
+    </style>
+</head>
+<body>
+<div></div>
+</body>
+</html>
+<script src="event3.js"></script>
+<script>
+    var div = document.getElementsByTagName('div')[0];
+    on(div,'mousedown',down)
+
+    function down(e){
+        this.x = this.offsetLeft;
+        this.y = this.offsetTop;
+        this.mx = e.pageX;
+        this.my = e.pageY;
+        if(this.setCapture){
+            this.setCapture();
+            on(this,'mousemove',down);
+            on(this,'mouseup',up)
+        }else{
+            this.MOVE = bind(move,this);
+            this.UP = bind(up,this);
+            on(document,'mousemove',this.MOVE);
+            on(document,'mouseup',this.UP);
+        }
+        e.preventDefault()
+    }
+
+    function move(e){
+        this.style.left = e.pageX - this.mx + this.x;
+        this.style.top = e.pageY - this.my + this.y;
+    }
+    function up(e){
+        if(this.releaseCapture){
+            this.releaseCapture()
+            off(this,'mousemove',this.MOVE);
+            off(this,'mouseup',this.UP)
+        }else{
+            off(document,'mousemove',this.MOVE);
+            off(document,'mouseup',this.UP)
+        }
+    }
+
+    function bind(fn,context){
+        return function (e){
+            fn.call(context,e)
+        }
+    }
+
+</script>

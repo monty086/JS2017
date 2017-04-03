@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            background: rosybrown;
+            text-align: center;
+            line-height: 100px;
+            cursor: move;
+            font-size: 22px;
+            -webkit-user-select: none;
+            position: absolute;
+            top: 50px;
+            left: 100px;
+        }
+    </style>
+</head>
+<body>
+<div id="box" class="box">1</div>
+</body>
+</html>
+<script src="event1.js"></script>
+<script>
+    var oBox = document.getElementById('box'),
+        minL = 0,
+        minT = 0,
+        maxL = (document.documentElement.clientWidth || document.body.clientWidth) - oBox.offsetWidth,
+        maxT = (document.documentElement.clientHeight || document.body.clientHeight) - oBox.offsetHeight;
+
+
+    function down(e) {
+        this['strX'] = e.clientX;
+        this['strY'] = e.clientY;
+        this['strL'] = this.offsetLeft;
+        this['strT'] = this.offsetTop;//js中盒子模型中提供的属性，获取的结果都是不带小数的。他会进行四舍五入的
+
+        this['MOVE'] = bind(move, this)
+        this['UP'] = bind(up, this)
+        on(document, 'mousemove', this['MOVE']);//解决鼠标过快丢失文档对象。是绑定给文档对象主要处理的。所有的浏览器都可以这样处理
+        on(document, 'mouseup', this['UP']);
+        //处理this问题
+        clearInterval(this.timer);
+        clearInterval(this.timer)
+    }
+    function move(e) {
+        var curL = e.clientX - this['strX'] + this['strL'],
+            curT = e.clientY - this['strY'] + this['strT'];
+        curL = curL < minL ? minL : curL > maxL ? maxL : curL;
+        curT = curT < minT ? minT : curT > maxT ? maxT : curT;
+        this.style.left = curL + 'px';
+        this.style.top = curT + 'px';
+
+//        this['pre'] = null;//第一次滑动的距离
+//        this['speedFly'] = null
+        if(this.pre){
+            this.speedFly = this.offsetLeft - this.pre;
+            this.pre = this.offsetLeft
+        }else{
+            this.pre = this.offsetLeft;
+            this.speedFly = this.offsetLeft
+        }
+
+    }
+    function up(e) {
+        off(document, 'mousemove', this['MOVE']);
+        off(document, 'mouseup', this['UP']);
+        fly.call(this)
+    }
+    function fly() {
+        //this --oBox
+        var _this = this;
+        var speedFly = this.speedFly;
+        this.flyTime = window.setInterval(function () {
+            speedFly*=0.98;//指数衰减，速度会慢慢停下来
+            //什么时候结束，当我们的速度小于0.5的时候，定时器结束，一个数乘以0.98永远到不了0，offsetleft获取的值是四舍五入，加一个小于0.5的数字，对最后的结果不会起到太大作用，盒子已经不动了，
+            if(Math.abs(speedFly)<0.5){
+                window.clearInterval(this.flyTime)
+                return
+            }
+            var curL = _this.offsetLeft+speedFly //一开始盒子的位置
+            if(curL>=maxL){
+                speedFly*=-1;
+                curL = maxL
+            }else if(curL<=minL){
+                speedFly*=-1
+                curL = minL
+            }
+            _this.style.left = curL +'px'
+        },17)//谷歌浏览器5-7秒，ie是10-13，国外的是17位最流畅的毫秒
+    }
+    function drop(){
+        var _this = this,
+        speedDrop =9.8;
+        speedDrop*=.98;
+        _this.dropTimer = window.setInterval(function(){
+            var curT = _this.offsetTop+speedDrop;
+            if(curT>maxT){
+                curT =maxT;
+                this.flag++;
+                speedDrop*=-1
+            }
+            this.style.top = curT+'px'
+        },17)
+    }
+
+    on(oBox, 'mousedown', down)
+
+
+</script>

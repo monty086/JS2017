@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            top:0;
+            left:0
+        }
+    </style>
+</head>
+<body>
+<div></div>
+<div  style="left: 200px;"></div>
+</body>
+</html>
+<script src="event5.js"></script>
+<script >
+    var div = document.getElementsByTagName('div')[0];
+    var div2 = document.getElementsByTagName('div')[1];
+    on(div,'mousedown',down)
+    on(div2,'mousedown',down)
+//    off(div,'mousedown',down)
+    function down (e){
+        this.x = this.offsetLeft
+        this.y = this.offsetTop;
+        this.xm = e.pageX;
+        this.ym = e.pageY;
+
+        if(this.setCapture){//元素和鼠标绑定在一起
+            this.setCapture()
+            on(this,'mousemove',move);
+            on(this,'mouseup',up)
+        }else{
+            this.MOVE = bind(move,this);
+            this.UP = bind(up,this)
+            on(document,'mousemove',this.MOVE);
+            on(document,'mouseup',this.UP);
+        }
+    }
+    function move(e){
+        this.style.left = e.pageX- this.xm+this.x+'px';
+        this.style.top = e.pageY - this.ym+this.y+'px'
+    }
+    function up(e){
+        if(this.releaseCapture){
+            this.releaseCapture()
+            off(this,'mousemove',move);
+            off(this,'mouseup',up)
+        }else{
+            off(document,'mousemove',this.MOVE);
+            off(document,'mouseup',this.UP);
+        }
+    }
+    function bind(fn,context){
+        return function (e){
+            fn.call(context,e)
+        }
+    }
+
+</script>

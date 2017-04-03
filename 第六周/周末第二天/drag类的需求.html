@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="div1" style="width: 100px;height: 100px;background: red;position: absolute;left:0;top:0;"></div>
+</body>
+</html>
+<script src="event11.js"></script>
+<script>
+    var div1 = document.getElementById('div1');
+    function Emitter(){}
+    Emitter.prototype.on = function (type,fn){
+        if(!this['AAA'+type]){
+            this['AAA'+type]=[];
+        }
+        var a = this['AAA'+type];
+        for(var i=0;i<a.length;i++){
+            if(a&&a.length){
+                if(a[i]==fn){
+                    return
+                }
+            }
+        }
+        a.push(fn)
+    };
+    Emitter.prototype.run = function (type,e){
+        var a = this['AAA'+type];
+        for(var i=0;i<a.length;i++){
+            if(a&&a.length){
+                if(typeof a[i] =='function'){
+                    a[i].call(this,e)
+                }else{
+                    a.splice(i,1);
+                    i--
+                }
+            }
+        }
+    };
+    Emitter.prototype.off = function (type,fn){
+        var a = this['AAA'+type];
+        for(var i=0;i<a.length;i++){
+            if(a&&a.length){
+                if(a[i]==fn){
+                    a[i]=null;
+                    break;
+                }
+            }
+        }
+    };
+    Drag.prototype = new Emitter;
+
+    function Drag (ele){
+        this.x =null;
+        this.y =null;
+        this.mx =null;
+        this.my =null;
+        this.ele = ele;
+        this.DOWN = bind(this.down,this);
+        this.MOVE = bind(this.move,this);
+        this.UP = bind(this.up,this);
+        on(this.ele,'mousedown',this.DOWN)//修改系统的this事件。在自定义事件里面暂时不需要
+    }
+
+    Drag.prototype.down =function (e){
+        this.x = this.ele.offsetLeft;
+        this.y = this.ele.offsetTop;
+        this.mx = e.pageX;
+        this.my = e.pageY;
+        if(this.ele.setCapture){
+            this.ele.setCapture();
+            on(this.ele,'mousemove',this.MOVE);
+            on(this.ele,'mouseup',this.UP)
+        }else {
+            on(document, 'mousemove', this.MOVE);
+            on(document, 'mouseup', this.UP);
+        }
+        e.preventDefault();
+        this.run('down',e)
+    }
+    Drag.prototype.move = function (e){
+        var curL = e.pageX - this.mx +this.x;
+        var curT = e.pageY - this.my + this.y;
+        this.ele.style.left = curL +'px';
+        this.ele.style.top = curT + 'px';
+        this.run('move',e)
+    }
+    Drag.prototype.up = function (e){
+        if(this.ele.releaseCapture){
+            this.ele.releaseCapture();
+            off(this.ele,'mousemove',this.MOVE);
+            off(this.ele,'mouseup',this.UP);
+        }else{
+            off(document,'mousemove',this.MOVE);
+            off(document,'mouseup',this.UP);
+        }
+        this.run('up',e)
+    }
+
+    var div2 = new Drag(div1);
+
+    div2.on('down',type1);
+    div2.on('move',type2);
+    div2.on('up',type3);
+
+//    div1.down();
+//    div1.move();
+//    div1.up();
+
+    function type1(){
+        console.log(1);
+    }
+    function type2(){
+        console.log(2);
+    }
+    function type3(){
+        console.log(3);
+    }
+
+
+
+
+</script>

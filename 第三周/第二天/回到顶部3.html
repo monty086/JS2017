@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            padding:0;
+            margin:0;
+        }
+        html,body{
+            width: 100%;
+            height: 3000px;
+        }
+        div{
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: fixed;
+            left: 100px;
+            bottom: 30px;
+            text-align: center;
+            line-height: 100px;
+            color:#fff;
+            -webkit-user-select:none;
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+<div>向上</div>
+</body>
+</html>
+<script src="../utils.js"></script>
+<script>
+var div = document.getElementsByTagName('div')[0];
+console.log(div);
+div.cur = true
+if(div.cur){
+        window.onscroll =function (){
+            var curHeight = utils.win('clientHeight');
+            var curScroll = utils.win('scrollTop');
+            if(curScroll>curHeight){
+                //div.style.display = 'block'
+                utils.css(div,'display','block')
+            }
+        }
+     }
+
+
+
+    div.onclick = function (){
+
+            window.clearInterval(div.timer);
+
+        div.timer = window.setInterval(function (){
+            var curScroll = utils.win('scrollTop');
+
+            if(curScroll<=0){
+                window.clearInterval(div.timer);
+                div.cur = true;
+                return;
+            }
+            curScroll-=10;
+            utils.win('scrollTop',curScroll)
+        },10);
+
+        utils.css(div,'display','none');
+        //this.style.display = 'none'
+        div.cur=false
+    }
+
+
+
+
+
+
+
+</script>

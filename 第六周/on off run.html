@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    function on(ele,type,fn) {
+        if (ele.addEventListener) {
+            ele.addEventListener()
+        } else {
+            if(!ele['AAA' + type]) {
+                ele['AAA' + type] = [];
+                ele.attachEvent('on' + type, handler)
+            }
+            var handlerAry = ele['handler'+type]
+                for(var i=0;i<handlerAry.length;i++){
+                if(handler==handler[i]){
+                    return;
+                }
+                }
+                handlerAry.push(handler);
+        }
+    }
+    function run(){
+        var a = this['AAA'+e.type];
+        if(a){
+            for(var i= 0; i<a.length;i++){
+                if(typeof a[i]=='function'){
+                    a[i].call(this,e)
+                }else{
+                    a.slice(i,1);
+                    i--;
+                }
+            }
+        }
+    }
+
+    function off(){
+        if(ele.removeEventListener){
+            ele.removeEventListener(type,fn)
+        }else{
+            var a = ele['AAA'+type];
+            if(a&&a.length){
+                for(var i=0;i<a.length;a++){
+                    if(a[i]==fn){
+                        a[i] = null;
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+
+</script>
+
+<script>
+    function onr(ele,type,handler){
+        if(ele.addEventlister){
+            ele.addEventlister(type,handler)
+        } else{
+           if(!ele['handler'+type]){
+               ele['handler'+type] = [];
+               ele.attachEvent('on'+type,function() {
+                   run.call(ele)
+               })
+           }
+           var a  = ele['handler'+type];
+           for(var i=0;i<a.length;a++){
+               if(a[i]==handler){
+                   return
+               }
+            }
+            a.push(handler)
+        }
+    }
+
+    function run (){
+        var e = window.event;
+        var a = this['handler'+e.type];
+        if(a&&a.length)
+        for(var i=0;i<a.length;i++){
+            if(typeof a[i] == 'function'){
+                a[i].call(this,e);
+            }else{
+                a.splice(i,1);
+                i--
+            }
+        }
+    }
+
+    function off(ele,type,handler){
+        if(ele.removeEventListener){
+            ele.removeEventListener(type,handler)
+        }else{
+            var a =ele['handler'+type];
+            if(a&&a.length)
+                for(var i=0;i<a.length;i++){
+                    if(a[i]==handler){
+                    a[i]=null;
+                        break
+                    }
+                }
+        }
+    }
+
+
+
+
+
+</script>

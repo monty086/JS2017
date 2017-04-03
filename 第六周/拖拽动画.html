@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+
+<script>
+    this.prevTime = new Date;//如果没有上一次的时间，什么也不做，
+    //如果有上一次的事件，就让这一次的时间减去上一次的时间，就两次事件的间隔事件输出到控制台
+
+    if(!this.prevTime){
+        this.prevTime = new Date//把当前的事件保存下来，留到下一次计算用，
+    }else{
+        var cur = new Date;
+        console.log(cur-this.prevTime)
+        this.prevTime = cur
+
+
+
+    }
+
+
+</script>

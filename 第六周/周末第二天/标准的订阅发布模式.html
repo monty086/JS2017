@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="div1" style="width: 100px;height: 100px; background: red;position: absolute;left:0;top:0"></div>
+<div id="div2" style="width: 100px;height: 100px;"></div>
+<div id="div3" style="width: 100px;height: 100px;"></div>
+</body>
+</html>
+<script>
+
+    //事件发射器类：他是订阅发布模式的标准写法
+    //这里用到继承的方法
+
+    //emitter：发射器
+    function Kettle (){}
+    Kettle.prototype = new Emitter;//这个兼容;但是这样的继承不能写在定义原型方法之后
+    Kettle.prototype.boiling = function () {
+        console.log('开始烧水');
+        var _this = this;
+        window.setTimeout(function () {
+            console.log('水已沸腾');
+            _this.run('abcdefg')//这个属于定时的发布时间，只有定时器到的时候，发布通知才会进行
+        },3000);
+        //this.run('abcdefg')//泡面
+    }
+    //Kettle.prototype.__proto__ = Emitter.prototype;//在ie678不兼容
+
+    function Emitter(){}
+    Emitter.prototype.on = function (type,fn){
+        if(!this['AAA'+type]){
+            this['AAA'+type]=[];
+        }
+        var a = this['AAA'+type];
+        for(var i=0;i<a.length;i++){
+            if(a&&a.length){
+                if(a[i]==fn){
+                    return
+                }
+            }
+        }
+        a.push(fn)
+    };
+    Emitter.prototype.run = function (type){
+        var a = this['AAA'+type];
+        for(var i=0;i<a.length;i++){
+            if(a&&a.length){
+                if(typeof a[i] =='function'){
+                    a[i].call(this)
+                }else{
+                    a.splice(i,1);
+                    i--
+                }
+            }
+        }
+    };
+    Emitter.prototype.off = function (type,fn){
+        var a = this['AAA'+type];
+        for(var i=0;i<a.length;i++){
+            if(a&&a.length){
+                if(a[i]==fn){
+                    a[i]=null;
+                    break;
+                }
+            }
+        }
+    };
+
+    var obj1 = new Kettle;
+
+    obj1.boiling();
+
+    obj1.on('abcdefg',drink);
+    obj1.on('abcdefg',noodles);
+    obj1.on('abcdefg',bath);
+
+    function drink() {
+        console.log('喝水');
+    }
+    function noodles() {
+        console.log('吃面');
+    }
+    function bath() {
+        console.log('洗澡');
+    }
+
+
+
+</script>

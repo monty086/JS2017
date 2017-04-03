@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>拖拽</title>
+    <style>
+        .div1{
+            width: 100px;
+            height: 100px;
+            background: red;
+            float: left;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+<div id="div1" class="div1"></div>
+<div class="div1"></div>
+<div class="div1"></div>
+<div class="div1"></div>
+</body>
+</html>
+<script src="event1.js"></script>
+<script>
+    var div1 = document.getElementById('div1');
+    div1.onmouseover = function (){
+        this.l = e.clientX - this.offsetLeft;
+        this.t = e.clientY - this.offsetTop;
+        if(div1.setCapture){
+            div1.setCapture();
+            div1.onmousemove = function (e){
+                var l = e.clientX - this.l;
+                var t = e.clientY - this.t;
+                this.style.left = l+'px';
+                this.style.top = t+'px';
+                e.preventDefault? e.preventDefault():e.returnValue = false;
+            }
+            div1.onmouseup = function (){
+                div1.releaseCapture()
+                this.onmousemove = null;
+                this.onmouseup = null
+            }
+        }else{
+            document.onmousemove =function (e) {
+                var l = e.clientX - div1.l;
+                var t = e.clientY - div1.t;
+                div1.style.left = l+'px';
+                div1.style.top = t+'px';
+                e.preventDefault? e.preventDefault():e.returnValue = false;
+            }
+            document.onmouseup = function (){
+                this.onmousemove = null
+                this.onmouseup = null;
+            }
+        }
+
+    }
+
+
+
+
+
+
+
+
+</script>
+
+
+

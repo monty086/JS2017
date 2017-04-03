@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        ul{
+            margin:100px auto 0 ;
+            padding: 5px;
+            position: relative;
+            list-style: none;
+            background: #CCFF00;
+            height: 480px;
+            width: 640px;
+        }
+        li{
+            width: 150px;
+            height: 150px;
+            margin: 5px;
+            float:left;
+            background: #00b38a;
+            cursor: move;
+            overflow: hidden;
+        }
+        /*li:hover{*/
+            /*background: blue;*/
+        /*}*/
+        img{
+            width: 150px;
+            height: 150px;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li><img src="img/1.png" alt=""></li>
+    <li><img src="img/2.png" alt=""></li>
+    <li><img src="img/3.png" alt=""></li>
+    <li><img src="img/4.png" alt=""></li>
+    <li><img src="img/5.png" alt=""></li>
+    <li><img src="img/6.png" alt=""></li>
+    <li><img src="img/7.png" alt=""></li>
+    <li><img src="img/8.png" alt=""></li>
+    <li><img src="img/9.png" alt=""></li>
+    <li><img src="img/10.png" alt=""></li>
+    <li><img src="img/11.png" alt=""></li>
+    <li><img src="img/12.png" alt=""></li>
+</ul>
+</body>
+</html>
+<script src="event11.js"></script>
+<script src="Drag_oop1.3.js"></script>
+<script src="tween.js"></script>
+<script>
+    var ul = document.getElementsByTagName('ul')[0]
+    var oLis = document.getElementsByTagName('li');
+    var l = ul.offsetLeft;
+    var t = ul.offsetTop;
+    var r = l+ul.offsetWidth;
+    var b = t+ul.offsetHeight;
+    console.log(l);
+    //    new Drag(ul).on('dragstart',{l:l,t:t,r:r,b:b});
+  /*  for(var i=0;i<oLis.length;i++){
+        var div3 = new Drag(oLis[i]);
+        if(i==0)div3.addRange({left:300,top:t,right:r,bottom:b})
+    }*/
+
+/*
+for(var i=0;i<oLis.length;i++){
+    var oLi = oLis[i];
+//    oLi.style.position = 'absolute';
+    oLi.style.left = oLi.offsetLeft+'px';//offset包含margin,然后再style.left的话margin又重新计算了一次
+    oLi.style.top = oLi.offsetTop+'px';
+}
+for(var i=0;i<oLis.length;i++){
+    var oLi = oLis[i];
+    oLi.style.position = 'absolute';
+    //不写下一行代码，li就会向右多偏移5px，因为offsetleft它是包含margin值的，
+    //比如说第一个盒子的offsetleft
+    //绝对定位的left是从margin外面开始计算的。结果外边的10这个值包含了margin
+    oLi.style.margin =0;
+//    oLi.style.left = oLi.offsetLeft+'px';
+//    oLi.style.top = oLi.offsetTop+'px';
+}
+*/
+for(var i=oLis.length-1;i>=0;i--){
+    var oLi = oLis[i];
+    oLi.style.left = (oLi.l=oLi.offsetLeft)+'px';
+    oLi.style.top = (oLi.t=oLi.offsetTop)+'px';
+    oLi.style.position = 'absolute';//一旦绝对定位，最后一张就到了覆盖了成了第一张
+    oLi.style.margin =0;
+
+//    new Drag(oLi).on('dragging',changePosi);
+    new Drag(oLi).on('dragstart',increaseIndex).on('dragend',changePosi).on('dragging',test)
+
+}
+
+    var zIndex = 0;
+    function increaseIndex() {
+        this.ele.style.zIndex = ++zIndex
+    }
+
+    function goHome() {
+        animate(this.ele,{left:this.ele.l,top:this.ele.t},700,3)//中间两个参数是左边的 距离和右边的距离；700ms是时间 3 选择第三种类型的动画
+    }
+
+    function isHited(r,b) {
+        if(r.offsetLeft+r.offsetWidth<b.offsetLeft||r.offsetTop+r.offsetHeight<b.offsetTop||r.offsetLeft>b.offsetLeft+b.offsetWidth||r.offsetTop>b.offsetHeight+b.offsetTop){//判断当前的自己拿到的这个元素，有没有接触到即将碰到的盒子，如果没有碰到返回false如果碰到返回true，下面会用到true和false
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    function test(){//进行碰撞检测
+        this.aHited =[];
+        for(var i=0;i<oLis.length;i++){
+            if(oLis[i]==this.ele){
+                continue
+            }
+            if(isHited(this.ele,oLis[i])){//如果为true说明碰撞成立
+                this.aHited.push(oLis[i]);//将接触到的每一项都加到[]里面
+                oLis[i].style.background='yellow'
+            }else{
+               oLis[i].style.background='';
+            }
+
+        }
+    }
+
+    function changePosi (){
+        var a = this.aHited;
+        if(a&&a.length){
+            for(i=0;i<a.length;i++){
+                var ele = a[i];
+                var cur = this.ele;
+                ele.distance = Math.pow(cur.offsetTop-ele.offsetTop,2)+Math.pow(cur.offsetLeft-ele.offsetLeft,2)//pow
+            }
+            a.sort(function (a,b){return a.distance-b.distance});
+            var shortest = a[0];
+
+            animate(cur,{left:shortest.l,top:shortest.t},700,4);
+            animate(shortest,{left:cur.l,top:cur.t},800,3);
+
+            var l =cur.l;
+            var t = cur.t;
+            cur.l = shortest.l;
+            cur.t = shortest.t;
+            shortest.l =l;
+            shortest.t =t;
+
+            for(var i=0;i<oLis.length;i++){
+                oLis[i].style.background=''
+            }
+        }
+    }
+
+
+
+</script>

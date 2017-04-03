@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            top: 0;
+            left: 0
+        }
+    </style>
+</head>
+<body>
+<div></div>
+</body>
+</html>
+<script src="event5.js"></script>
+<script>
+    var div = document.getElementsByTagName('div')[0];
+    //    on(div,'click',fn1);
+    //    on(div,'click',fn2);
+    //    on(div,'click',fn3);
+    //    off(div,'click',fn1);
+    //    function fn1() {
+    //        console.log(1);
+    //    }
+    //    function fn2() {
+    //        console.log(2);
+    //    }
+    //    function fn3() {
+    //        console.log(3);
+    //    }
+
+    on(div, 'mousedown', down);
+    function down(e) {
+//        debugger
+//        alert()
+        this.x = this.offsetLeft;
+        this.y = this.offsetTop;
+        this.xm = e.pageX;
+        this.ym = e.pageY;
+
+        if (this.setCapture) {
+            this.setCapture();
+            on(this, 'mousemove', move);
+            on(this, 'mouseup', up)
+        } else {
+            this.MOVE = bind(move, this);//这一句只是改变了move里的this改成当前元素的this就是div，但是还没有执行，
+            /*
+            * return function (e){
+            *   move.call(this,e)
+            * }
+            * */
+            this.UP = bind(up, this);
+            on(document, 'mousemove', this.MOVE);//这里定义的document是因为如果定义的是div或者this的话，鼠标滑快了的话，就容易脱离div就不收控制了，所以我们需要利用document事件，作为事件委托来让操作的div。
+            on(document, 'mouseup', this.UP);
+
+        }
+        function move(e) {
+            this.style.left = e.pageX - this.xm + this.x + "px";//这里面的this就是盒子，
+            this.style.top = e.pageY - this.ym + this.y + "px";
+        }
+
+        function up(e) {
+            if (this.releaseCapture) {
+                this.releaseCapture();
+                off(this, 'mousemove', move);
+                off(this, 'mouseup', up)
+            } else {
+                off(document, 'mousemove', this.MOVE);
+                off(document, 'mouseup', this.UP)
+            }
+        }
+
+        function bind(fn, context) {
+            return function (e) {
+                fn.call(context, e)
+            }
+        }
+    }
+
+
+</script>

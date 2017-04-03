@@ -167,7 +167,6 @@ html,body{
     display: block;
     animation: aaa 0.7s;
     /*overflow: hidden;*/
-    /*transform: translateX(100%)*/
 }
 .banner:hover .leftRight .right{
     display: block;
@@ -184,10 +183,11 @@ html,body{
     display: none;
     cursor:pointer;
 }
-@keyframes aaa {
+@keyframes aaa{
      0%{
          opacity: 0;
-         left: -72px;
+         /*left: -72px;*/
+         left:0;
      }
      100%{
          opacity: 1;
@@ -196,7 +196,7 @@ html,body{
 @keyframes bbb {
     0%{
         opacity: 0;
-        right: -72px;
+        /*right: -72px;*/
     }
     100%{
         opacity: 1;

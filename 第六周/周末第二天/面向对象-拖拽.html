@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="div1" style="width: 100px;height: 100px; background: red;position: absolute;left:0;top:0"></div>
+<div id="div2" style="width: 100px;height: 100px;"></div>
+<div id="div3" style="width: 100px;height: 100px;"></div>
+</body>
+</html>
+<script src="event11.js"></script>
+<script>
+    var div1 =document.getElementById('div1');
+
+
+    function Drag(ele,context){
+        //构造函数起初始化的作用和入口的作用
+        //在私有属性中初始化这些属性
+        this.x =null;
+        this.y =null;//null是属于系统级预留出来的，undefined不是系统流出来的，是自己定义的是意料之外的、或者是错误的
+        //[] 属于属性，属性没有定义属于undefined ; ( ) 属于方法。如果没有这个方法，就属于null
+        this.mx =null;
+        this.my =null;
+        this.context =context;
+        this.ele = ele;//把被拖拽的对象，保存到实例的属性上。这样可以使类上的所有方法都能this.ele这个公有属性来访问到被拖拽的元素。后面是局部变量，前面是this实例上的属性名ele
+        this.DOWN = bind(this.down,this);
+        this.MOVE = bind(this.move,this);
+        this.UP = bind(this.up,this);
+        on(this.ele,'mousedown',this.DOWN);//原型上的方法可以用实例加点来找到；；如果我们按照这样的绑定，则按照时间的规则，this.down这个方法里的this在执行的时候，则指向了this.ele这个对象。它应该指向实例。这是面向对象的思想，这个实例是this.ele的一个载体，所以需要用到面向对象的方法。因为实例是当前活动发生数据的承载体。公有方法中的this也属于实例
+    }
+    Drag.prototype.down=function (e) {//放到原型上的是因为将这个三个原型的方法放到公有属性中。私有属性的方法放在类函数中。
+        this.x = this.ele.offsetLeft;
+        this.y = this.ele.offsetTop;
+        this.mx = e.pageX;
+        this.my = e.pageY;
+        if(this.ele.setCapture){//setCapture属于dom上的方法，不属于e这个鼠标事件上的方法。鼠标事件上的方法非常有限。
+            this.ele.setCapture();
+            on(this.ele,'mousemove',this.MOVE);
+            on(this.ele,'mouseup',this.UP)
+        }else{
+            on(document,'mousemove',this.MOVE);
+            on(document,'mouseup',this.UP);
+        }
+        e.preventDefault()
+    }
+    Drag.prototype.move=function (e) {
+        var curL = e.pageX - this.mx +this.x;
+        var curT = e.pageY - this.my + this.y;
+        console.log(curT);
+        var minL =0;
+        var minT = 0;
+        var maxL = this.context?this.context.left:(document.documentElement.clientWidth||document.body.clientWidth)-this.ele.offsetWidth;
+        var maxT = this.context?this.context.top:(document.documentElement.clientHeight||document.body.clientHeight) - this.ele.offsetHeight;
+        curL=curL<=minL?minL:curL>=maxL?maxL:curL;
+        curT=curT<=minT?minT:curT>=maxT?maxT:curT;
+        this.ele.style.left = curL +'px';
+        this.ele.style.top = curT + 'px';
+    }
+    Drag.prototype.up=function () {
+        if(this.ele.releaseCapture){
+            this.ele.releaseCapture();
+            off(this.ele,'mousemove',this.MOVE);
+            off(this.ele,'mouseup',this.UP);
+        }else{
+            off(document,'mousemove',this.MOVE);
+            off(document,'mouseup',this.UP);
+        }
+    }
+    new Drag(div1,{left:300,top:300});
+
+    //标准版订阅发布模式
+    //////////////////////////////////////////////////////////////////////////////////////////
+    var zIndex = 0
+    function dex (){
+        this.ele.style.zIndex = ++zIndex
+    }
+    function clearTime(){
+
+    }
+    function speed(){
+        if(this.pre){
+
+        }
+    }
+    function fly(){
+
+    }
+    function drop(){
+    }
+
+
+
+</script>
