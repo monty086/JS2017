@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background: darkgoldenrod;
+            background: -o-linear-gradient(top,red,pink);/*欧朋浏览器的前缀，私有前缀*/
+            background: -ms-linear-gradient(top,red,pink);/*ie浏览器的前缀，私有前缀*/
+            background: -moz-linear-gradient(top,red,pink);/*火狐浏览器的前缀，私有前缀*/
+            background: -webkit-linear-gradient(top,red,pink);/*谷歌浏览器的前缀，私有前缀*/
+            background: linear-gradient(0deg,red 20%,blue 80%); /*标准的写法，必须写角度才行*/
+            /*私有和标准浏览器发生冲突，以标准浏览器为准*/
+            /*red 20% blue 70%  渐变过渡区
+            如果把这个过渡区去掉
+            对每个颜色设置一下起始位置和结束位置
+
+             */
+            background: linear-gradient(0deg,red 0%,red 20%,blue 20%,blue 80%); /*标准的写法*/
+
+            /*重复的线性渐变
+            background: linear-gradient(0deg,red 20%,blue 80%)
+
+
+            */
+            /*径向渐变 radial- gradient     circle圆  ellipse 椭圆  at top 圆心在顶部的位置。at  50px 50px 横坐标和纵坐标*/
+            /*围绕中间点旋转
+               由一个点向多个方向渐变
+               参数：第一个参数，用来设置镜像渐变的形状
+               第二个参数来设置，镜像渐变的颜色和位置
+                circle圆
+                ellipse 椭圆
+                at top |10px 10px 来设置圆心的位置
+                通过坐标位置，可以自己设置水平半径和垂直半径 100px 50px 带代替第一个参数
+                closest-side 距离最近的边
+                farthest-side  距离最远的边，也是设置镜像渐变的形状，设置半径
+                farther-corner 到最远的角
+                closest-corner 距离最近的角
+                后面两个值 为 red 10% 是从圆心中心出发，到边的距离，半径的百分之10%
+            */
+
+
+            /*重复的镜像渐变*/
+            /*
+             -repeating-radial-gradient 重复的镜像渐变
+
+
+            */
+
+
+
+            /*
+            图片背景显示
+            background-origin
+            默认都是从padding开始显示
+            第二个是border开始显示
+            第三个从内容开始显示
+
+            clip
+            padding以外的都被裁减掉了
+            border以外的区域都被删除键
+
+            文字区域以外的部分被裁减
+            谷歌浏览器支持，其他浏览器要设置其他浏览器
+            background-size+enter
+            10px 10px
+            100% 100% 相对于盒子的宽高设置的  如果盒子的宽高和图片的宽高 不一样，就被拉伸，图片铺满盒子
+            background-size：contain 背景图显示完成，不铺满
+            background-size：cover背景图铺满，图片显示不完整  一定是铺满整个盒子，但是图片显示不完整，用的最多，也最好用。
+            background-attachment ： fixed 背景图固定 滚动条滚动，背景不动
+
+
+
+            滤镜
+
+            1. -webkit-filter :grav... 黑白
+            相机底片效果 invert
+
+
+             盒子阴影
+             box-sandow:
+             水平方向：正的往右， 负的往左
+             垂直方向：正的往下，负的往上
+             模糊半径（中间到四周散开）模糊度为10px默认
+             扩展半径：从中间到四周散开  -5px往里收缩5个像素  正的值往外扩展，负的值往内收缩  （只设置扩展半径，其他设置为0；等同于设置border，这个宽度不会计算到盒子模型里，不算盒子的border）
+             颜色
+             inset(内阴影，默认外阴影)
+
+             多层阴影：后面的阴影和前面的阴影用“，”隔开，后面的偏移量必须大于前面的
+
+             inset ：内阴影与外阴影偏移方向正好相反。（意思就是前设置的值都负值的意思）
+
+
+             文字阴影
+             左偏移和下偏移 +模糊和颜色
+             少了扩展半径和内阴影
+             text-sandow：1px 2px 1px orange ,2px 2px 2px blue
+
+             文字添加边框
+             -webkit- text-stroke  2px blue
+             文字设置透明
+
+
+             遮罩层
+             -webkit-mask-image ：url(img.png)
+             -webkit-mask-repeat ：no-repeat
+             -webkit-mask-position ：50px 50px 可以调整图片在遮罩层显示的位置
+
+
+
+
+
+
+
+            */
+
+
+
+
+
+
+
+        }
+        div{
+            background: #4db87c;
+       }
+
+
+    </style>
+</head>
+<body>
+
+<div id="div1"></div>
+</body>
+</html>

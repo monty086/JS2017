@@ -1,0 +1,58 @@
+<!DOCTYPE html><!--文档类型：html5类型的dw是html4类型-->
+<!--h4只能用小写，h5大小写都可以-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <!-- [if it IE 9]-->
+    <script src="html5.min.js"></script>
+    <!--[endif]-->
+</head>
+<body>
+<input type="text" checked>
+<!--checked :h5的类型
+checked:checked：  属于html4类型
+checked:true  属于html4的类型-->
+<figure>
+    <img src="" alt="">
+    <figcaption>配图的说明</figcaption>
+</figure>
+
+<input type="text" id="" list="shopCars" placeholder="输入内容"/>
+<datalist id="shopCars"> <!--为表单设置可选值-->
+    <option value="aa"></option>
+    <option value="ab"></option>
+    <option value="c"></option>
+</datalist>
+
+
+<details>
+    <summary>详细信息的挑剔</summary>
+    <ul>
+        <li>111</li><li>222</li>
+        <li>
+            <details>
+                <summary>详细信息的挑剔</summary>
+                <ul>
+                    <li>111</li><li>222</li><li>333</li>
+                </ul>
+            </details>
+        </li>
+    </ul>
+</details>
+
+<form  oninput="c.value =parseInt(a.value)+parseInt(b.value)">
+    <input type="text" id="a" value="10">
+    <input type="text" id="b" value="5">
+    <output id="c">15</output>
+</form>
+
+
+<input type="search">
+<input type="url">
+<input type="number">
+<input type="color">
+0<input type="range">100
+</body>
+</html>

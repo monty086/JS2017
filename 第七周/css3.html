@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        ul{
+            list-style:none;
+            width: 500px;
+            margin:0 auto;
+            padding: 20px;
+            background: pink;
+        }
+        ul li{
+            display: inline-block;
+            margin: 10px;
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            background: darkcyan;
+        }
+        /*.a+li{*/
+            /*background: darkblue;*/
+        /*}*/
+        /*.a~li{*/
+            /*background: darkgoldenrod;*/
+        /*}*/
+        /*li:nth-child(1){!*表示第一个子元素  =等同于first-child*!*/
+            /*background: deeppink;*/
+        /*}*/
+        /*ul li:nth-child(1){*/
+          /*!*  在ul下面找第一个选择器 为p标签，不是li标签，所以这个不起作用，就用nth-of-type*!*/
+        /*}*/
+        p{
+            width: 100px;
+            height: 100px;
+            background: red;
+            float: left;
+            margin: 10px;
+
+        }
+
+        ul li:nth-of-type(1){
+            background-color: #1b1818;
+        }
+
+        /*li:nth-child(2n){!*表示n从0开始设置，获取所有的偶数子元素，不是从索引开始数。*!*/
+            /*background: deeppink;*/
+        /*}*/
+        /*li:nth-child(2n+1){!*基数元素，可以事件隔行变色，两种颜色交替显示*!*/
+            /*background: blue;*/
+        /*}*/
+        /*ul:nth-child(even){!*偶数，等同于2n*!*/
+            /*background: darkgoldenrod;*/
+        /*}*/
+        /*ul:nth-child(odd){!*基数，等同于2n+1*!*/
+            /*background: darkgoldenrod;*/
+        /*}*/
+        /*ul:nth-of-type(1){!*通过类型筛选子元素，同种类型会从第一个开始选择*!*/
+            /*background: darkgray;*/
+        /*}*/
+        div  :only-child{
+            color:red;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+    <li>7</li>
+    <li>8</li>
+    <li>9</li>
+    <li>10</li>
+
+
+    <p></p>
+
+</ul>
+<!--<div>-->
+    <!--<p></p>-->
+    <!--<span></span>-->
+<!--</div>-->
+<!--<div>-->
+    <!--<p></p>-->
+<!--</div>-->
+
+<!--<ul>-->
+    <!--<p></p>-->
+    <!--<li></li>-->
+<!--</ul>-->
+
+
+
+</body>
+</html>
