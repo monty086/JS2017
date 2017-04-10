@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <style>
+        *{
+            padding:0;
+            margin:0;
+            text-decoration: none;
+            list-style: none;
+            vertical-align: top;
+            border:0;
+        }
+        nav .nav-link{
+            width: 20%;
+            float: left;
+            text-align: center;
+            color:#333;
+            font-size: 14px;
+            margin-top:20px;
+            /*宽度不要写死，采用流式布局，就是百分比的方式*/
+        }
+        nav .nav-link img{
+            width: 40px;
+            height: 40px;
+            display: block;
+            overflow: hidden;
+            margin:0 auto 6px;
+        }
+        .banner img{
+            display: block;
+            width: 100%;
+            /*padding:0 10px;*/
+        }
+        .banner{
+            padding: 0 10px;
+            position: relative;
+        }
+        .banner .dot{
+            text-align: center;
+            position: absolute;
+            left:0;
+            right:0;
+            margin:auto;
+            bottom:5px;
+        }
+        .banner .dot li{
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background: red;
+            border-radius: 50%;
+        }
+        footer{
+            position: fixed;
+            bottom:0;
+            height: 54px;
+            width: 100%;
+            background: white;
+            box-shadow: 0 -1px 3px rgba(0,0,0,0.1);
+        }
+        footer a{
+            width: 20%;
+            height: 100%;
+            float: left;
+        }
+        footer a img{
+            width: 74px;
+            height: 54px;
+            display: block;
+            margin:0 auto;
+            overflow: hidden;
+        }
+        /*320 (4\5) 375 (6) 414 (6+) 640 (ipad)   iphone  由于安卓比较多，只需要按照iphone手机的尺寸作为临界点*/
+        /*320 360 480 540 640 720  android*/
+        @media  screen and (min-width:320px){
+            nav .nav-link img{/*利用媒体查询控制图标的大小和文字的大小*/
+                width:40px;
+                height: 40px;
+            }
+            nav .nav-link span{
+                font-size: 12px;
+            }
+        }
+        @media  screen and (min-width:375px){
+            nav .nav-link img{/*利用媒体查询控制图标的大小和文字的大小*/
+                width:50px;
+                height: 50px;
+            }
+            nav .nav-link span{
+                font-size: 14px;
+            }
+        }
+        @media  screen and (min-width:414px){
+            nav .nav-link img{/*利用媒体查询控制图标的大小和文字的大小*/
+                width:60px;
+                height: 60px;
+            }
+            nav .nav-link span{
+                font-size: 16px;
+            }
+        }
+        @media  screen and (min-width:640px){
+            nav .nav-link img{/*利用媒体查询控制图标的大小和文字的大小*/
+                width:70px;
+                height: 70px;
+            }
+            nav .nav-link span{
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+<nav>
+    <a  class="nav-link" href="###" target="_self">
+        <img src="image/超市.png" alt=""> <span>京东超市</span>
+    </a>
+    <a  class="nav-link" href="###" target="_self">
+        <img src="image/超市.png" alt=""> <span>京东超市</span>
+    </a>
+    <a  class="nav-link" href="###" target="_self">
+        <img src="image/超市.png" alt=""> <span>京东超市</span>
+    </a>
+    <a  class="nav-link" href="###" target="_self">
+        <img src="image/超市.png" alt=""> <span>京东超市</span>
+    </a>
+    <a  class="nav-link" href="###" target="_self">
+        <img src="image/超市.png" alt=""> <span>京东超市</span>
+    </a>
+
+    <a  class="nav-link" href="###" target="_self">
+        <img src="image/超市.png" alt=""> <span>京东超市</span>
+    </a>
+    <a  class="nav-link" href="###" target="_self">
+        <img src="image/超市.png" alt=""> <span>京东超市</span>
+    </a>
+    <a  class="nav-link" href="###" target="_self">
+        <img src="image/超市.png" alt=""> <span>京东超市</span>
+    </a>
+    <a  class="nav-link" href="###" target="_self">
+        <img src="image/超市.png" alt=""> <span>京东超市</span>
+    </a>
+    <a  class="nav-link" href="###" target="_self">
+        <img src="image/超市.png" alt=""> <span>京东超市</span>
+    </a>
+
+</nav>
+<div class="banner">
+    <img src="image/1.jpg" alt="">
+    <ul class="dot">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+<footer>
+    <a href="###"><img src="image/a-home.png" alt=""></a>
+    <a href="###"><img src="image/n-catergry.png" alt=""></a>
+    <a href="###"><img src="image/n-find.png" alt=""></a>
+    <a href="###"><img src="image/n-cart.png" alt=""></a>
+    <a href="###"><img src="image/n-me.png" alt=""></a>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--<link rel="stylesheet" href="animate.css">-->
+    <style>
+        div{
+            font-size: 33px;
+            margin: 100px;
+            animation: hinge 3s 1s infinite both;
+        }
+        @-webkit-keyframes hinge {
+            0% {
+                -webkit-transform-origin: top left;
+                transform-origin: top left;
+                -webkit-animation-timing-function: ease-in-out;
+                animation-timing-function: ease-in-out;
+            }
+
+            20%, 60% {
+                -webkit-transform: rotate3d(0, 0, 1, 80deg);
+                transform: rotate3d(0, 0, 1, 80deg);
+                -webkit-transform-origin: top left;
+                transform-origin: top left;
+                -webkit-animation-timing-function: ease-in-out;
+                animation-timing-function: ease-in-out;
+            }
+
+            40%, 80% {
+                -webkit-transform: rotate3d(0, 0, 1, 60deg);
+                transform: rotate3d(0, 0, 1, 60deg);
+                -webkit-transform-origin: top left;
+                transform-origin: top left;
+                -webkit-animation-timing-function: ease-in-out;
+                animation-timing-function: ease-in-out;
+                opacity: 1;
+            }
+
+            to {
+                -webkit-transform: translate3d(0, 700px, 0);
+                transform: translate3d(0, 700px, 0);
+                opacity: 0;
+            }
+        }
+
+        @keyframes hinge {
+            0% {
+                -webkit-transform-origin: top left;
+                transform-origin: top left;
+                -webkit-animation-timing-function: ease-in-out;
+                animation-timing-function: ease-in-out;
+            }
+
+            20%, 60% {
+                -webkit-transform: rotate3d(0, 0, 1, 80deg);
+                transform: rotate3d(0, 0, 1, 80deg);
+                -webkit-transform-origin: top left;
+                transform-origin: top left;
+                -webkit-animation-timing-function: ease-in-out;
+                animation-timing-function: ease-in-out;
+            }
+
+            40%, 80% {
+                -webkit-transform: rotate3d(0, 0, 1, 60deg);
+                transform: rotate3d(0, 0, 1, 60deg);
+                -webkit-transform-origin: top left;
+                transform-origin: top left;
+                -webkit-animation-timing-function: ease-in-out;
+                animation-timing-function: ease-in-out;
+                opacity: 1;
+            }
+
+            to {
+                -webkit-transform: translate3d(0, 700px, 0);
+                transform: translate3d(0, 700px, 0);
+                opacity: 0;
+            }
+        }
+
+        .hinge {
+            -webkit-animation-name: hinge;
+            animation-name: hinge;
+        }
+
+
+
+    </style>
+
+</head>
+<body>
+<!--<div class="animated hinge infinite">changbaikxoao</div>-->
+<div>changbaikxoao</div>
+</body>
+</html>

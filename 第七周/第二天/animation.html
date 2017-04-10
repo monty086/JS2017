@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            padding:0;
+            margin:0
+        }
+        div{
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle,yellow,orange); /*circle镜像渐变*/
+            background: -webkit-radial-gradient(circle,yellow,orange);
+            border-radius: 50%;
+            -webkit-animation: move 3s infinite 1s alternate ;
+            animation: move 3s infinite 1s alternate /*both*/;
+        }
+        /*@-webkit-keyframes move {!*兼容各个浏览器的写法*!*/
+            /*  或者把下面的全部复制一份，然后再名字这写上这个-webkit内核的浏览器*/
+
+        /*}*/
+        div:hover{
+            animation-play-state:paused;
+        }
+        @keyframes move {
+            0%{
+                transform: translate(100px ,100px);
+                -webkit-transform: translate(100px ,100px)
+            }
+            50%{
+                transform:translate(250px,250px);
+                -webkit-transform:translate(250px,250px)
+            }
+            100%{
+                -webkit-transform:translate(400px,0);
+                transform:translate(400px,0)
+            }
+        }
+    </style>
+</head>
+<body>
+<div></div>
+</body>
+</html>

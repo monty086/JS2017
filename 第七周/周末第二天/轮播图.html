@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="swiper-3.4.2.min.css">
+    <style>
+        .swiper-slide img{
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<!--最外面的盒子-->
+<div class="swiper-container">
+    <!--图片-->
+    <div class="swiper-wrapper">
+        <!--包图片的div-->
+        <div class="swiper-slide">
+            <img src="image/1.jpg" alt="">
+        </div>
+        <!--第二个图片-->
+        <div class="swiper-slide">
+            <img src="image/1.jpg" alt="">
+        </div>
+    </div>
+    <!-- small circle  every page 分页器 小圆点-->
+    <div class="swiper-pagination">
+    </div>
+    <!--左右箭头-->
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+    <!--滚动条-->
+    <div class="swiper-scrollbar"></div>
+</div>
+</body>
+</html>
+<script src="swiper.min.js"></script>
+<script>
+    //new Swiper('xuanzheqi')；
+    var mySwiper = new Swiper('.swiper-container',{
+        loop: true,//无缝滚动效果
+        pagination: '.swiper-pagination',//分页器
+        //paginationType: 'progress',//分页器的类型
+        autoplay: 2000,//自动轮播  时间的delay
+        speed: 1000// 时间的durtion、
+        //  autopalyDisableOnInteranciton:false,
+//  direction:'vertical'//焦点图运行方向默认水平
+//        effect: 'cube'  //焦点图滑动的效果  fade渐变
+
+
+    })
+</script>

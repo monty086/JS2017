@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="reset.min.css">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="swiper-3.4.2.min.css">
+    <style>
+        .swiper-pagination-bullet{
+            /*background: #00b38a;*/
+            /*opacity: 1;*/
+        }
+        .swiper-pagination-bullet-active{
+            background: #fff;
+            /*margin-top: 20px;*/
+        }
+        .swiper-container-horizontal>.swiper-pagination-bullets, .swiper-pagination-custom, .swiper-pagination-fraction{
+            bottom: 0.6rem;
+        }
+
+    </style>
+</head>
+<body>
+<!--header-->
+<header>
+    <h1>
+        <a href="#">
+            <img src="image/logo-2.png" alt="">
+        </a>
+    </h1>
+</header>
+<!--nav-->
+<nav>
+    <div class="menu-list">
+        <a  class="menu-link" href="#">资讯</a>
+        <a  class="menu-link cur" href="#">军事</a>
+        <a  class="menu-link" href="#">娱乐</a>
+        <a  class="menu-link" href="#">现场</a>
+        <a  class="menu-link" href="#">直播</a>
+        <a  class="menu-link" href="#">搞笑</a>
+        <a  class="menu-link" href="#">娱乐</a>
+        <a  class="menu-link" href="#">现场</a>
+        <a  class="menu-link" href="#">直播</a>
+        <a  class="menu-link" href="#">搞笑</a>
+    </div>
+</nav>
+    <!--swiper-->
+    <div class="swiper-container">
+        <!--图片-->
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <img src="image/11.jpg" alt="" />
+                <p class="bg">
+                    <i>推荐</i>
+                <span class="text">直升机扑灭意大利迪亚诺河谷公园大火</span>
+                </p>
+            </div>
+            <div class="swiper-slide">
+                <img src="image/22.jpg" alt=""/>
+                <p class="bg">
+                    <i>推荐</i>
+                    <span class="text">直升机扑灭意大利迪亚诺河谷公园大火</span>
+                </p>
+            </div>
+            <!--<div class="swiper-slide">-->
+                <!--<img src="image/33.jpg" alt="" />-->
+            <!--</div>-->
+        </div>
+        <!--分页器-->
+        <div class="swiper-pagination"></div>
+    </div>
+    <ul class="chanBox">
+        <li><a href="##"><img src="image/32.png" alt=""></a></li>
+        <li>
+            <a href="##"><img src="image/43.png" alt=""></a>
+        </li>
+    </ul>
+
+</body>
+</html>
+<script src="swiper.min.js"></script>
+<script>
+    ~(function () {
+        var desW = 750,//这个是设计稿给的值
+            winW = document.documentElement.clientWidth,//设备的宽度
+            radio = winW/desW;//屏幕的宽度除以屏幕的宽度，就是密度的大小
+        document.documentElement.style.fontSize = radio*100+'px';
+    })()
+    var mySwiper=new Swiper('.swiper-container',{
+        loop:true, /*让焦点图出现无缝斜街的效果*/
+        autoplay:2000,/* 每次停顿2s钟，以秒来计算*/
+        speed:1000,/*速度，滑动的速度，1s持续的时间*/
+        pagination:'.swiper-pagination',
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="swiper-3.4.2.min.css">
+    <style>
+        *{
+            padding:0;
+            margin:0;
+            text-decoration: none;
+        }
+        html{
+            font-size: 100px;/*这句话就是引生出1rem=100px*/
+        }
+        .nav-link{
+            width: 20%;
+            float: left;
+            text-align: center;
+            font-size: .16rem;
+            margin-bottom: 0.2rem;
+        }
+        .nav-link img{
+            width: .5rem;
+            height: .5rem;
+            display: block;
+            margin: 0 auto 10px;
+            vertical-align: top;
+        }
+        .nav-link span{
+            color:#333;
+        }
+    </style>
+</head>
+<body>
+<nav>
+    <a href="#" class="nav-link">
+        <img src="image/超市.png" alt="">
+        <span> 京东超市</span>
+    </a>
+    <a href="#" class="nav-link">
+        <img src="image/超市.png" alt="">
+        <span> 京东超市</span>
+    </a>
+    <a href="#" class="nav-link">
+        <img src="image/超市.png" alt="">
+        <span> 京东超市</span>
+    </a>
+    <a href="#" class="nav-link">
+        <img src="image/超市.png" alt="">
+        <span> 京东超市</span>
+    </a>
+    <a href="#" class="nav-link">
+        <img src="image/超市.png" alt="">
+        <span> 京东超市</span>
+    </a>
+    <a href="#" class="nav-link">
+        <img src="image/超市.png" alt="">
+        <span> 京东超市</span>
+    </a>
+    <a href="#" class="nav-link">
+        <img src="image/超市.png" alt="">
+        <span> 京东超市</span>
+    </a>
+    <a href="#" class="nav-link">
+        <img src="image/超市.png" alt="">
+        <span> 京东超市</span>
+    </a>
+    <a href="#" class="nav-link">
+        <img src="image/超市.png" alt="">
+        <span> 京东超市</span>
+    </a>
+    <a href="#" class="nav-link">
+        <img src="image/超市.png" alt="">
+        <span> 京东超市</span>
+    </a>
+    <!--最外面的盒子-->
+    <div class="swiper-container">
+        <!--图片-->
+        <div class="swiper-wrapper">
+            <!--包图片的div-->
+            <div class="swiper-slide">
+                <img src="image/1.jpg" alt="">
+            </div>
+            <!--第二个图片-->
+            <div class="swiper-slide">
+                <img src="image/1.jpg" alt="">
+            </div>
+        </div>
+        <!-- small circle  every page 分页器 小圆点-->
+        <div class="swiper-pagination">
+        </div>
+        <!--左右箭头-->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <!--滚动条-->
+        <div class="swiper-scrollbar"></div>
+    </div>
+</nav>
+</body>
+</html>
+<script src="swiper.min.js"></script>
+<script>
+    ~(function () {
+        var desW = 640,//这个是设计稿给的值
+            winW = document.documentElement.clientWidth,//设备的宽度
+            radio = winW/desW;//屏幕的宽度除以屏幕的宽度，就是密度的大小
+        document.documentElement.style.fontSize = radio*100+'px';
+    })()
+
+    new Swiper('xuanzheqi')
+    var mySwiper = new Swiper('.Swiper-container',{
+        loop:true
+    })
+</script>

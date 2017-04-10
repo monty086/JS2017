@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+             background: darkgoldenrod;
+            transition:1s /*滑入滑出都会触发：hover动画*/
+        }
+        div:hover{
+            width: 200px;
+            height: 400px;
+            transition: width 1s ,height,2s/*只有滑过的时候才会触发动画*/
+        }
+
+
+    </style>
+</head>
+<body>
+<div></div>
+</body>
+</html>
+<script>
+    odiv.addEventListener('transitionend',function () {
+        console.log(1)
+    },false)
+
+
+</script>

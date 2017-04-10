@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--meta:vp +tab-->
+    <!--视口：可以看见的 窗口-->
+    <!--写移动端先把它加上-->
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <style>
+        /*viewport 视口*/
+        /*width:device-width   页面宽度=设备宽度*/
+        /*user-scalable = no   是否允许自动缩放  on表示禁止  yes是允许*/
+        /*initial-scale =1.0     初始缩放比例*/
+        /*maximum-scale= 1.0    最大缩放比例*/
+        /*minimum-scale= 1.0    最小缩放比例*/
+
+        *{
+            padding:0;
+            margin:0;
+        }
+        .box{
+            width: 200px;
+            height: 200px;
+            background: sandybrown;
+            position: absolute;
+            top:0;
+            left:0;
+            right:0;
+            bottom:0;
+            margin:auto;
+        }
+        /* @media  媒体查询--语法
+           all(所有的设备)  所有设备的类型  screen（屏幕类型） print（打印机）
+           and 和  表示链接   not（非）/ only（唯一 仅）
+           （条件）： min-width  max-width
+           { css样式
+             选择器 {
+                     属性名：属性值；
+                     属性名：属性值
+           }
+        */
+        /*利用媒体查询 根据不同设备宽度 ，调整页面样式 */
+        @media screen and (min-width:414px){
+            .box{
+                background:red;
+               /* width: 600px;
+                height: 600px;*/
+                border:20px solid blue;/*如果下面没写，会自动继承这个样式*/
+            }
+        }
+
+        @media screen and (min-width:375px){
+            /*min-width  大于等于  normal>=375
+              max-width  小于等于
+            */
+            .box{
+                width: 400px;
+                height: 400px;
+                background: darkcyan;
+                border:20px solid red /*如果有写，就属于覆盖样式*/
+            }
+        }
+        /*
+        1）媒体查询中样式没写，默认继承上面的 条件样式
+        样式写了，相当于把上面的样式覆盖
+        2）遵循css样式的就近原则
+
+
+        */
+
+    </style>
+</head>
+<body>
+<div class="box">
+    <!--div.box+tab-->
+
+
+</div>
+</body>
+</html>

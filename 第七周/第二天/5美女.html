@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            padding:0;
+            margin:0;
+        }
+        ul,li{
+            list-style: none;
+        }
+        html,body{
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        div{
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            position: relative;
+        }
+        div p img{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top:0;
+            left:0;
+        }
+        div ul{
+            /*width: 100%;*/
+            display: inline-block;
+            position: relative;
+            z-index: 55555;
+            /*margin-top: 500px;*/
+        }
+        div ul li{
+            /*display: inline-block;*/
+            width: 90px;
+            height:90px;
+            border-radius: 50%;
+            box-shadow: 0 0 0 10px rgba(255,255,255,.5);
+            float: left;
+            margin: 85% 15px 0 ;
+            overflow: hidden;
+
+        }
+        div ul li img {
+            width: auto;
+            height: 100%;
+            display: block;
+        }
+        #pic-1:target{
+              animation:aaa 1s both;
+          }
+        @keyframes aaa{
+            0%{
+                transform: translate(-800px);
+            }
+            100%{
+                transform: translate(0);/*回到没有设置平移值的位置*/
+            }
+        }
+        #pic-2:target{
+            animation:bbb 1s both;
+        }
+        @keyframes bbb{
+            0%{
+                transform: translate(0,-800px);
+            }
+            100%{
+                transform: translate(0,0);/*回到没有设置平移值的位置*/
+            }
+        }
+        #pic-3:target{
+           animation: ccc 1s both;
+        }
+        @keyframes ccc{
+            0%{
+                transform: scale(0.5);
+            }
+            100%{
+                transform: scale(1,1);
+            }
+        }
+        #pic-4:target{
+            animation: ddd 1s both;
+        }
+        @keyframes ddd{
+            0%{
+                transform: rotate(0deg) scale(0.2);
+            }
+            100%{
+                transform: rotate(360deg) scale(1);
+            }
+        }
+        #pic-5:target{
+            animation: eee 1s both;
+        }
+        @-webkit-keyframes eee{
+            0%{
+                -webkit-transform: scale(1.5,1.5);
+                transform: scale(1.5,1.5);
+            }
+            100%{
+                -webkit-transform: scale(1,1);
+                transform: scale(1,1);
+            }
+        }
+        @keyframes eee{
+            0%{
+                -webkit-transform: scale(1.5,1.5);
+                transform: scale(1.5,1.5);
+            }
+            100%{
+                -webkit-transform: scale(1,1);
+                transform: scale(1,1);
+            }
+        }
+        :target{
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+<div>
+        <p><img id="pic-1"    src="images/1.jpg" alt=""></p>
+        <p ><img id="pic-2"  src="images/2.jpg" alt=""></p>
+        <p ><img id="pic-3" src="images/3.jpg" alt=""></p>
+        <p ><img id="pic-4" src="images/4.jpg" alt=""></p>
+        <p ><img  id="pic-5" src="images/5.jpg" alt=""></p>
+    <ul>
+        <li><a href="#pic-1"><img style="margin-left: -30px;" src="images/1.jpg" alt=""></a></li>
+        <li><a href="#pic-2"><img style="margin-left: -30px;" src="images/2.jpg" alt=""></a></li>
+        <li><a href="#pic-3"><img style="margin-left: -50px;" src="images/3.jpg" alt=""></a></li>
+        <li><a href="#pic-4"><img  src="images/4.jpg" alt=""></a></li>
+        <li><a href="#pic-5"><img  src="images/5.jpg" alt=""></a></li>
+    </ul>
+</div>
+<!--img[src='imgags/$.jpg']*5-->
+</body>
+</html>

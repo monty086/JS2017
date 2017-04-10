@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <!--meta:vp  tab-->
+    <style type="text/css">
+        /*viewport  视口
+        width=device-width,    宽度=设备的宽度
+        user-scalable=no,      是否容许用户自动缩放  no  禁止  yes
+        initial-scale=1.0,     初始缩放比例
+        maximum-scale=1.0,     最大缩放比例
+        minimum-scale=1.0      最小缩放比例
+
+
+        @media  媒体查询
+        all(所有的设备) screen(屏幕) print(打印机)    设备的类型
+        and  和   not(非)/only(唯一 仅)
+        (条件)  min-width  max-width
+        { css样式
+           选择器{
+               属性名:属性值;
+               属性名:属性值;
+           }
+        }
+
+        1)媒体查询中样式没写 默认继承上面的条件样式
+        样式写了  相当于把上面原本的样式覆盖
+        2)遵循css样式的就近原则
+
+        */
+       *{
+           margin:0;
+           padding:0
+        }
+        .box{
+            position:absolute;
+            top:0;
+            bottom:0;
+            left:0;
+            right:0;
+            width:200px;
+            height:200px;
+            background:red;
+            margin:auto;
+        }
+        @media screen and (min-width:414px){
+            /*min-width  大于等于
+             max-width   小于等于
+             414px  iphone6 plus
+            */
+            .box{
+                width:400px;
+                height:400px;
+                background:darkorange;
+                border:10px solid red;
+            }
+        }
+        @media screen and (min-width:375px){
+            /*iphone6 375px*/
+            .box{
+                background:forestgreen;
+                border:10px solid #007aff;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="box"></div>
+
+</body>
+</html>

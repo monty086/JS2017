@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <style>
+        html{
+            /*font-size: 100px;!*根目录字体大小只需要改这个就可以 根据更目录放大字体放大，根据更目录缩小，元素变小 1rem=100px*!*/
+            /*
+            谷歌浏览器默认的最小字体12px  如果给10px ，可能会有偏差
+            方便计算
+            640 设计稿
+            320 设备的宽度
+            设备的宽度/设计稿 *100  根目录 html  fontsize
+            rem布局，会根据窗口的放大和缩小来调整更目录的字体大小，而更目录的字体大小控制着页面中的rem的值。所以可以可以控制着元素的大小
+
+
+
+            640    100px
+            320     50px
+            414     x
+            375     y
+            x= 414*50/320
+
+            */
+        }
+        .box{
+            width: 2rem;
+            height: 2rem;
+            background: red;
+            position: absolute;
+            top:0;
+            left:0;
+            right:0;
+            bottom:0;
+            margin:auto;
+        }
+
+        @media all and (min-width:320px){
+
+        }
+        @media all and (min-width:375px){
+
+        }
+        @media all and (min-width:414px){
+
+        }
+        @media all and (min-width:640px){
+
+        }
+
+    </style>
+</head>
+<body>
+<div class="box"></div>
+</body>
+</html>
+<script>
+    var desW = 640,//这个是设计稿给的值
+    winW = document.documentElement.clientWidth,//设备的宽度
+    radio = winW/desW;//屏幕的宽度除以屏幕的宽度，就是密度的大小
+    document.documentElement.style.fontSize = radio*100+'px';
+
+
+//    640    100px
+//    320     50px  z
+//    414     x
+//    375     y
+//    x= 414*50/320
+//      z= 320(设备的宽度)*100/640（设计稿的宽度）
+//      z= 320/640（密度） *100
+//      设计稿：是设备的宽度x密度
+//      设备的宽度： 设计稿/密度
+
+//    根目录的字体大小：设备的宽度/设计稿 *100  根目录 html  fontsize
+
+
+
+</script>

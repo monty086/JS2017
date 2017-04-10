@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        ol,ul{
+            list-style: none;
+        }
+        div{
+            position: relative;
+            text-align: center;
+            overflow: hidden;
+            background: sandybrown;
+            }
+
+
+        ol{
+            position: absolute;
+            top:5%;
+            width: 100%;
+            text-align: center;
+        }
+        ol li{
+            width: 100px;
+            height: 100px;
+            display: inline-block;
+            background: red;
+            margin:0 20px;
+        }
+
+
+        ul{
+            display: inline-block;
+            position: relative;
+            z-index: 111;
+        }
+        ul li{
+            width: 100px;
+            height: 100px;
+            background: blue;
+            float:left;
+            margin: 55% 20px 0 ;
+        }
+
+
+
+
+
+    </style>
+</head>
+<body>
+<div>
+    <ol>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ol>
+
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+</body>
+</html>

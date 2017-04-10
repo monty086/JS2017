@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box{
+            width: 150px;
+            height: 150px;
+            border:1px solid red;
+            margin: 100px auto;
+            transform-style:preserve-3d;/*在3d空间显示*/
+            perspective:300px;/*视距*/  /*z轴 正的值，z轴垂直于x轴和y轴，*/;
+            /*perspective-origin :left;*/
+        }
+        .item{
+            width: 100%;
+            height: 100%;
+            background: sandybrown;
+        }
+
+        .item:hover{
+            /*transform:!*perspective(300px)*! rotateY(45deg);*/
+            /*transform: translateZ(-100px)  rotateY(45deg);*/
+            /*transform:translate3d(0,0,-100px);!*能开启硬件加速功能，减少卡顿，闪烁，迟疑等现象。*!*/
+            transform:scale3d(1,1,4) rotateX(45deg);/*单独使用不起作用，必须配合其他变形方法一起使用*/
+            transition:1s;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <div class="item"></div>
+</div>
+</body>
+</html>

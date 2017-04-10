@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            background: #2192bc;
+        }
+        div{
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background:red  url("images/img1.png")no-repeat center;/*把图片做背景放进来*/
+            /*background-size: cover;*/
+            margin: 100px auto;
+
+            box-shadow:  0 0 0  30px transparent;
+            transition: box-sandow ,0.5s
+        }
+        div:hover{
+            opacity: 100;
+            box-shadow: 0 0 0 0 rgba(255,255,255,0.5);
+        }
+        /*
+        1. 确定过渡属性，
+        2. 找到过渡属性的起始值和结束值
+        3. 在合适的地方加上transition属性
+
+        滑出时是起始值
+        滑过时的结束值
+        有两个值
+        看最后时结束的值  变化的值是起始值和结束值之间的过渡效果，不要看变化的效果。
+        box-sandow         扩展半径   颜色
+         起始值 滑出的时候   30px    transparent
+         结束值               0        white
+        */
+
+
+
+
+    </style>
+</head>
+<body>
+<div></div>
+</body>
+</html>

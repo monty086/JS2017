@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        /*
+        section 功能
+        header
+        main
+        nav
+        footer
+        aside
+        article
+        figure
+        figcaption
+
+        功能标签
+
+        datalist 下拉框提示
+        details 多级菜单详细信息
+
+        mark 文字高亮
+        protress 进度条
+        time 时间
+        wbr  软换行
+        word-break:break-all   强制换行
+        output  脚本输出
+        it 小于 gt 大于  ite小于等于  gte 大于等于
+
+
+        表单种类
+        type = search 搜索框
+        type = tel 电话
+        type = url 网址
+        type = email 邮箱
+        type = number 数字
+        type = range 数值选择器
+        type = color 颜色选择器
+        type = datatime-local 日期选择器 time时间   month月份  week周
+
+        表单属性
+        placeholder 提示信息
+        autocomplete on 保存用户输入
+        autofocus  光标自动聚焦
+        required  必填
+        pattern  正则限制
+        form 关联标签
+
+        表单验证
+        invalid
+        validity.valid
+        validity.valueMissing
+        validity.patternMismatch
+        validity.typeMismatch
+        validity.customError
+
+        自定义属性
+        data-name = lily  添加属性名name：lily
+        ele.dataset.name=lily 修改或者增加
+        ele.dataset.name   获取
+
+        改类名
+        ele.classList.add('div1')  增加一个类名
+        ele.classList.remove('div1)  移除一个类名
+        ele.classList.toggle('div1)   没有增加，有就移除
+        hidden   元素隐藏
+        spellcheck 内容纠错
+        tabindex  光标按顺序跳跃
+        contenteditable  编辑元素内容
+        window.document.designMode ='on'  全局修改
+
+
+        css选择器
+        ele:nth-child(1) ele下的第一个子元素
+        ele:first-child    同上
+        ele:nth-child(2n)  偶数even
+        ele:nth-child(2n+1)  odd
+        ele:last-child
+        ele:nth-of-type(1)  ele下同类型的子元素第一个
+        ele:first-of-type
+        ele:last-of-type
+        ele:only-child 只有一个元素的
+        ele:only-of-type  同类型的子元素只有一个的
+        ele:empty  内容为空（什么都没有）和注释的元素
+
+        ele:not(nth-child(even)) 除了偶数的元素
+
+        css属性选择器
+        ele[class|='zf']   只有类名为zf 和 第一个类名为zf-开头的  才被识别
+        ele[class*='zf']   只要类名中有zf就算合格
+        ele[class~='zf']   属性名大于一个且名字中包含zf的
+        ele[class^='zf']   第一个类名中以zf开头的都算
+        ele[class$='zf']   最后一个类名是以zf结尾的
+
+        目标伪类选择器
+        ：target  用来匹配url指向的目标元素
+
+        伪元素
+        ：first-letter  第一个字符
+        ：first-line  第一行文本
+        ：before ：after  dom元素前后插入内容
+
+        border-radius
+        前面是水平半径后面是垂直半径
+        一个值是四个角都是
+        两个值是左对角 和右对角
+        三个角是从左上 右上 右下 左下没有值 调整
+        四个值每个角都有
+        正圆是四个角都是50%
+        半圆是只设置上两个角 下面设置为0 并且高度设置为高度的一半
+        扇形是只设置第一个角，并且高度和宽度为元素的一半
+        叶子是左对角和右对角的比例设置大一点
+
+        线性渐变
+        linear-gradient
+        linear-gradient(0deg,red,blue)  第一个值方向和角度 ，第二个值渐变颜色和区域
+        linear-gradient(left-top,red 20%,blue 80%)
+        linear-gradient(0deg ,red 20%, blue 80%)
+
+        重复线性渐变
+        repeating -linear - gradient
+        background:-webkit-moz-ms-o-repeating-linear-gradient(top,red 10px ,green 10px ,blue 10px)
+
+        径向渐变
+        radial-gradient
+        radial-gradient(ellipse,red,green)
+        radial-gradient(circle at 10px 10px ,red 10% ,green 10%)
+        radial-gradient(100px 50px ,red 10% , blue 10%)
+        -webkit-radial-gradient(closest-side,red,blue)
+        radial - gradient(closest-corner, red blue)
+        radial-gradient(farthest-side,red 10% , blue 10)
+        radial-gradient(farthest-corner,red ,blue)
+
+        重复的径向渐变
+        repeating-radial-gradient(circle|ellipse|closest-side|closest-corner|farthest-side|farthest-corner|100px 100px |circle at 50px 50px , red 10%, blue 10%)
+
+        背景
+        显示
+        background-origin:padding-box 图片从padding区域显示
+        background-origin:border-box
+        background-origin:content-box 图片从内容显示
+        剪裁
+        background-clip:padding-box padding以外被剪裁
+        background-clip:border-box  border以外被剪裁
+        background-clip:content-box 内容区域被剪裁
+        background-clip:text  文字区域外被剪裁
+        填充
+        background-size:100% 100%  盒子的大小显示
+        background-size:10px 10px  数值规定图片显示大小
+        background-size:contain  按原始比例收缩，背景图显示完整 不铺满盒子
+        background-size:cover 按原始比例收缩， 背景图显示不完整，铺满盒子
+
+        background-attachment:fixed  背景图固定
+
+        盒子阴影
+        box-shadow: h v  blur spread color inset
+        box-shadow:10px  10px 10px 10px red inset
+
+        文字阴影
+        text-shadow: h v  blur color
+        text-shadow: 10px 10px 10px red
+
+        文字边框
+        text-stroke:2px blue
+
+        滤镜
+        -webkit-filter:normal
+        -webkit-filter:grayscale(1) 灰度
+        -webkit-filter:brightneww(1)  亮度
+        -webkit-filter:invert(1) 反色
+        -webkit-filter:sepia(0.5) 叠加
+        -webkit-filter:hur-rotate(30deg) 色相
+        -webkit-filter:saturate(4) 饱和度
+        -webkit-filter:contrast(2) 对比度
+        -webkit-filter:opacity(0.8) 透明度
+        -webkit-filter:drop-shadow(0,0,20px red)滤镜阴影
+
+        遮罩
+        -webkit-mask-image:url(img.png) 遮罩下引入图片
+        -webkit-mask-repeat: no-repeat 不重复
+        -webkit-mask-position: 50px 50px 调整遮罩层的位置
+
+        过渡动画
+        transition
+        transition: property duration delay  timing-function
+        transition-property: 过渡属性
+        transition-duration: 过渡时间
+        transition-timing-function: ease 减速  ease-in加速 ease-out减速 linear 匀速 ease-in-out 先减速后加速 cubic-bezier  贝塞尔曲线
+        transition:delay :延迟时间
+
+        执行次数
+        ele.addEventListener('webkitTransitionEnd',function(){},false)
+        ele.addEventListener('transitionend',function(){},false)
+
+
+        2D变形
+        transform
+        transform:rotate(0deg)旋转
+        transform-origin: (top ,left ,-100px) 旋转的中心点  x轴的顶部，y轴的最左边，z轴往里100px
+        transform:skew(30deg) 倾斜30度
+        transform:skewX(30deg) 水平倾斜
+        transform:skewY(30deg) 垂直倾斜
+        transform:scale (0.5)缩放
+        transform:scaleX(0.5)
+        transform:scaleY(0.5)
+        transform:translate(100px)
+        transform:translateX(100px)
+        transform:translateY(100px)
+
+        3D变形
+        transform-style:flat(平面展示)|preserve-3D(3D展示)  作用在父级元素
+        perspective:2000px 景深  作用在祖先元素
+        perspective-origin:center 透视点位置
+        transform:translate3d(x,y,z)  移动
+        transform:translateX(100px)
+        transform:translateY(100px)
+        transform:translateZ(100px)
+
+        transform:rotate3d(x,y,z,a)  翻转
+        transform:rotate3d(1,0,0,45deg) 最后一个是角度
+        transform:rotateX(45deg) 向前翻转45度
+        transform:rotateY(45deg) 向右翻转45度
+        transform:rotateZ(45deg) Z轴旋转45度
+
+        transform:scale3d(x,y,z)   3d缩放
+        transform:scaleX(0.5) x轴缩放0.5
+        transform:scaleY(0.5) y轴缩放0.5
+        transform:scaleZ(0.5) z轴缩放0.5
+
+
+        帧动画
+        animation
+        @keyframes  动画名{ 0%{}  100%{} }
+        animation-name: 动画名
+        animation-duration:  动画时间
+        animation-timing-function:  动画速度 linear ease ease-in ease-out ease-in-out cubic-bezier
+        animation-delay: 动画延迟时间
+
+        animation-iteration-count: 重复次数  默认1次  infinite
+        animation-direction:运动方向  normal reverse(反方向) alternate(交替的) alternate-reverse(反方向交替)
+        animation-play-state:动画播放状态 paused(暂停) running(运动)
+        animation-fill-mode:动画结束后状态 none backwards(第一帧开始) forwards(停留在最后一帧) both(第一帧开始停留在最后一帧)
+
+
+
+
+
+        */
+    </style>
+</head>
+<body>
+
+</body>
+</html>
