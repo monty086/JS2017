@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            padding:0;
+            margin:0;
+            list-style: none;
+            text-decoration: none;
+        }
+        ul{
+            width: 500px;
+            margin:0 auto;
+        }
+        li a{
+            display: block;
+            width: 500px;
+            height: 100px;
+            background-color: #00b38a;
+            border-bottom: 2px solid #fff;
+            color:#333;
+        }
+         div{
+            width: 500px;
+            height: 0px;
+            background-color: red;
+            /*display: none;*/
+        }
+        :target{
+            /*display: block;*/
+            height: 200px;
+            transition: height 1s;
+        }
+
+    </style>
+</head>
+<body>
+<ul>
+    <li>
+        <a href="#name1">1</a>
+        <div id="name1"></div>
+    </li>
+    <li>
+        <a href="#name2">2</a>
+        <div id="name2"></div>
+    </li>
+    <li>
+        <a href="#name3">3</a>
+        <div id="name3"></div>
+    </li>
+    <li>
+        <a href="#name4">4</a>
+        <div id="name4"></div>
+    </li>
+    <!--<li><a href="#name2"><div id="name2"></div></a></li>-->
+    <!--<li><a href="#name3"><div id="name3"></div></a></li>-->
+    <!--<li><a href="#name4"><div id="name4"></div></a></li>-->
+</ul>
+
+
+
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <style type="text/css">
+        /*reset*/
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            font-size: 100px;
+            /*1rem=100px;  */
+        }
+
+        .nav-link {
+            width: 20%;
+            float: left;
+            margin-bottom:.2rem;
+            text-align: center;
+            text-decoration: none;
+            color: #000;
+            font-size: .18rem;
+        }
+
+        .nav-link img {
+            display: block;
+            width: .5rem;  /*动态发生变化*/
+            height: .5rem;
+            margin: 0 auto 10px;
+        }
+
+    </style>
+</head>
+<body>
+<nav>
+    <a href="#" class="nav-link">
+        <img src="images/icons/icon01.png" alt=""/>
+        <span>京东超市</span>
+    </a>
+    <a href="#" class="nav-link">
+        <img src="images/icons/icon01.png" alt=""/>
+        <span>京东超市</span>
+    </a>
+    <a href="#" class="nav-link">
+        <img src="images/icons/icon01.png" alt=""/>
+        <span>京东超市</span>
+    </a>
+    <a href="#" class="nav-link">
+        <img src="images/icons/icon01.png" alt=""/>
+        <span>京东超市</span>
+    </a>
+    <a href="#" class="nav-link">
+        <img src="images/icons/icon01.png" alt=""/>
+        <span>京东超市</span>
+    </a>
+    <a href="#" class="nav-link">
+        <img src="images/icons/icon01.png" alt=""/>
+        <span>京东超市</span>
+    </a>
+    <a href="#" class="nav-link">
+        <img src="images/icons/icon01.png" alt=""/>
+        <span>京东超市</span>
+    </a>
+    <a href="#" class="nav-link">
+        <img src="images/icons/icon01.png" alt=""/>
+        <span>京东超市</span>
+    </a>
+    <a href="#" class="nav-link">
+        <img src="images/icons/icon01.png" alt=""/>
+        <span>京东超市</span>
+    </a>
+    <a href="#" class="nav-link">
+        <img src="images/icons/icon01.png" alt=""/>
+        <span>京东超市</span>
+    </a>
+</nav>
+<script>
+    ~function () {
+        var desW = 640,
+                winW = document.documentElement.clientWidth,
+                ratio = winW / desW;
+        document.documentElement.style.fontSize = ratio * 100 + 'px';
+    }()
+</script>
+</body>
+</html>
