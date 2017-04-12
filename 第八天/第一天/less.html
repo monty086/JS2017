@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link type="text/css" rel="stylesheet/less" href="1.less"><!--引入文件-->
+</head>
+<body>
+<div class="box">
+
+</div>
+<div class="box1"></div>
+</body>
+</html>
+<script>
+    var less = {
+        env: "development",
+        poll:1000
+    }
+</script>
+<script src="less-2.5.3.min.js"></script>
+<script>
+    less.watch()
+</script>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <style>
+        *{
+            padding:0;
+            margin:0;
+        }
+        html{
+            font-size: 100px;
+        }
+        .box{
+            margin: 100px auto;
+            width: 2rem;
+            height: 3.12rem;
+            background: url("image/walkingdead.png")no-repeat;
+            background-size:20rem 3.12rem;
+            -webkit-background-size:20rem 3.12rem;
+            animation: walkingdead 1s steps(10) infinite;
+            -webkit-animation: walkingdead 0.3s steps(10) infinite;
+        }
+        @keyframes walkingdead {
+            0%{
+                background-position: 0 0;
+            }
+            100%{
+                background-position: -20rem 0;/*终点值*/
+            }
+        }
+        @-webkit-keyframes walkingdead {
+            0%{
+                background-position: 0 0;
+            }
+            100%{
+                background-position: -20rem 0;/*终点值*/
+            }
+        }
+
+    </style>
+</head>
+<body>
+<div class="box"></div>
+</body>
+</html>
+<script>
+   ~(function (desW) {
+       var winW = document.documentElement.clientWidth,/*设备的宽度*///*设备的宽度/设计高度 宽度=密度*/
+            ratio = winW / desW ;
+       document.documentElement.style.fontSize=ratio*100+'px'
+   })(750);
+</script>

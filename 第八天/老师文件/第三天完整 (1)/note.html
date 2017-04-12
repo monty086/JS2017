@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>凤凰视频底部雪碧图思路</title>
+</head>
+<body>
+rem  雪碧图    background-size  雪碧的尺寸 px 转化为rem（cover）
+background-position
+
+1.分析小图标的尺寸
+42*42
+40*42
+42*42
+43*37
+41*41
+
+2.如果图标尺寸大小不一致 （最好取偶数） 取的参考值 按照宽度的最大值和高度的最大值
+得到小图标的尺寸  43*42(参考图层)
+
+
+3.新建雪碧的尺寸宽度 43*5 小图标的个数
+高度 42*2 两种状态
+215   84
+
+alt+delete  填充前景色
+ctrl+delete 填充背景色
+ctrl+R 调出标尺
+</body>
+</html>

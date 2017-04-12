@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <!--meta:vp tab-->
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <style type="text/css">
+        *{
+            margin:0;
+            padding:0;
+        }
+        .box{
+            width:2rem;
+            height:3.12rem;
+            background:url("images/walkingdead.png") no-repeat;
+            -webkit-background-size:20rem 3.12rem;
+            background-size:20rem 3.12rem;
+            -webkit-animation:box 1s steps(10,end) infinite;
+            animation:box 10s steps(10,end) infinite;
+        }
+        @-webkit-keyframes box{
+            0%{
+                background-position:0 0;
+            }
+            100%{
+                background-position:-20rem 0;
+            }
+        }
+        @keyframes box{
+            0%{
+                background-position:0 0;
+            }
+            100%{
+                background-position:-20rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="box"></div>
+<script>
+//    desW 设计稿的宽度 html fontsize = 设备的宽度/设计稿的宽度*100+‘px’
+~function(desW){
+   var winW=document.documentElement.clientWidth,
+           ratio=winW/desW;
+    document.documentElement.style.fontSize=ratio*100+'px'
+}(750)
+</script>
+</body>
+</html>

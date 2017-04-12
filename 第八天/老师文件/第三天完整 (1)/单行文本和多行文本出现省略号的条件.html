@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+       /* 一行文本 出现...省略号
+       width  宽度
+       overflow:hidden  溢出隐藏
+       white-space: nowrap; 强制不折行
+       text-overflow: ellipsis; 文本内容出现省略号
+       */
+        p{
+            width:300px;
+            height:30px;
+            line-height:30px;
+            border:1px solid red;
+            overflow:hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+       /*多行文字出现省略号 在移动端比较常用
+       display: -webkit-box;
+       -webkit-line-clamp: 3; 规定文字的排数
+       overflow: hidden;       溢出隐藏
+       -webkit-box-orient: vertical;  排列方向 垂直
+*/
+
+    </style>
+</head>
+<body>
+<p>河北人大常委会副主任杨崇勇涉严重违纪接受调查</p>
+
+</body>
+</html>

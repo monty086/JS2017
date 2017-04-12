@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <style>
+        *{
+            padding:0;
+            margin:0;
+        }
+        html{
+            font-size: 100px;
+        }
+        .head{
+          width: 1.51rem;
+            height: 1.71rem;
+            background: url("image/phead.png")no-repeat;
+            background-size:cover ;
+            -webkit-background-size:cover ;/*没有用到雪碧图可以用cover*/
+            animation: head 1s linear infinite;/*没有用到雪碧图就用到linear*/
+            -webkit-animation: head 1s linear infinite ;/*没有用到雪碧图就用到linear*/
+            position: absolute;
+            top:0;
+            left:0;
+            z-index: 1;
+            transform-origin:bottom;
+        }
+        /*
+        both:保持动画开始的状态到结束的状态
+        forwards：保持开始的状态
+        backwards：停留在最后一帧
+        */
+        @keyframes head {
+            0%{
+               transform:rotate(0deg);
+               -webkit-transform:rotate(0deg)
+            }
+            50%{
+                transform:rotate(-20deg);
+                -webkit-transform:rotate(-10deg)
+            }
+            100%{
+                transform:rotate(0deg);
+                -webkit-transform:rotate(0deg)
+            }
+        }
+        @-webkit-keyframes head {
+            0%{
+               transform:rotate(0deg);
+               -webkit-transform:rotate(0deg)
+            }
+            50%{
+                transform:rotate(-20deg);
+                -webkit-transform:rotate(-10deg)
+            }
+            100%{
+                transform:rotate(0deg);
+                -webkit-transform:rotate(0deg)
+            }
+        }
+        ._body{
+            width: 1.71rem;
+            height: 3.02rem;
+            background: url("image/pbody.png")no-repeat;
+            background-size: cover;
+            -webkit-background-size: cover;
+            position: absolute;
+            top:1.66rem;
+            left:0.25rem;
+        }
+
+        .rain{
+            margin-top: 1rem;
+            animation:body 5s linear alternate-reverse infinite ;
+        }
+        @keyframes body {
+            0%{
+                transform: translate(0px);
+            }
+            100%{
+                transform: translate(5.5rem);
+            }
+        }
+        .kiss{
+            width: 0.68rem;
+            height: .59rem;
+            background: url("image/skiss.png")no-repeat;
+            background-size: cover;
+            position: absolute;
+            top:1.1rem;
+            left:0.35rem;
+            z-index: 2;
+            animation: kiss 1s linear infinite;
+        }
+        @keyframes kiss {
+            0%{
+                transform:scale(0.3);
+                opacity:0
+            }
+            100%{
+                transform:scale(1);
+                opacity:1
+
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="rain">
+
+    <div class="head"></div>
+    <div class="_body"></div>
+    <div class="kiss"></div>
+</div>
+
+</body>
+</html>
+<script>
+    ~(function (desW) {
+        var winW =document.documentElement.clientWidth,
+            ratio =winW/desW;
+        document.documentElement.style.fontSize=ratio*100+'px'
+    })(750)
+</script>

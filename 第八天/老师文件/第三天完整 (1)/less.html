@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>less</title>
+    <link type="text/css" rel="stylesheet/less" href="css/less1.less"/>
+<body>
+<!--win+R  cmd 调出黑面板  node -v检测node的版本
+npm install less -g  把less安装到node环境中
+less文件 按住shift+鼠标右键  调出cmd的黑面板
+lessc less1.less less1.css  在你的文件夹中会自动生成一个css层叠样式表  名称跟less文件的名称一致 这个是只是看一下装的怎么样
+
+两种方式解析less代码：
+1.页面中引入less-2.5.3.min.js文件 放在底部
+2.通过node去解析less文件
+-->
+<div class="box">盒子一</div>
+<div class="box1"><p>文字</p></div>
+<div class="box2"></div>
+<script type="text/javascript">
+//    配置less的参数
+/*    var less={
+        evn:'development', //运行环境
+        poll:1000    //监听间隔的时间
+    }*/
+</script>
+<script type="text/javascript" src="js/less-2.5.3.min.js"></script>
+<script type="text/javascript">
+    /*less.watch(); *///启动监听
+</script>
+</body>
+</html>

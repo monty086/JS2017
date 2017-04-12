@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 http://www.swiper.com.cn/    swiperä¸­æ–‡ç½‘ç«™
 
 rem(font size of root element) 1rem=16px 10 100 1000
@@ -15,10 +16,30 @@ desW 640 750 1242
 
 
 px åª’ä½“æŸ¥è¯¢ ç™¾åˆ†æ¯”
+=======
+http://www.swiper.com.cn/    swiperÖÐÎÄÍøÕ¾
+
+rem(font size of root element)  1rem=16px  10 100 1000
+1rem=100px   750  iphone6 ÊÖ»ú
+750   100  font-size
+375   x    50
+
+
+desW  640  750  1242
+Éè¼Æ¸åµÄ¿í¶È (desW)   html{font-size:100px}
+Éè±¸µÄ¿í¶È            html{font-size:?}
+
+
+? =  Éè±¸µÄ¿í¶È / Éè¼Æ¸åµÄ¿í¶È(desW)  *100
+
+
+px  Ã½Ìå²éÑ¯      °Ù·Ö±È
+>>>>>>> Stashed changes
 rem
 
 
 @media screen and (min-width:320px){
+<<<<<<< Updated upstream
 html{
 font-size:50px;
 }
@@ -69,3 +90,55 @@ winW = document.documentElement.clientWidth,
 ratio = winW / desW;
 document.documentElement.style.fontSize = ratio * 100 + 'px';
 }();
+=======
+    html{
+        font-size:50px;
+    }
+}
+@media screen and (min-width:375px){
+    html{
+        font-size: 58.5938px;
+    }
+}
+@media screen and (min-width:414px){
+    html{
+        font-size: 64.6875px;
+    }
+}
+
+h5 Î¢ÐÅÍÆ¹ã¡¢Ó¦ÓÃ³¡¾°  Ê±Ð§ÐÔ±È½Ï¸ß
+640*1138   µ¥ÆÁ
+750*1334   µ¥ÆÁ
+1242*2289  µ¥ÆÁ
+
+
+
+REMÏìÓ¦Ê½²¼¾Ö
+->ÎÒÃÇ×öµÄH5Ò³ÃæÖ»ÔÚÒÆ¶¯¶Ë·ÃÎÊ(REM²»¼æÈÝµÍ°æ±¾µÄä¯ÀÀÆ÷)
+
+µÚÒ»²½£º´ÓUIÉè¼ÆÊ¦ÄÃµ½Éè¼Æ¸å(PSD¸ñÊ½µÄÉè¼Æ¸å) 640*1136
+
+µÚ¶þ²½£ºÔÚÑùÊ½ÖÐ¸øHTMLÉè¶¨Ò»¸öfontSizeµÄÖµ£¬ÎÒÃÇÒ»°ã¶¼ÉèÖÃÒ»¸ö·½±ãºóÃæ¼ÆËãµÄÖµ£¬ÀýÈç£º10px¡¢100px...ÕâÀïÎÒÃÇÖ®ËùÒÔÓÃ100px£¬Ö÷ÒªÊÇä¯ÀÀÆ÷×îÐ¡µÄ×ÖÌå´óÐ¡¶¼ÊÇ12px£¬ÓÃ10px±ÈÀý¼ÆËãµÄ½á¹ûºÍÕæÊµUIÉè¼Æ¸å»á´æÔÚÄÇÃ´Ò»µãµãµÄÆ«²î
+       html {
+          font-size: 100px; /*1REM=100PX*/
+       }
+
+µÚÈý²½£ºÐ´Ò³Ãæ£¬Ð´ÑùÊ½
+      ÍêÈ«°´ÕÕÉè¼Æ¸åµÄ³ß´çÀ´Ð´ÑùÊ½£¬´ËÊ±²»ÓÃ¹ÜÈÎºÎµÄÊÂÇé£¬Éè¼Æ¸å¸øÄãµÄ¿í¶È¡¢¸ß¶È¡¢×ÖÌå´óÐ¡¡¢margin¡¢paddingµÄÖµÊÇ¶àÉÙ£¬ÎÒÃÇ¾ÍÐ´¶àÉÙ
+      ->µ«ÊÇÎÒÃÇÔÚÐ´ÑùÊ½ÖµµÄÊ±ºò£¬ÐèÒª°ÑµÃµ½µÄÏñËØÖµ³ýÒÔ100£¬¼ÆËã³ö¶ÔÓ¦µÄREMµÄÖµ£¬ÎÒÃÇÉè¶¨µÄÒ²¶¼ÊÇREMµÄÖµ
+      (ÖµµÄ×¢ÒâµÄÊÇ£ºÕæÊµÏîÄ¿ÖÐÍâ²ãºÐ×ÓµÄ¿í¶ÈÎÒÃÇÒ»°ã»¹ÊÇ²»Ð´¹Ì¶¨Öµ£¬ÑØÓÃÁ÷Ê½²¼¾Ö·¨µÄË¼Ïë£¬ÎÒÃÇÓÃ°Ù·Ö±ÈµÄ·½Ê½²¼¾Ö)
+
+µÚËÄ²½£º¸ù¾Ýµ±Ç°ÆÁÄ»µÄ¿í¶ÈºÍÉè¼Æ¸åµÄ¿í¶ÈÀ´¼ÆËãÎÒÃÇHTMLµÄfontSizeµÄÖµ
+    Éè¼Æ¸å:640   600*300  fontSize=100  6rem*3rem
+    ÊÖ»ú:320  300*150 fontSize=50
+    ÊÖ»ú:375  (375/640)*100 ->fontSize=58.59375  351.5625*175.78125
+
+    //->¸ù¾Ýµ±Ç°ÆÁÄ»¿í¶ÈºÍÉè¼Æ¸å¿í¶ÈµÄ±ÈÀý£¬¶¯Ì¬¼ÆËãÒ»ÏÂµ±Ç°¿í¶ÈÏÂµÄfontSizeÖµÓ¦¸ÃÊÇ¶àÉÙ£¬Èç¹ûfontSizeµÄÖµ¸Ä±äÁË£¬Ö®Ç°Éè¶¨µÄËùÓÐREMµ¥Î»µÄÖµ×Ô¶¯»á¸ú×Å·Å´ó»òÕßËõÐ¡
+    ~function () {
+        var desW = 640,
+                winW = document.documentElement.clientWidth,
+                ratio = winW / desW;
+        document.documentElement.style.fontSize = ratio * 100 + 'px';
+    }();
+
+>>>>>>> Stashed changes

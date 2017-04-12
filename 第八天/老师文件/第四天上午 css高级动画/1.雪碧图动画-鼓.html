@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <style type="text/css">
+        *{
+            margin:0;
+            padding:0;
+        }
+        html{
+           font-size:100px;
+            /*1rem=100px*/
+            /*1.方便我们计算 2.默认最小的字体大小为12px 如果1rem=10px 和设计稿有一点点的偏差*/
+        }
+        .music{
+            width:1.4rem;
+            height:1rem;
+            background:url("images/music.png") no-repeat;
+            -webkit-background-size:21rem 1rem;
+            background-size:21rem 1rem;
+            -webkit-animation:music 1s steps(15) 1s infinite;
+            animation:music 1s steps(15) 1s infinite;
+/*timing-function 运动速度中的一个参数值 end
+rem跟backgroud  需要加上background-size 紧跟这背景background的后面
+如果用的是雪碧图 background-size:雪碧图的宽度 雪碧图的高度*/
+        }
+        @-webkit-keyframes music {
+            0%{
+               background-position:0 0;
+            }
+            100%{
+                background-position:-21rem 0;
+            }
+        }
+        @keyframes music {
+            0%{
+                background-position:0 0;
+            }
+            100%{
+                background-position:-21rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="music"></div>
+<script>
+    //动态计算html的font size 值
+    // 设计稿的 640(iphone4/5)  750(iphone6)  1242(iphone6 plus)
+    ~function(desW){
+        var winW=document.documentElement.clientWidth,
+                ratio=winW/desW;
+        document.documentElement.style.fontSize=ratio*100+'px'
+    }(750)
+</script>
+<!--rem  font size of root element
+计算公式：设备的宽度/设计稿的宽度*100+'px'
+拿到设计稿：直接除以100   logo  100px*100px  1rem*1rem
+desW  设计稿的宽度 750px
+animation:
+动画的名称
+动画持续的时间(0s)
+动画运动的曲线(timing-function)  linear 匀速运动  steps(帧的数量,start/end) 默认值为end 关键帧动画
+动画的延迟时间 delay(0s)
+动画的次数  1 infinite(无限次)
+
+name 0s 2s 1
+动画的名称
+如果只有1个时间   为动画持续的时间
+如果有2个时间    第1个时间动画持续的时间   第2个为延迟的时间
+动画运动的次数 2次  最小值为1
+
+steps  用雪碧图sprites来做动画  background-position 都为负值
+0%{background-position:0 0}
+100%{background-position:-雪碧图的宽度 0}
+
+
+
+
+</body>
+</html>

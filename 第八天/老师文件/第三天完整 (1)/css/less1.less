@@ -1,0 +1,59 @@
+@color:green;
+@color-blue:blue;
+@color-red:red;
+@property:color;
+@selector:box;
+.box-shadow(@style,@alpha:50%){
+//50% 默认值
+    -webkit-box-shadow: @style rgba(0, 0, 0, @alpha);
+    -moz-box-shadow: @style rgba(0, 0, 0, @alpha);
+    -ms-box-shadow: @style rgba(0, 0, 0, @alpha);
+    -o-box-shadow: @style rgba(0, 0, 0, @alpha);
+    box-shadow: @style rgba(0, 0, 0, @alpha);
+}
+
+
+
+
+
+.box{
+  width:300px;
+  height:300px;
+  background:@color;
+  .box1!important;
+  .box-shadow(10px 10px 10px 20px,20%);
+  //.public;
+  @{property}:@color-blue;  //color:#fff;
+  //box-shadow:10px 10px 10px 20px rgba(0,0,0,20%);
+  //:extend  继承
+    &:hover{
+     //&:extend(.public);
+      .public;
+      color:@color-red; //color red  js中的作用域链  私有作用域和全局作用域
+      width:400px;
+      height:400px;
+    }
+}
+
+.public{ //公用模块
+   border:10px solid @color;
+   border-radius:50%;
+}
+
+.box1{
+  width:200px;
+  height:200px;
+  .public;
+  background:@color-blue;
+  .box-shadow(2px 2px 10px 10px);
+  & p{
+    color:#00AAAA;
+  }
+}
+.box2{
+  width:150px;
+  height:150px;
+  background:@color-red;
+  .public;
+  .box-shadow(6px 6px 10px,30%)
+}

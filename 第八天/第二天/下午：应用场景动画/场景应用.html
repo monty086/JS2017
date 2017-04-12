@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <!--reset 默认样式表-->
+    <link rel="stylesheet" href="css/reset.min.css">
+    <!--swiper 插件-->
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <!--自己写的样式表-->
+    <link rel="stylesheet" href="H5Index.css">
+</head>
+<body>
+<!--arrow-->
+<div class="arrow"></div>
+<!--music-->
+<div class="music " id="musicBox">
+</div>
+<audio  id="musicAudio" src="http://file.ws.126.net/f2e/ent/ent_painting2016/files/sjsznh.mp3" preload="none" loop ></audio>
+<!--
+  preload:预加载 延迟几秒才播放
+  loop：单曲循环
+  autoplay：自动播放
+  -->
+<!--swiper结构-->
+<div class="swiper-container">
+    <!--包图片的盒子：图片内容-->
+    <div class="swiper-wrapper">
+        <!--第一屏-->
+        <div class="swiper-slide page01" >
+            <img src="images/page1-text1.png" alt="">
+            <img src="images/page1-text2.png" alt="">
+            <img src="images/page1-text3.png" alt="">
+            <img src="images/page1-text4.png" alt="">
+        </div>
+        <!--第二屏-->
+        <div class="swiper-slide page02" >
+            <img src="images/page2-text1.png" alt="">
+            <img src="images/page2-text2.png" alt="">
+            <img src="images/page2-text3.png" alt="">
+            <img src="images/page2-text4.png" alt="">
+        </div>
+    </div>
+</div>
+</body>
+</html>
+<!--swiper封装好是js-->
+<script src="js/swiper.min.js"></script>
+ <!--自己写的js文件-->
+<script src="H5Js.js"></script>

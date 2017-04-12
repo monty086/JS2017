@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -103,4 +104,111 @@ var mySwiper=new Swiper('.swiper-container',{
 
 </script>
 </body>
+=======
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    <link rel="stylesheet" href="css/reset.min.css"/>
+    <link rel="stylesheet" href="css/swiper.min.css"/>
+    <link rel="stylesheet" href="css/index.css"/>
+    <style type="text/css">
+        /*就近原则 覆盖上面通过 link标签引进来的默认样式*/
+
+        .swiper-pagination-bullet{
+            background:#dab08e;
+            opacity:1;
+        }
+        .swiper-pagination-bullet-active{
+            background:#fff;
+        }
+        .swiper-container-horizontal>.swiper-pagination-bullets, .swiper-pagination-custom, .swiper-pagination-fraction{
+            bottom:10px;
+        }
+    </style>
+</head>
+<body>
+<!--header begin-->
+<header>
+    <h1 class="logo">
+        <a href="#"><img src="images/i-logo.png" alt=""/></a>
+    </h1>
+</header>
+<!--header end-->
+
+<!--nav begin-->
+<nav>
+    <div class="menu-list">
+        <a href="#" class="menu-list-link cur">资讯</a>
+        <a href="#" class="menu-list-link">军事</a>
+        <a href="#" class="menu-list-link">娱乐</a>
+        <a href="#" class="menu-list-link">现场</a>
+        <a href="#" class="menu-list-link">直播</a>
+        <a href="#" class="menu-list-link">搞笑</a>
+        <a href="#" class="menu-list-link">军事</a>
+        <a href="#" class="menu-list-link">娱乐</a>
+        <a href="#" class="menu-list-link">现场</a>
+        <a href="#" class="menu-list-link">直播</a>
+        <a href="#" class="menu-list-link">搞笑</a>
+    </div>
+</nav>
+<!--nav end-->
+
+<!--swiper begin-->
+<div class="swiper-container">
+    <!--图片-->
+    <div class="swiper-wrapper">
+        <div class="swiper-slide">
+            <img src="images/pic01.jpg" alt="" />
+            <!-- 文字-->
+            <!--<span class="text">直升机扑灭意大利迪亚诺河谷公园大火</span>-->
+            <!--背景-->
+            <span class="bg"></span>
+        </div>
+        <div class="swiper-slide">
+            <img src="images/pic01.jpg" alt="" />
+        </div>
+    </div>
+    <!--分页器-->
+    <div class="swiper-pagination"></div>
+</div>
+<!--swiper end-->
+
+<!--频道 beign-->
+<ul class="channelBox">
+    <li>
+        <a href="#"><img src="images/icon-zx.png" alt=""/></a>
+    </li>
+    <li>
+        <a href="#"><img src="images/icon-china.png" alt=""/></a>
+    </li>
+</ul>
+<!--频道 beign-->
+
+<script type="text/javascript" src="js/swiper.min.js"></script>
+<script>
+//    rem
+    ~function () {
+        var desW = 750,
+                winW = document.documentElement.clientWidth,
+                ratio = winW / desW;
+        document.documentElement.style.fontSize = ratio * 100 + 'px';
+    }();
+
+//swiper
+var mySwiper=new Swiper('.swiper-container',{
+   loop:true,  // 让焦点图无缝衔接效果
+   autoplay:1000, //1s  css3 动画延迟的时间
+//   speed:1000     //1s  css3 动画持续的时间
+    pagination:'.swiper-pagination' //分页器 小圆点
+})
+
+</script>
+</body>
+>>>>>>> Stashed changes
 </html>

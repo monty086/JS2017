@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <style type="text/css">
+        *{
+            margin:0;
+            padding:0;
+        }
+        html{
+            font-size:100px;
+        }
+        .p-head{
+            z-index:99;
+            position:absolute;
+            top:0;
+            left:0;
+            width:1.5rem;
+            height:1.71rem;
+            background:url("images/phead.png") no-repeat;
+            -webkit-background-size:cover;
+            background-size:cover;
+/*            cover 覆盖整个容器 width:1.5rem;height:1.71rem;
+ both 保持动画开始或结束的状态
+ forwards 保持动画结束的状态
+ backwards 保持动画开始的状态
+*/
+            -webkit-animation:head 1s linear infinite forwards;
+            animation:head 1s linear infinite forwards;
+            -webkit-transform-origin:bottom center 0;
+            transform-origin:bottom center 0;
+            /*transform-origin 起点值*/
+
+        }
+        .p-body{
+            z-index:9;
+            position: absolute;
+            top:1.6rem;
+            left:.26rem;
+            width:1.71rem;
+            height:3.02rem;
+            background:url("images/pbody.png") no-repeat;
+            -webkit-background-size:cover;
+            background-size:cover;
+        }
+        @-webkit-keyframes head {
+            0%{
+                -webkit-transform:rotate(0deg);
+                transform:rotate(0deg);
+            }
+            50%{
+                -webkit-transform:rotate(10deg);
+                transform:rotate(10deg);
+            }
+            100%{
+                -webkit-transform:rotate(0deg);
+                transform:rotate(0deg);
+            }
+        }
+        @keyframes head {
+            0%{
+                -webkit-transform:rotate(0deg);
+                transform:rotate(0deg);
+            }
+            50%{
+                -webkit-transform:rotate(10deg);
+                transform:rotate(10deg);
+            }
+            100%{
+                -webkit-transform:rotate(0deg);
+                transform:rotate(0deg);
+            }
+        }
+    </style>
+</head>
+<!--头-->
+<div class="p-head"></div>
+<!--身体-->
+<div class="p-body"></div>
+
+<body>
+<script type="text/javascript">
+    ~function (desW) {
+        var winW = document.documentElement.clientWidth,
+                ratio = winW / desW;
+        document.documentElement.style.fontSize = ratio * 100 + 'px';
+    }(750);
+</script>
+</body>
+</html>

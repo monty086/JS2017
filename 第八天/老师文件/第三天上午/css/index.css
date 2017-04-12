@@ -1,0 +1,290 @@
+html {
+    font-size: 100px;
+}
+
+body {
+    background: #f6f6f6;
+}
+
+/*header*/
+header {
+    /*88px .88rem*/
+    width: 100%;
+    height: .67rem;
+    background: #f54343;
+    padding-top: .21rem;
+}
+
+header .logo {
+    width: 2.2rem;
+    height: .46rem;
+    margin-left: .19rem;
+}
+
+header .logo img {
+    display: block;
+    width: 100%;
+}
+
+/*nav*/
+nav {
+    overflow: hidden;
+    overflow-x: scroll;
+    /*x y都隐藏  x出现滚动条*/
+}
+
+nav::-webkit-scrollbar {
+    /*css3 ::-webkit-scrollbar  处理滚动条整体部分*/
+    display: none;
+}
+
+.menu-list {
+    font-size: 0;
+    /*目的:为了解决display:inline-block;多出几像素的空白*/
+    height: .8rem;
+    line-height: .8rem;
+    white-space: nowrap;
+    /*强制不折行*/
+}
+
+.menu-list .menu-list-link {
+    display: inline-block;
+    width: 16.66%;
+    text-align: center;
+    font-size: .34rem;
+    /*a标签本身的字体大小*/
+    color: #6b7989;
+    height: .75rem;
+    line-height: .75rem;
+    border-bottom: .05rem solid #fff;
+}
+
+.menu-list .menu-list-link.cur {
+    /*交集选择器 提高权重*/
+    border-bottom: .05rem solid #f54343;
+    color: #f54343;
+}
+
+/*swiper*/
+.swiper-wrapper {
+    position: relative;
+}
+
+.swiper-slide img {
+    display: block;
+    width: 100%;
+}
+
+.swiper-slide .text {
+    /*文字层*/
+    position: absolute;
+    z-index: 99;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: .6rem;
+    line-height: .6rem;
+    padding: 0 .18rem;
+    font-size: .32rem;
+    color: #fff;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.swiper-slide .text em {
+    /*推荐*/
+    font-style: normal;
+    background: #f54343;
+    padding: 0 .1rem;
+    margin-right: .1rem;
+}
+
+.swiper-slide .bg {
+    /*背景层*/
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: .6rem;
+    background: rgba(0, 0, 0, .56);
+}
+
+/*channel*/
+.channelBox li {
+    float: left;
+    width: 50%;
+    border-right: .04rem solid #f6f6f6;
+    padding: .21rem 0 .16rem;
+    background: #fff;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    /*    -moz-box-sizing:border-box;
+        -ms-box-sizing:border-box;
+        -o-box-sizing:border-box;*/
+    /*把border  padding 都算在总的宽度内*/
+}
+
+.channelBox li:last-child {
+    /*css3的选择器 last-child 最后一个元素*/
+    border: 0;
+}
+
+.channelBox li img {
+    display: block;
+    width: 1.31rem;
+    height: .81rem;
+    margin: 0 auto
+    /*水平居中*/
+}
+
+/*main*/
+.main {
+    margin-top:.2rem;
+    padding: 0 .18rem;
+    background:#fff;
+    overflow:hidden;
+}
+.item{
+    padding:.2rem 0;
+    border-bottom:1px solid #f6f6f6;
+}
+.item:last-child{
+    border:0;
+}
+.item .i-pic {
+    float: left;
+    width: 2.63rem;
+    height: 1.48rem;
+}
+
+.item .i-pic img {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.item .i-thumb {
+    position:relative;
+    float: right;
+    width: 4.25rem;
+    height: 1.48rem;
+}
+
+.item .i-thumb .i-title, .i-item .i-thumb .i-title{
+    font-size: .34rem;
+    line-height:.4rem;
+    height:.8rem;
+    overflow:hidden;
+}
+
+.item .i-thumb .i-title a,.i-item .i-thumb .i-title a{
+    color: #363636;
+}
+.item .i-thumb .i-meta{
+    position:absolute;
+    left:0;
+    bottom:0;
+    font-size:.28rem;
+    color:#a6a6a6;
+}
+.item .i-thumb .i-label{
+    position:absolute;
+    bottom:0;
+    right:0;
+    padding:0 .1rem;
+    font-size:.22rem;
+    color:#f54343;
+    border:1px solid #f54343;
+    -webkit-border-radius:.04rem;
+    border-radius:.04rem;
+}
+
+/*标题 */
+.titleBox{
+    height:1.02rem;
+    line-height:1.02rem;
+}
+.titleBox h2{
+    font-size:.36rem;
+    color:#000;
+}
+.titleBox .i-link{
+    float:right;
+    color:#9f9f9f;
+    font-size:.28rem;
+    font-weight:normal;
+}
+.wrap{
+    /*让父元素的整体往左移*/
+    margin-left:-.18rem;
+    overflow:hidden;
+}
+.i-item{
+    /*流式布局 百分比 box-sizing: border-box  border padding 算在总的宽度内*/
+    width:50%;
+    float:left;
+    padding-left:.18rem;
+    margin-bottom:.3rem;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+/*.i-item:nth-child(2n+1){
+    padding:0
+}*/
+.i-item .i-pic{
+    /*100%  图片之间没有间隔 自动充满50%的宽度
+     如果给图片原本的尺寸 图片会出现间距 50%宽度 把图片的宽度减掉  剩余的宽度*/
+    width:100%;
+    height:1.96rem;
+}
+.i-item .i-pic img{
+    display:block;
+    width:100%;
+    height:100%;
+}
+.i-item .i-thumb .i-title{
+    margin:.2rem 0;
+}
+.i-item .i-thumb .i-des{
+    font-size:.24rem;
+    color:#a6a6a6;
+}
+.i-item .i-thumb .i-time{
+    float:left;
+    margin-right:.3rem;
+}
+.i-item .i-thumb em{
+    /*小图标公用的样式*/
+    display:inline-block;
+    width:.23rem;
+    height:.22rem;
+    margin-right:.06rem;
+    vertical-align:middle;
+}
+.i-item .i-thumb .i-time em{
+    /*cover  覆盖(充满)容器的尺寸(宽度和高度)*/
+    background:url("../images/icon.png") no-repeat;
+    -webkit-background-size:cover;
+    background-size:cover;
+}
+.i-item .i-thumb .i-num{
+    float:left;
+}  
+.i-item .i-thumb .i-num em{
+    background:url("../images/icon01.png") no-repeat;
+    -webkit-background-size:cover;
+    background-size:cover;
+}
+
+
+
+
+
+
+
+
+
+
+
+

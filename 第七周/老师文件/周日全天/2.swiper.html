@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -54,4 +55,62 @@
     })
 </script>
 </body>
+=======
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <title></title>
+    <link rel="stylesheet" href="css/swiper.min.css"/>
+    <style>
+        .swiper-slide img{width:100%;}
+    </style>
+</head>
+<body>
+
+<div class="swiper-container">
+    <!--图片-->
+    <div class="swiper-wrapper">
+        <div class="swiper-slide"><img data-src="images/banner01.jpg" alt="" class="swiper-lazy"/></div>
+        <div class="swiper-slide"><img data-src="images/banner02.jpg" alt="" class="swiper-lazy"/></div>
+    </div>
+
+    <!--小圆点 分页器-->
+    <div class="swiper-pagination"></div>
+
+    <!--左右箭头-->
+    <!--<div class="swiper-button-prev"></div>-->
+    <!--<div class="swiper-button-next"></div>-->
+
+    <!--滚动条-->
+    <div class="swiper-scrollbar"></div>
+</div>
+
+<script charset="utf-8" src="js/swiper.min.js"></script>
+<script type="text/javascript">
+//    new Swiper('选择器',{settings})
+    var mySwiper=new Swiper('.swiper-container',{
+        loop:true, //1oop true 无缝滚动效果
+        pagination:'.swiper-pagination',  //分页器
+        paginationType:'bullets', //分页器的类型  圆点 、分式 1/4、进度条
+        autoplay:1000, //自动轮播
+        speed:1000,
+        autoplayDisableOnInteraction:false,  //用户操作焦点图之后 autoplay 开启
+//        direction : 'vertical' //焦点图运行的方向
+        effect:'coverflow',  //焦点图滑动的效果 fade 渐变  cube coverflow  flip、
+        paginationClickable :true,  //点击分页器 控制焦点图
+        lazyLoading : true,
+        paginationElement:'p',
+        prevButton:'.swiper-button-prev',
+        nextButton:'.swiper-button-next',
+        initialSlide:1//初始的索引值    第二张焦点图
+//        onTouchStart: function(swiper){
+//            alert(swiper.activeIndex)  //2   第1个焦点图  1
+//        }
+    })
+</script>
+</body>
+>>>>>>> Stashed changes
 </html>

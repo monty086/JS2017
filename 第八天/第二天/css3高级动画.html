@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>关键帧动画</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <style>
+        *{
+            padding:0;
+            margin:0;
+        }
+        html{
+            font-size: 100px;/*
+            1. 方便计算（看到设计稿不管是多少都除以100）1rem=100
+            2. 默认的最小的字体大小为12px，所以我们没有用10px，给12px会和设计稿有偏差；
+            */
+        }
+        .music{
+            position: absolute;
+            top:.28rem;
+            right:.28rem;
+            width: 1.4rem;
+            height: 1rem;
+            background: url("image/music.png")no-repeat center;
+            background-size:21rem 1rem;/*遇到移动端rem就必须要加size尺寸*/
+            -webkit-background-size:21rem 1rem;
+            /*如果雪碧图用的是px，那么background-size这两句可以不用加；如果用的是rem，那么就要写background-size:图片宽度 图片高度; 这两句话；-> 由于设计稿是屏幕的2倍或多倍（密度倍），如果不写的话，它默认的图片的宽度会是密度倍的宽度，就不是我们要的宽度了；而我们要操作的只是当前的这张图片，所以就要把图片的宽度和高度设置为当前图片的宽度和高度*/
+            /*background-size: cover;*/
+            animation: music 2s steps(15) infinite /*forwards*/;
+            -webkit-animation: music 2s steps(15) infinite /*forwards*/;
+            /*
+
+
+            如果雪碧图用的是像素px的话，
+            background-position: -2100px 0;
+            position 如果用的是px像素的话
+            background-size可以不用写
+
+
+            如果用的是rem来做的话，
+            如果遇到rem和背景写到一起的话，就必须写上background-size，而且还必须紧跟在背景的后面（雪碧图不能用cover）
+            如果用的雪碧图的话，background-size（雪碧图的宽度，雪碧图的高度）换算成rem
+
+            background-position:-雪碧图的宽度 0 （雪碧图调整位置都必须为负值）
+            background-size和background-position都需要用rem来做
+            background-size:21rem 1rem;
+            -webkit-background-size:21rem 1rem
+            background-position:-21rem 0;
+            */
+        }
+        @keyframes music {
+            0%{
+                background-position:0 0 ;
+            }
+            100%{
+                background-position:-21rem 0;/*雪碧图一定要用负数*/
+            }
+        }
+        @-webkit-keyframes music {
+            0%{
+                background-position:0 0 ;
+            }
+            100%{
+                background-position:-21rem 0;
+            }
+        }
+        /*animation: */
+
+        /*
+        运动曲线/运动速度 timing-function
+        关键帧的动画 steps
+        steps(帧动画的次数，start/end) 关键帧动画  属于timing function 的值；有2个参数
+        第一个参数
+        次数：看你引进多少个不同的图形
+        第二个参数
+        如果第二个参数默认不写：默认值为end
+        start:是忽略第一帧
+        end:是忽略最后一帧
+        */
+        .box1{
+            width: 1rem;
+            height: 1rem;
+            border-radius: 50%;
+            animation: box1 5s steps(3,start) infinite
+        }
+        @keyframes box1{
+            0%{
+                background: red;
+            }
+            100%{
+               background: blue;
+            }
+        }
+        @-webkit-keyframes box1{
+            0%{
+                background: red;
+            }
+            100%{
+                background: blue;
+            }
+        }
+
+        .box2{
+            width: 1rem;
+            height: 1rem;
+            border-radius: 50%;
+            animation: box2 3s steps(3,end) infinite
+        }
+        @keyframes box2{
+            0%{
+                background: red;
+            }
+            100%{
+                background: blue;
+            }
+        }
+        @-webkit-keyframes box2{
+            0%{
+                background: red;
+            }
+            100%{
+                background: blue;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="music"></div>
+<!--<div class="box1"></div>-->
+<!--<div class="box2"></div>-->
+<script>
+    ~(function (desw) {
+        var winW = document.documentElement.clientWidth,
+            ratio = winW/desw;
+        document.documentElement.style.fontSize=ratio*100+'px'
+    })(750)
+</script>
+</body>
+</html>

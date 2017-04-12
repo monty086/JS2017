@@ -1,0 +1,62 @@
+.box {
+  width: 300px;
+  height: 300px;
+  background: green;
+  width: 200px !important;
+  height: 200px !important;
+  border: 10px solid green !important;
+  border-radius: 50% !important;
+  background: blue !important;
+  -webkit-box-shadow: 2px 2px 10px 10px rgba(0, 0, 0, 0.5) !important;
+  -moz-box-shadow: 2px 2px 10px 10px rgba(0, 0, 0, 0.5) !important;
+  -ms-box-shadow: 2px 2px 10px 10px rgba(0, 0, 0, 0.5) !important;
+  -o-box-shadow: 2px 2px 10px 10px rgba(0, 0, 0, 0.5) !important;
+  box-shadow: 2px 2px 10px 10px rgba(0, 0, 0, 0.5) !important;
+  -webkit-box-shadow: 10px 10px 10px 20px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 10px 10px 10px 20px rgba(0, 0, 0, 0.2);
+  -ms-box-shadow: 10px 10px 10px 20px rgba(0, 0, 0, 0.2);
+  -o-box-shadow: 10px 10px 10px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 10px 10px 10px 20px rgba(0, 0, 0, 0.2);
+  color: blue;
+}
+.box p {
+  color: #00AAAA !important;
+}
+.box:hover {
+  border: 10px solid green;
+  border-radius: 50%;
+  color: red;
+  width: 400px;
+  height: 400px;
+}
+.public {
+  border: 10px solid green;
+  border-radius: 50%;
+}
+.box1 {
+  width: 200px;
+  height: 200px;
+  border: 10px solid green;
+  border-radius: 50%;
+  background: blue;
+  -webkit-box-shadow: 2px 2px 10px 10px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 2px 2px 10px 10px rgba(0, 0, 0, 0.5);
+  -ms-box-shadow: 2px 2px 10px 10px rgba(0, 0, 0, 0.5);
+  -o-box-shadow: 2px 2px 10px 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 2px 2px 10px 10px rgba(0, 0, 0, 0.5);
+}
+.box1 p {
+  color: #00AAAA;
+}
+.box2 {
+  width: 150px;
+  height: 150px;
+  background: red;
+  border: 10px solid green;
+  border-radius: 50%;
+  -webkit-box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.3);
+  -ms-box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.3);
+  -o-box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.3);
+}

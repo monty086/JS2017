@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -155,4 +156,163 @@ x=(320*100)/640   求未知数
 </script>
 
 </body>
+=======
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <style type="text/css">
+        html {
+            font-size: 100px;
+            /*
+            1.谷歌浏览器默认最小的字体大小是12px  存在一些偏差  font-size:10px;
+            2.方便计算  10  100  1000
+            */
+            /*1rem=100px*/
+        }
+
+        .box {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            width: 2rem;
+            height: 2rem;
+            background: red;
+        }
+
+/*        @media screen and (min-width: 320px) {
+            .box {
+            }
+
+            /!*320  iphone4/5*!/
+        }
+
+        @media screen and (min-width: 375px) {
+            /!*375  iphone6*!/
+            .box {
+            }
+        }
+
+        @media screen and (min-width: 414px) {
+            /!*414  iphone6 plus*!/
+            .box {
+            }
+        }*/
+    </style>
+</head>
+<body>
+1.产品形态：
+1)pc和移动端(手机、ipad)公用一套html结构  例如:猎豹 华为
+2)pc和移动端分离开  www.ifeng.com    i.ifeng.com   i/m 移动端的网址
+
+2.响应式布局的思想：
+1)流式布局 + px + 媒体查询     宽度不要写死 用百分比
+2)流式布局+ rem(js动态计算html跟元素的字体大小)
+3)flexbox 弹性布局 (下周)
+
+3.设计稿的尺寸
+PC:宽屏和窄屏
+移动端:iphone5        640*1136   单屏  >1136  多屏
+       iphone6       750*1334   单屏  >1134   多屏
+       iphone6 plus  1242*2208  单屏 >2208    多屏
+
+4.rem(font size of root element)  1rem=16px
+100*100   1rem*1rem
+html{
+    font-size:100px; 方便计算   10px  12px
+    1rem=100px;
+}
+640设计稿            100px
+320设备的尺寸        x  (html fontSize)
+
+html fontSize =  设备的尺寸/设计稿 *100 +'px'  得到的结果会一直动态变化
+
+4.设计稿
+1)切片
+2)通过图片的选取 (图层)
+
+出现误操作  通过 历史记录  （窗口面板)
+参考线   alt+v+D   调出视图的面板 清除参考线
+ctrl+G 编组
+ctrl+E 合并图层
+
+ctrl 点击图层的空白区域  会出现一个选区
+ctrl+C 复制选取  ctrl+N 新建图层  ctrl+v 粘贴
+ctrl+alt+shift+S  另存为  (png24 jpg gif)
+
+
+
+
+
+
+
+
+<!--1.响应式布局:流式布局   宽度不要写死   百分比 移动端
+rem (font size of root element)  根元素的字体大小
+1rem=16px  1px=1/16  0.0625   6.25%
+           10px      0.625    62.5%
+
+
+
+
+psd的设计稿
+320*2  640  iphone5
+375*2  750  iphone6
+414*3  1242 iphone6 plus
+       720  小米
+
+640    100px  font-size
+320    x  iphone5
+375    y  iphone6
+488    z
+推算出这样一个计算公式：
+html fontSize 根目录的字体大小 = (设备的宽度/设计稿)*100
+x=(320*100)/640   求未知数
+
+
+~function () {
+        var desW = 640,
+            winW = document.documentElement.clientWidth,
+            ratio = winW / desW;
+        document.documentElement.style.fontSize = ratio * 100 + 'px';
+    }()
+
+
+
+640 设计稿
+320 设备的宽度
+
+
+
+
+1 x  x=10  10
+     x=20  20
+
+
+-->
+
+<div class="box"></div>
+<script type="text/javascript">
+    /*凤凰视频logo大小 ：220px * 46px   2.2rem*.46rem
+    * 100px*100px     1rem*1rem    50px  iphone5
+    * 117px*117px                  font-size: 58.5938px;  iphone6
+    *
+    *
+    * */
+    ~function () {
+        var desW = 640, //根据设计稿去修改  如果你拿到的设计稿是640  640;如果你拿到的设计稿是750  750
+                winW = document.documentElement.clientWidth,//动态获取设备的屏幕宽度
+                ratio = winW / desW;
+        document.documentElement.style.fontSize = ratio * 100 + 'px';
+    }()
+</script>
+
+</body>
+>>>>>>> Stashed changes
 </html>
